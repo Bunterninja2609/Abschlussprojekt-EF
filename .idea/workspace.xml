@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a3a0b6c3-3531-4b83-899a-66618f48675b" name="Changes" comment="Grundlegende Struktur Block side (nicht funktionsfähig)">
+    <list default="true" id="a3a0b6c3-3531-4b83-899a-66618f48675b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/my_project/control/BlockRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/my_project/control/BlockRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/my_project/control/EntityRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/my_project/control/EntityRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/my_project/control/Renderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/my_project/control/Renderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/my_project/model/Terrain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/my_project/model/Terrain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/my_project/model/Air.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/my_project/model/blocks/Air.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/my_project/model/Block.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/my_project/model/blocks/Block.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/my_project/model/Stone.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/my_project/model/Stone.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,12 +31,12 @@
     &quot;assignee&quot;: &quot;Bunterninja2609&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Bunterninja2609/Abschlussprojekt-EF.git&quot;,
-    &quot;accountId&quot;: &quot;7a57a3bc-4eab-4e85-a916-08c6a81bb081&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Bunterninja2609/Abschlussprojekt-EF.git",
+    "accountId": "7a57a3bc-4eab-4e85-a916-08c6a81bb081"
   }
-}</component>
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
@@ -49,21 +48,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.MainProgram.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "Merging main",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.MainProgram.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="MainProgram" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MainProgram" />
@@ -98,24 +97,10 @@
       <workItem from="1746559521661" duration="1023000" />
       <workItem from="1746561667178" duration="3405000" />
       <workItem from="1746789964095" duration="458000" />
-      <workItem from="1746790998131" duration="1142000" />
     </task>
-    <task id="LOCAL-00001" summary="Grundlegende Struktur Block side (nicht funktionsfähig)">
-      <option name="closed" value="true" />
-      <created>1746791570307</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1746791570307</updated>
-    </task>
-    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Grundlegende Struktur Block side (nicht funktionsfähig)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Grundlegende Struktur Block side (nicht funktionsfähig)" />
   </component>
 </project>
