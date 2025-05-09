@@ -13,13 +13,17 @@ public class EntityRenderer {
 
     }
 
-    //@Override
     public void draw(DrawTool drawTool) {
-
+        for (Entity entity : entities){
+            //TODO Add Simulation Distance detection
+            entity.draw(drawTool);
+        }
     }
 
-    //@Override
     public void update(double dt) {
-
+        for (Entity entity : entities){
+            //TODO Add Simulation Distance detection
+            entity.update(dt);
+        }
     }
 }
