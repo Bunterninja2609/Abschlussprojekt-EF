@@ -1,10 +1,19 @@
 package my_project.model;
 
+import KAGO_framework.view.DrawTool;
 import com.sun.javafx.geom.Vec2d;
 
 public class Terrain {
-    Chunk[][] chunk;
+    Chunk[][] chunks;
     public Terrain(Vec2d chunkSize, int seed) {
-        chunk = new Chunk[(int)chunkSize.x][(int)chunkSize.y];
+        chunks = new Chunk[(int)chunkSize.x][(int)chunkSize.y];
+    }
+
+    public void draw(DrawTool drawTool) {
+        for (Chunk[] row : chunks) {
+            for (Chunk chunk : row) {
+                chunk.draw(drawTool);
+            }
+        }
     }
 }

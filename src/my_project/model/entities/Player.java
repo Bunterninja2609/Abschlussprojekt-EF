@@ -1,7 +1,6 @@
 package my_project.model.entities;
 
 import KAGO_framework.view.DrawTool;
-import my_project.model.Entity;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;

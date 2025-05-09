@@ -1,4 +1,4 @@
-package my_project.model;
+package my_project.model.entities;
 
 import KAGO_framework.model.InteractiveGraphicalObject;
 

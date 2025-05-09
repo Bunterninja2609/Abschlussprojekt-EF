@@ -1,5 +1,6 @@
 package my_project.control;
 
+import KAGO_framework.control.ViewController;
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
 import com.sun.javafx.geom.Vec2d;
@@ -22,4 +23,35 @@ public class Renderer extends GraphicalObject {
         blockRenderer.draw(drawTool);
         uiRenderer.draw(drawTool);
     }
+    @Override
+    public void update(double dt){
+        entityRenderer.update(dt);
+        /*
+        blockRenderer.update(dt);
+        uiRenderer.update(dt);
+        */
+
+    }
+    public static Vec2d getOFFSET() {
+        return OFFSET;
+    }
+    public static void setOFFSET(Vec2d offset) {
+        OFFSET = offset;
+    }
+    public static double getSCALE() {
+        return SCALE;
+    }
+    public static void setSCALE(double scale) {
+        SCALE = scale;
+    }
+    public static Vec2d translate(Vec2d vec) {
+        return new Vec2d((vec.x + OFFSET.x), (vec.y + OFFSET.y));
+    }
+    public static double translateX(double x) {
+        return x + OFFSET.x;
+    }
+    public static double translateY(double y) {
+        return y + OFFSET.y;
+    }
+
 }

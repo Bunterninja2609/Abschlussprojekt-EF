@@ -13,6 +13,7 @@ public class BlockRenderer {
         terrain = new Terrain(new Vec2d(12, 8), (int)(Math.random()* 10000));
     }
     public void draw(DrawTool drawTool) {
-
+        terrain.draw(drawTool);
     }
+
 }
