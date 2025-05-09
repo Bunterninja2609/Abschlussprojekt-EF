@@ -1,0 +1,91 @@
+package my_project.model.Entities;
+
+import KAGO_framework.view.DrawTool;
+import my_project.model.Entity;
+
+import java.awt.*;
+import java.awt.event.KeyEvent;
+
+public class Player extends Entity {
+
+    private double gravity = 0;
+    private boolean onGround = false;
+    private boolean goLeft = false;
+    private boolean goRight = false;
+    private boolean goDown = false;
+
+    public Player() {
+        x = 400;
+        y = 400;
+        width = 40;
+        height = 100;
+    }
+
+    @Override
+    public void draw(DrawTool drawTool) {
+        drawTool.setCurrentColor(new Color(0, 7, 23, 255));
+        drawTool.drawFilledRectangle(x,y,width,height);
+    }
+
+    @Override
+    public void update(double dt) {
+        y += gravity*dt;
+        gravity += 2300*dt;
+
+        if(y > 540 - height){
+            onGround = true;
+            gravity = 0;
+            y = 540 - height;
+        }
+
+        if(goLeft) {
+            x -= 200*dt;
+        }
+        if(goRight) {
+            x += 200*dt;
+        }
+        if(goDown) {
+            if(height > 70) {
+                height -= 100*dt;
+            }else{
+                height = 70;
+            }
+        } else {
+            if(height < 100) {
+                height += 100*dt;
+            }else{
+                height = 100;
+            }
+        }
+    }
+
+    @Override
+    public void keyPressed(int key) {
+        if(onGround && (key == KeyEvent.VK_SPACE || key == KeyEvent.VK_W)){
+            gravity = -850;
+            onGround = false;
+        }
+        if(key == KeyEvent.VK_A){
+            goLeft = true;
+        }
+        if(key == KeyEvent.VK_D){
+            goRight = true;
+        }
+        if(key == KeyEvent.VK_S){
+            goDown = true;
+        }
+    }
+
+    @Override
+    public void keyReleased(int key) {
+        if(key == KeyEvent.VK_A){
+            goLeft = false;
+        }
+        if(key == KeyEvent.VK_D){
+            goRight = false;
+        }
+        if(key == KeyEvent.VK_S){
+            goDown = false;
+        }
+    }
+}
