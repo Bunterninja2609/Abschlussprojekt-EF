@@ -1,4 +1,6 @@
 package my_project.model;
 
-public class Stone extends Block{
+import my_project.model.blocks.Block;
+
+public class Stone extends Block {
 }
