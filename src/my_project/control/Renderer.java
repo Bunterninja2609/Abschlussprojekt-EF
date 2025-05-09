@@ -20,6 +20,6 @@ public class Renderer extends GraphicalObject {
     public void draw(DrawTool drawTool) {
         entityRenderer.draw(drawTool);
         blockRenderer.draw(drawTool);
-        uiRenderer.draw(drawtool);
+        uiRenderer.draw(drawTool);
     }
 }
