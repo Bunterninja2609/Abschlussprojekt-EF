@@ -18,6 +18,7 @@ public class ProgramController {
     private Renderer renderer;
     private BlockRenderer blockRenderer;
     private EntityRenderer entityRenderer;
+    private UIRenderer uiRenderer;
 
     public ProgramController(ViewController viewController){
         this.viewController = viewController;
@@ -26,7 +27,8 @@ public class ProgramController {
     public void startProgram() {
         blockRenderer = new BlockRenderer();
         entityRenderer = new EntityRenderer();
-        renderer = new Renderer(blockRenderer, entityRenderer);
+        renderer = new Renderer(blockRenderer, entityRenderer, uiRenderer);
+        viewController.draw(renderer);
     }
 
     public void updateProgram(double dt){

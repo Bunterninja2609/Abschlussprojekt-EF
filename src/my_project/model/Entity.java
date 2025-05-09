@@ -13,7 +13,7 @@ public abstract class Entity extends InteractiveGraphicalObject {
 
     }
 
-    protected void pathFind(double x,double y){
+    protected void pathFind(double targetX,double targetY){
 
     }
 }
