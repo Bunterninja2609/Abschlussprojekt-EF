@@ -2,10 +2,11 @@ package my_project.control;
 
 import KAGO_framework.control.ViewController;
 import KAGO_framework.model.GraphicalObject;
+import KAGO_framework.model.InteractiveGraphicalObject;
 import KAGO_framework.view.DrawTool;
 import com.sun.javafx.geom.Vec2d;
 
-public class Renderer extends GraphicalObject {
+public class Renderer extends InteractiveGraphicalObject {
     private static double SCALE = 1.0;
     private static Vec2d OFFSET = new Vec2d(0, 0);
 
@@ -32,6 +33,11 @@ public class Renderer extends GraphicalObject {
         */
 
     }
+    /*
+    public void keyPressed(int key) {
+        OFFSET.x += key;
+    }
+     */
     public static Vec2d getOFFSET() {
         return OFFSET;
     }

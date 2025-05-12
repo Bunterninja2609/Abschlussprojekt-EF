@@ -5,11 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a3a0b6c3-3531-4b83-899a-66618f48675b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/my_project/BlockSpace.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/my_project/model/Texture.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/control/BlockRenderer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/control/BlockRenderer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/Chunk.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/Chunk.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/Stone.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/Terrain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/Terrain.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/blocks/Air.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/blocks/Air.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/blocks/Block.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/blocks/Block.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/blocks/Dirt.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/blocks/Dirt.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/my_project/control/BlockRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/my_project/control/BlockRenderer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/my_project/model/Chunk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/my_project/model/Chunk.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/my_project/model/Stone.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/my_project/model/blocks/Stone.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/my_project/model/Terrain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/my_project/model/Terrain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/my_project/model/blocks/Air.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/my_project/model/blocks/Air.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/my_project/model/blocks/Block.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/my_project/model/blocks/Block.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/my_project/model/blocks/Dirt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/my_project/model/blocks/Dirt.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,12 +44,12 @@
     &quot;assignee&quot;: &quot;Bunterninja2609&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Bunterninja2609/Abschlussprojekt-EF.git",
-    "accountId": "b24e6f26-cac6-4166-88f5-906b8fd818d7"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Bunterninja2609/Abschlussprojekt-EF.git&quot;,
+    &quot;accountId&quot;: &quot;b24e6f26-cac6-4166-88f5-906b8fd818d7&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
@@ -99,6 +111,7 @@
       <workItem from="1746561667178" duration="3405000" />
       <workItem from="1746789964095" duration="458000" />
       <workItem from="1746894623448" duration="3289000" />
+      <workItem from="1747075758849" duration="6819000" />
     </task>
     <servers />
   </component>

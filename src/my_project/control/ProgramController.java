@@ -29,6 +29,7 @@ public class ProgramController {
         entityRenderer = new EntityRenderer(viewController);
         renderer = new Renderer(blockRenderer, entityRenderer, uiRenderer);
         viewController.draw(renderer);
+        viewController.register(renderer);
     }
 
     public void updateProgram(double dt){

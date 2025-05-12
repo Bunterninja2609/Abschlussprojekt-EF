@@ -2,11 +2,27 @@ package my_project.model.blocks;
 
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
+import com.sun.javafx.geom.Vec2d;
+import my_project.control.Renderer;
 
 public class Block extends GraphicalObject {
-	public Block() {}
+	static Vec2d SIZE = new Vec2d(16, 16);
+	protected Vec2d gridPosition;
+	public Block(Vec2d gridPosition) {
+		this.gridPosition = gridPosition;
+		x = gridPosition.x * SIZE.x;
+		y = gridPosition.y * SIZE.y;
+	}
 	@Override
 	public void draw(DrawTool drawtool){
-		drawtool.drawImage(getMyImage(),x, y);
+		drawHitbox(drawtool);
+	}
+	protected void drawHitbox(DrawTool drawtool){
+		//TODO Fix Scale
+		drawtool.drawRectangle(x + Renderer.getOFFSET().x * Renderer.getSCALE(), y + Renderer.getOFFSET().y * Renderer.getSCALE(), SIZE.x * Renderer.getSCALE(), SIZE.y * Renderer.getSCALE());
+	}
+
+	public static Vec2d getSIZE() {
+		return SIZE;
 	}
 }

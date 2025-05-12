@@ -2,15 +2,19 @@ package my_project.model;
 
 import KAGO_framework.view.DrawTool;
 import com.sun.javafx.geom.Vec2d;
+import my_project.model.blocks.*;
+import my_project.model.blocks.Block;
 
 public class Terrain {
     private Chunk[][] chunks;
-    public Terrain(Vec2d worldSize, int seed, Vec2d chunkSize) {
-
+    public Terrain(Vec2d worldSize, int seed) {
+        System.out.println("Terrain created");
+        System.out.println("World Size: " + worldSize.x + " x " + worldSize.y + " Chunks");
+        System.out.println("Seed: " + seed);
         chunks = new Chunk[(int)worldSize.x][(int)worldSize.y];
         for (int x = 0; x < worldSize.x; x++) {
             for (int y = 0; y < worldSize.y; y++) {
-                chunks[x][y] = new Chunk(new Vec2d(x, y), new Vec2d(chunkSize.x, chunkSize.y));
+                chunks[x][y] = new Chunk(new Vec2d(x, y), this);
             }
         }
     }
@@ -21,5 +25,18 @@ public class Terrain {
                 chunk.draw(drawTool);
             }
         }
+    }
+    public Block generate(double x, double y) {
+        //TODO spätere implementierung des Perlin Noise
+        int block = (int)(Math.random()*3);
+        switch (block){
+            case 0:
+                return new Air(new Vec2d(x, y));
+            case 1:
+                return new Dirt(new Vec2d(x, y));
+            case 2:
+                return new Stone(new Vec2d(x, y));
+        }
+        return new Air(new Vec2d(x, y));
     }
 }
