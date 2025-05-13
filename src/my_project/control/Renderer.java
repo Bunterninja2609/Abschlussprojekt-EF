@@ -35,13 +35,15 @@ public class Renderer extends InteractiveGraphicalObject {
         blockRenderer.update(dt);
         uiRenderer.update(dt);
         */
+
         OFFSET.x -= dt * cameraMovement.x * speed;
         OFFSET.y -= dt * cameraMovement.y * speed;
+        cameraMovement.set(0, 0);
 
     }
 
     public void keyPressed(int key) {
-        cameraMovement.set(0, 0);
+
         if(key == KeyEvent.VK_W){
             cameraMovement.y -= 1;
         }
