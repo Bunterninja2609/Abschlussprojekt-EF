@@ -19,7 +19,7 @@ public class Block extends GraphicalObject {
 	}
 	protected void drawHitbox(DrawTool drawtool){
 		//TODO Fix Scale
-		drawtool.drawRectangle(x + Renderer.getOFFSET().x * Renderer.getSCALE(), y + Renderer.getOFFSET().y * Renderer.getSCALE(), SIZE.x * Renderer.getSCALE(), SIZE.y * Renderer.getSCALE());
+		drawtool.drawFilledRectangle(Renderer.translateAndScaleX(x), Renderer.translateAndScaleY(y), Renderer.scale(SIZE.x), Renderer.scale(SIZE.y));
 	}
 
 	public static Vec2d getSIZE() {

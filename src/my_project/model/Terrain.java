@@ -10,6 +10,7 @@ public class Terrain {
     public Terrain(Vec2d worldSize, int seed) {
         System.out.println("Terrain created");
         System.out.println("World Size: " + worldSize.x + " x " + worldSize.y + " Chunks");
+        System.out.println("  > " + (worldSize.x * Chunk.SIZE.x) + " x " + (worldSize.y * Chunk.SIZE.y) + " Blocks");
         System.out.println("Seed: " + seed);
         chunks = new Chunk[(int)worldSize.x][(int)worldSize.y];
         for (int x = 0; x < worldSize.x; x++) {
@@ -29,6 +30,15 @@ public class Terrain {
     public Block generate(double x, double y) {
         //TODO spätere implementierung des Perlin Noise
         int block = (int)(Math.random()*3);
+        if (y < 30){
+            block = 0;
+        } else if (y < 55 ){
+            block = 1;
+        } else if (y < 60 && Math.random()<0.6){
+            block = 1;
+        } else {
+            block = 2;
+        }
         switch (block){
             case 0:
                 return new Air(new Vec2d(x, y));

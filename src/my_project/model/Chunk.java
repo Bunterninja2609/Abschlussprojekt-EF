@@ -3,6 +3,7 @@ package my_project.model;
 import KAGO_framework.view.DrawTool;
 import com.sun.javafx.geom.Vec2d;
 import my_project.BlockSpace;
+import my_project.control.Renderer;
 import my_project.model.blocks.*;
 import my_project.model.blocks.Block;
 
@@ -24,6 +25,7 @@ public class Chunk {
             for (int y = 0; y < SIZE.y; y++) {
                 Vec2d blockPosition = new Vec2d((gridPosition.x + x), (gridPosition.y + y));
                 Block generatedBlock = terrain.generate(blockPosition.x, blockPosition.y);
+                System.out.println(blockPosition.x + " " + blockPosition.y);
                 blockSpaces[x][y] = new BlockSpace( blockPosition, generatedBlock);
             }
         }
@@ -36,6 +38,8 @@ public class Chunk {
             }
         }
         drawTool.setCurrentColor(255, 0, 0, 255);
-        drawTool.drawRectangle(position.x, position.y, SIZE.x * Block.getSIZE().x, SIZE.y * Block.getSIZE().y);
+
+        drawTool.drawRectangle((position.x + Renderer.getOFFSET().x) * Renderer.getSCALE(), (position.y + Renderer.getOFFSET().y) * Renderer.getSCALE(), SIZE.x * Block.getSIZE().x * Renderer.getSCALE(), SIZE.y * Block.getSIZE().y * Renderer.getSCALE());
+
     }
 }
