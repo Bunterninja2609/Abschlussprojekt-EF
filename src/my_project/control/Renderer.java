@@ -38,7 +38,7 @@ public class Renderer extends InteractiveGraphicalObject {
 
         OFFSET.x -= dt * cameraMovement.x * speed;
         OFFSET.y -= dt * cameraMovement.y * speed;
-        cameraMovement.set(0, 0);
+        //cameraMovement.set(0, 0);
 
     }
 
@@ -55,6 +55,21 @@ public class Renderer extends InteractiveGraphicalObject {
         }
         if(key == KeyEvent.VK_D){
             cameraMovement.x += 1;
+        }
+    }
+
+    public void keyReleased(int key) {
+        if(key == KeyEvent.VK_W){
+            cameraMovement.y = 0;
+        }
+        if(key == KeyEvent.VK_S){
+            cameraMovement.y = 0;
+        }
+        if(key == KeyEvent.VK_A){
+            cameraMovement.x = 0;
+        }
+        if(key == KeyEvent.VK_D){
+            cameraMovement.x = 0;
         }
     }
 
