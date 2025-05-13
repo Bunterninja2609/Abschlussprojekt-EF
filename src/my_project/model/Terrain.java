@@ -29,6 +29,7 @@ public class Terrain {
     }
     public Block generate(double x, double y) {
         //TODO spätere implementierung des Perlin Noise
+
         int block = (int)(Math.random()*3);
         if (y < 30){
             block = 0;
@@ -49,4 +50,5 @@ public class Terrain {
         }
         return new Air(new Vec2d(x, y));
     }
+
 }
