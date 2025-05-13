@@ -12,6 +12,7 @@ public class Player extends Entity {
     private boolean goLeft = false;
     private boolean goRight = false;
     private boolean goDown = false;
+    private double walkSpeed = 0;
 
     public Player() {
         x = 400;
@@ -37,12 +38,27 @@ public class Player extends Entity {
             y = 540 - height;
         }
 
-        if(goLeft) {
-            x -= 200*dt;
+        if(goLeft && walkSpeed > -200){
+            walkSpeed -= 800*dt;
         }
-        if(goRight) {
-            x += 200*dt;
+        if(goRight && walkSpeed < 200){
+            walkSpeed += 800*dt;
         }
+        if(!goLeft && !goRight){
+            if(walkSpeed > 0){
+                walkSpeed -= 1600*dt;
+                if (walkSpeed < 0) {
+                    walkSpeed = 0;
+                }
+            }else if(walkSpeed < 0){
+                walkSpeed += 1600*dt;
+                if(walkSpeed > 0){
+                    walkSpeed = 0;
+                }
+            }
+        }
+        x += walkSpeed*dt;
+
         if(goDown) {
             if(height > 70) {
                 height -= 100*dt;
