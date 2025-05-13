@@ -1,17 +1,25 @@
 package my_project.control;
 
+import KAGO_framework.Config;
 import KAGO_framework.control.ViewController;
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.model.InteractiveGraphicalObject;
 import KAGO_framework.view.DrawTool;
 import com.sun.javafx.geom.Vec2d;
 
+import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 
 public class Renderer extends InteractiveGraphicalObject {
     private static double SCALE = 0.3;
     private static Vec2d OFFSET = new Vec2d(0, 0);
     private Vec2d cameraMovement = new Vec2d(0,0);
+
+    private boolean wIsDown = false;
+    private boolean sIsDown = false;
+    private boolean aIsDown = false;
+    private boolean dIsDown = false;
 
     private BlockRenderer blockRenderer;
     private EntityRenderer entityRenderer;
@@ -33,43 +41,66 @@ public class Renderer extends InteractiveGraphicalObject {
         entityRenderer.update(dt);
         /*
         blockRenderer.update(dt);
-        uiRenderer.update(dt);
         */
 
+        uiRenderer.update(dt);
+
+        cameraMovement.set(0, 0);
+        if (wIsDown){
+            cameraMovement.y -= 1;
+        }
+        if (sIsDown){
+            cameraMovement.y += 1;
+        }
+        if (aIsDown){
+            cameraMovement.x -= 1;
+        }
+        if (dIsDown){
+            cameraMovement.x += 1;
+        }
         OFFSET.x -= dt * cameraMovement.x * speed;
         OFFSET.y -= dt * cameraMovement.y * speed;
-        //cameraMovement.set(0, 0);
+
 
     }
 
     public void keyPressed(int key) {
 
         if(key == KeyEvent.VK_W){
-            cameraMovement.y -= 1;
+            wIsDown = true;
         }
         if(key == KeyEvent.VK_S){
-            cameraMovement.y += 1;
+            sIsDown = true;
         }
+
+
         if(key == KeyEvent.VK_A){
-            cameraMovement.x -= 1;
+            aIsDown = true;
         }
         if(key == KeyEvent.VK_D){
-            cameraMovement.x += 1;
+           dIsDown = true;
         }
+        if(key == KeyEvent.VK_UP){
+            SCALE = SCALE * 1.1;
+        }
+        if(key == KeyEvent.VK_DOWN){
+            SCALE = SCALE * 0.9;
+        }
+
     }
 
     public void keyReleased(int key) {
         if(key == KeyEvent.VK_W){
-            cameraMovement.y = 0;
+            wIsDown = false;
         }
         if(key == KeyEvent.VK_S){
-            cameraMovement.y = 0;
+            sIsDown = false;
         }
         if(key == KeyEvent.VK_A){
-            cameraMovement.x = 0;
+            aIsDown = false;
         }
         if(key == KeyEvent.VK_D){
-            cameraMovement.x = 0;
+            dIsDown = false;
         }
     }
 
