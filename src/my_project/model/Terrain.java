@@ -7,7 +7,9 @@ import my_project.model.blocks.Block;
 
 public class Terrain {
     private Chunk[][] chunks;
+    private PerlinNoise noise;
     public Terrain(Vec2d worldSize, int seed) {
+        noise = new PerlinNoise(45, 0.05, 3, 0.5, 2);
         System.out.println("Terrain created");
         System.out.println("World Size: " + worldSize.x + " x " + worldSize.y + " Chunks");
         System.out.println("  > " + (worldSize.x * Chunk.SIZE.x) + " x " + (worldSize.y * Chunk.SIZE.y) + " Blocks");
@@ -29,8 +31,10 @@ public class Terrain {
     }
     public Block generate(double x, double y) {
         //TODO spätere implementierung des Perlin Noise
-
-        int block = (int)(Math.random()*3);
+        double n = noise.getValue(x, y);
+        int block = (int)n*3;
+        System.out.println("block: " + block);
+        /*
         if (y < 30){
             block = 0;
         } else if (y < 55 ){
@@ -40,6 +44,10 @@ public class Terrain {
         } else {
             block = 2;
         }
+
+         */
+        return new Debug(new Vec2d(x, y), n);
+        /*
         switch (block){
             case 0:
                 return new Air(new Vec2d(x, y));
@@ -49,6 +57,8 @@ public class Terrain {
                 return new Stone(new Vec2d(x, y));
         }
         return new Air(new Vec2d(x, y));
+
+         */
     }
 
 }

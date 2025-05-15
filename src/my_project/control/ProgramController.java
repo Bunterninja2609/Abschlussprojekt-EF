@@ -39,4 +39,10 @@ public class ProgramController {
     public void mouseClicked(MouseEvent e){
 
     }
+    public static double clamp(double min, double max, double value){
+        if(value > max){
+            return max;
+        }
+        return Math.max(value, min);
+    }
 }
