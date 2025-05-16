@@ -14,7 +14,8 @@ public class Player extends Entity {
     private boolean goDown = false;
     private double walkSpeed = 0;
 
-    public Player() {
+    public Player(int invSize) {
+        super(invSize);
         x = 400;
         y = 400;
         width = 40;
@@ -38,10 +39,10 @@ public class Player extends Entity {
             y = 540 - height;
         }
 
-        if(goLeft && walkSpeed > -200){
+        if(goLeft && walkSpeed > -300){
             walkSpeed -= 800*dt;
         }
-        if(goRight && walkSpeed < 200){
+        if(goRight && walkSpeed < 300){
             walkSpeed += 800*dt;
         }
         if(!goLeft && !goRight){
