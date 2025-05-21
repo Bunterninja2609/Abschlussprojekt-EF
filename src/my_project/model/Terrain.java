@@ -2,6 +2,7 @@ package my_project.model;
 
 import KAGO_framework.view.DrawTool;
 import com.sun.javafx.geom.Vec2d;
+import my_project.control.ProgramController;
 import my_project.model.blocks.*;
 import my_project.model.blocks.Block;
 
@@ -29,9 +30,17 @@ public class Terrain {
     public void draw(DrawTool drawTool) {
         for (Chunk[] column : chunks) {
             for (Chunk chunk : column) {
-                chunk.draw(drawTool);
+                if (chunk.isLoaded()) {
+                    chunk.draw(drawTool);
+                }
             }
         }
+    }
+    public Chunk getChunkByPosition(double x, double y) {
+        int chunkX = (int) ProgramController.clamp( 0, chunks.length - 1,x / (Chunk.getSIZE().x * Block.getSIZE().x));
+        int chunkY = (int) ProgramController.clamp( 0, chunks[0].length - 1,y / (Chunk.getSIZE().y * Block.getSIZE().y));
+
+        return chunks[chunkX][chunkY];
     }
     public Block generate(double x, double y) {
         //TODO spätere implementierung des Perlin Noise
@@ -74,5 +83,4 @@ public class Terrain {
                 return new Air(new Vec2d(x, y));
         }
     }
-
 }

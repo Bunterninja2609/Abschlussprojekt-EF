@@ -6,6 +6,9 @@ import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.model.InteractiveGraphicalObject;
 import KAGO_framework.view.DrawTool;
 import com.sun.javafx.geom.Vec2d;
+import my_project.model.Chunk;
+import my_project.model.blocks.Block;
+import my_project.control.UIRenderer;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -16,18 +19,20 @@ public class Renderer extends InteractiveGraphicalObject {
     private static Vec2d OFFSET = new Vec2d(0, 0);
     private Vec2d cameraMovement = new Vec2d(0,0);
 
+    private static final int RENDERDISTANCE = 2;
+
     private boolean wIsDown = false;
     private boolean sIsDown = false;
     private boolean aIsDown = false;
     private boolean dIsDown = false;
 
-    private BlockRenderer blockRenderer;
-    private EntityRenderer entityRenderer;
-    private UIRenderer uiRenderer;
+    private static BlockRenderer blockRenderer;
+    private static EntityRenderer entityRenderer;
+    private static UIRenderer uiRenderer;
     public Renderer(BlockRenderer blockRenderer, EntityRenderer entityRenderer, UIRenderer uiRenderer) {
         this.blockRenderer = blockRenderer;
         this.entityRenderer = entityRenderer;
-        this.uiRenderer = new UIRenderer();
+        this.uiRenderer = uiRenderer;
     }
     @Override
     public void draw(DrawTool drawTool) {
@@ -38,12 +43,12 @@ public class Renderer extends InteractiveGraphicalObject {
     @Override
     public void update(double dt){
         double speed = 100;
+        uiRenderer.update(dt);
+
         entityRenderer.update(dt);
-        /*
+
         blockRenderer.update(dt);
 
-        uiRenderer.update(dt);
-        */
         cameraMovement.set(0, 0);
         if (wIsDown){
             cameraMovement.y -= 1;
@@ -132,5 +137,13 @@ public class Renderer extends InteractiveGraphicalObject {
     }
     public static double translateAndScaleY(double y) {
         return (y + Renderer.getOFFSET().y)*Renderer.getSCALE();
+    }
+    public static void loadChunks(double x, double y){
+        double rDIP = (Chunk.getSIZE().x * Block.getSIZE().x); //Chunk size in Pixels
+        for (int i = -RENDERDISTANCE; i <= RENDERDISTANCE; i++) {
+            for (int j = -RENDERDISTANCE; j <= RENDERDISTANCE; j++) {
+                blockRenderer.getTerrain().getChunkByPosition(x + i * rDIP, y + j * rDIP).setLoaded(true);
+            }
+        }
     }
 }

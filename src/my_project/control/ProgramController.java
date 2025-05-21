@@ -27,6 +27,7 @@ public class ProgramController {
     public void startProgram() {
         blockRenderer = new BlockRenderer();
         entityRenderer = new EntityRenderer(viewController);
+        uiRenderer = new UIRenderer();
         renderer = new Renderer(blockRenderer, entityRenderer, uiRenderer);
         viewController.draw(renderer);
         viewController.register(renderer);

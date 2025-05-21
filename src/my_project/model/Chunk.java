@@ -12,6 +12,8 @@ public class Chunk {
     Vec2d chunkGridPosition;//Position in the Chunks array
     Vec2d gridPosition;//Position in the Block grid
 
+    boolean loaded = false;
+
     static Vec2d SIZE = new Vec2d(16, 16); // wie viele blöcke ein chunk enthält
     BlockSpace[][] blockSpaces; // empty spaces for blocks
     public Chunk(Vec2d chunkGridPosition, Terrain terrain) {
@@ -40,6 +42,15 @@ public class Chunk {
         drawTool.setCurrentColor(255, 0, 0, 255);
 
         drawTool.drawRectangle((position.x + Renderer.getOFFSET().x) * Renderer.getSCALE(), (position.y + Renderer.getOFFSET().y) * Renderer.getSCALE(), SIZE.x * Block.getSIZE().x * Renderer.getSCALE(), SIZE.y * Block.getSIZE().y * Renderer.getSCALE());
-
+        loaded = false;
+    }
+    public boolean isLoaded() {
+        return loaded;
+    }
+    public static Vec2d getSIZE() {
+        return SIZE;
+    }
+    public void setLoaded(boolean loaded) {
+        this.loaded = loaded;
     }
 }

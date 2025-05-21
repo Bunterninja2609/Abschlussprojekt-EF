@@ -1,6 +1,7 @@
 package my_project.model.entities;
 
 import KAGO_framework.view.DrawTool;
+import my_project.control.Renderer;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -31,6 +32,8 @@ public class Player extends Entity {
 
     @Override
     public void update(double dt) {
+        Renderer.loadChunks(x, y);
+
         y += gravity*dt;
         gravity += 2300*dt;
 
