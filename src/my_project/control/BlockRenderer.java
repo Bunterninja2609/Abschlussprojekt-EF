@@ -18,4 +18,6 @@ public class BlockRenderer {
         terrain.draw(drawTool);
     }
 
+    public void update(double dt) {}
+
 }

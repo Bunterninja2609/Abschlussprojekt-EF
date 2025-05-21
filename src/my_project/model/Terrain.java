@@ -5,11 +5,15 @@ import com.sun.javafx.geom.Vec2d;
 import my_project.model.blocks.*;
 import my_project.model.blocks.Block;
 
+import java.util.Random;
+
 public class Terrain {
     private Chunk[][] chunks;
     private PerlinNoise noise;
+    private Random rand;
     public Terrain(Vec2d worldSize, int seed) {
-        noise = new PerlinNoise(45, 0.05, 3, 0.5, 2);
+        rand = new Random(seed);
+        noise = new PerlinNoise(45, 0.025, 6, 0.3, 3);
         System.out.println("Terrain created");
         System.out.println("World Size: " + worldSize.x + " x " + worldSize.y + " Chunks");
         System.out.println("  > " + (worldSize.x * Chunk.SIZE.x) + " x " + (worldSize.y * Chunk.SIZE.y) + " Blocks");
@@ -31,23 +35,30 @@ public class Terrain {
     }
     public Block generate(double x, double y) {
         //TODO spätere implementierung des Perlin Noise
-        double n = noise.getValue(x, y);
-        int block = (int)n*3;
-        System.out.println("block: " + block);
-        /*
-        if (y < 30){
+        double floorHeight = noise.getValue(x) * 30;
+        double isOre = noise.getValue(x * 8, y * 8);
+        int block = 0;
+        int waterHeight = 30;
+        //System.out.println("floorHeight: " + floorHeight);
+
+        if (y < 30 + floorHeight) {
             block = 0;
-        } else if (y < 55 ){
-            block = 1;
-        } else if (y < 60 && Math.random()<0.6){
+        } else if (y < (40 + Math.pow(floorHeight, 3) *0.01) ) {
             block = 1;
         } else {
             block = 2;
         }
 
-         */
-        return new Debug(new Vec2d(x, y), n);
-        /*
+        if (block == 0 && y >= waterHeight) {
+            block = 3;
+        }
+        if (block == 2 && isOre >= 0.3) {
+            block = 4;
+        }
+
+
+        //return new Debug(new Vec2d(x, y), n);
+
         switch (block){
             case 0:
                 return new Air(new Vec2d(x, y));
@@ -55,10 +66,13 @@ public class Terrain {
                 return new Dirt(new Vec2d(x, y));
             case 2:
                 return new Stone(new Vec2d(x, y));
+            case 3:
+                return new Water(new Vec2d(x, y));
+            case 4:
+                return new Iron(new Vec2d(x, y));
+            default:
+                return new Air(new Vec2d(x, y));
         }
-        return new Air(new Vec2d(x, y));
-
-         */
     }
 
 }

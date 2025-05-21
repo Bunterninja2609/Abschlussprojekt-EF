@@ -25,7 +25,8 @@ public class Player extends Entity {
     @Override
     public void draw(DrawTool drawTool) {
         drawTool.setCurrentColor(new Color(0, 7, 23, 255));
-        drawTool.drawFilledRectangle(x,y,width,height);
+
+        drawHitbox(drawTool);
     }
 
     @Override

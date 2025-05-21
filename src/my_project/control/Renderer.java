@@ -41,10 +41,9 @@ public class Renderer extends InteractiveGraphicalObject {
         entityRenderer.update(dt);
         /*
         blockRenderer.update(dt);
-        */
 
         uiRenderer.update(dt);
-
+        */
         cameraMovement.set(0, 0);
         if (wIsDown){
             cameraMovement.y -= 1;
