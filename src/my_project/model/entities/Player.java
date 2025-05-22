@@ -1,6 +1,7 @@
 package my_project.model.entities;
 
 import KAGO_framework.view.DrawTool;
+import com.sun.javafx.geom.Vec2d;
 import my_project.control.Renderer;
 
 import java.awt.*;
@@ -32,6 +33,7 @@ public class Player extends Entity {
 
     @Override
     public void update(double dt) {
+        Renderer.follow(new Vec2d(-x, -y), true);
         Renderer.loadChunks(x, y);
 
         y += gravity*dt;

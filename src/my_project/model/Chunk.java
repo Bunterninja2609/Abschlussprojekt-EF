@@ -41,7 +41,7 @@ public class Chunk {
         }
         drawTool.setCurrentColor(255, 0, 0, 255);
 
-        drawTool.drawRectangle((position.x + Renderer.getOFFSET().x) * Renderer.getSCALE(), (position.y + Renderer.getOFFSET().y) * Renderer.getSCALE(), SIZE.x * Block.getSIZE().x * Renderer.getSCALE(), SIZE.y * Block.getSIZE().y * Renderer.getSCALE());
+        drawTool.drawRectangle(Renderer.translateAndScaleX(position.x), Renderer.translateAndScaleY(position.y), SIZE.x * Block.getSIZE().x * Renderer.getSCALE(), SIZE.y * Block.getSIZE().y * Renderer.getSCALE());
         loaded = false;
     }
     public boolean isLoaded() {

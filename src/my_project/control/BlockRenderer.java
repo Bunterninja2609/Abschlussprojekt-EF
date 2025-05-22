@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class BlockRenderer {
     private Terrain terrain;
     public BlockRenderer() {
-        terrain = new Terrain(new Vec2d(80, 40), (int)(Math.random()* 10000));
+        terrain = new Terrain(new Vec2d(100, 100), (int)(Math.random()* 10000));
         System.out.println("BlockRenderer created");
 
     }
