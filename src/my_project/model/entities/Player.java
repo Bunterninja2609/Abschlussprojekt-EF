@@ -2,6 +2,7 @@ package my_project.model.entities;
 
 import KAGO_framework.view.DrawTool;
 import com.sun.javafx.geom.Vec2d;
+import my_project.control.Keyboard;
 import my_project.control.Renderer;
 
 import java.awt.*;
@@ -45,13 +46,13 @@ public class Player extends Entity {
             y = 540 - height;
         }
 
-        if(goLeft && walkSpeed > -300){
+        if(Keyboard.isPressed(KeyEvent.VK_A) && walkSpeed > -300){
             walkSpeed -= 800*dt;
         }
-        if(goRight && walkSpeed < 300){
+        if(Keyboard.isPressed(KeyEvent.VK_D) && walkSpeed < 300){
             walkSpeed += 800*dt;
         }
-        if(!goLeft && !goRight){
+        if(!Keyboard.isPressed(KeyEvent.VK_A) && !Keyboard.isPressed(KeyEvent.VK_D)){
             if(walkSpeed > 0){
                 walkSpeed -= 1600*dt;
                 if (walkSpeed < 0) {
