@@ -18,7 +18,7 @@ public class Renderer extends InteractiveGraphicalObject {
     private static double SCALE = 0.2;
     private static Vec2d OFFSET = new Vec2d(0, 0);
     private static Vec2d OFFSET2 = new Vec2d(0, 0);
-    private static int scene = 0;
+    private static int scene = 1;
 
     private static final int RENDERDISTANCE = 5;
 

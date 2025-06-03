@@ -14,6 +14,7 @@ public class Terrain {
     private Chunk[][] chunks;
     private PerlinNoise noise;
     private PerlinNoise biomeNoise;
+    private static double GROUNDHEIGHT = 40;
 
     private Random rand;
     public Terrain(Vec2d worldSize, int seed) {
@@ -47,6 +48,10 @@ public class Terrain {
 
         return chunks[chunkX][chunkY];
     }
+    public static double getGROUNDHEIGHT() {
+        return GROUNDHEIGHT;
+    }
+
     public Block generate(double x, double y) {
         double floorHeight = noise.getValue(x) * 30;
         double biomeHeight = biomeNoise.getValue(x) * 300;

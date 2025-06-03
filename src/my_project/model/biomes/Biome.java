@@ -2,11 +2,25 @@ package my_project.model.biomes;
 
 import com.sun.javafx.geom.Vec2d;
 import my_project.model.PerlinNoise;
+import my_project.model.Terrain;
 import my_project.model.blocks.*;
 
 public class Biome {
-    public static Block generate(PerlinNoise noise, PerlinNoise elevation, double x, double y) {
-        int block = generateBasicTerrain(noise, elevation, x, y);
+    public static Block generate(PerlinNoise noise, PerlinNoise biomes, double x, double y) {
+        int block = generateBasicTerrain(noise, biomes, x, y);
+        block = alterCurrentBlocks(noise, biomes, x, y, block);
+        return returnBlock(block, x, y);
+    }
+    protected static int generateBasicTerrain(PerlinNoise noise, PerlinNoise biomes, double x, double y) {
+        if (y > Terrain.getGROUNDHEIGHT()) {
+            return 2;
+        }
+        return 1;
+    }
+    protected static int alterCurrentBlocks(PerlinNoise noise, PerlinNoise biomes, double x, double y, int block){
+        return 0;
+    }
+    private static Block returnBlock(int block, double x, double y){
         switch (block){
             case 0:
                 return new Debug(new Vec2d(x, y), 0);
@@ -23,8 +37,5 @@ public class Biome {
             default:
                 return new Debug(new Vec2d(x, y), 0);
         }
-    }
-    private static int generateBasicTerrain(PerlinNoise noise, PerlinNoise elevation, double x, double y) {
-        return 0;
     }
 }
