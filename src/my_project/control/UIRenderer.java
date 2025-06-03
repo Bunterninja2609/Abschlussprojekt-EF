@@ -16,6 +16,15 @@ public class UIRenderer {
 
     public void update(double dt) {
         fps = (int) Math.floor(1/dt);
+        switch(Renderer.getSCENE()){
+            case 0:
+                startMenu.update(dt);
+                break;
+            case 1:
+                break;
+            default:
+                break;
+        }
     }
     public void draw(DrawTool drawTool) {
         drawTool.setCurrentColor(new Color(0,0,0));
