@@ -4,6 +4,7 @@ import KAGO_framework.view.DrawTool;
 import com.sun.javafx.geom.Vec2d;
 import my_project.control.Keyboard;
 import my_project.control.Renderer;
+import my_project.model.Collider;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -23,6 +24,7 @@ public class Player extends Entity {
         y = 400;
         width = 40;
         height = 100;
+
     }
 
     @Override
@@ -30,6 +32,11 @@ public class Player extends Entity {
         drawTool.setCurrentColor(new Color(0, 7, 23, 255));
 
         drawHitbox(drawTool);
+
+        leftCollider.draw(drawTool);
+        rightCollider.draw(drawTool);
+        topCollider.draw(drawTool);
+        bottomCollider.draw(drawTool);
     }
 
     @Override
@@ -80,6 +87,7 @@ public class Player extends Entity {
                 height = 100;
             }
         }
+        super.update(dt);
     }
 
     @Override
