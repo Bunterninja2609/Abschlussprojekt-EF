@@ -11,7 +11,7 @@ public class Ocean extends Biome {
         double isOre = noise.getValue(x * 8, y * 8);
         int block = 0;
         int waterHeight = 30;
-        double floorHeight = noise.getValue(x) * 30 + elevation.getValue(x) * 30;
+        double floorHeight = noise.getValue(x) * 30 + elevation.getValue(x) * 1 - 10;
         //System.out.println("floorHeight: " + floorHeight);
 
         if (y < 30 + floorHeight) {

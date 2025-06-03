@@ -18,6 +18,7 @@ public class Renderer extends InteractiveGraphicalObject {
     private static double SCALE = 0.2;
     private static Vec2d OFFSET = new Vec2d(0, 0);
     private static Vec2d OFFSET2 = new Vec2d(0, 0);
+    private static int scene = 0;
 
     private static final int RENDERDISTANCE = 5;
 
@@ -31,23 +32,37 @@ public class Renderer extends InteractiveGraphicalObject {
     }
     @Override
     public void draw(DrawTool drawTool) {
-        entityRenderer.draw(drawTool);
-        blockRenderer.draw(drawTool);
+        switch(scene){
+            case 0://Menü
+
+            case 1://Spiel
+                entityRenderer.draw(drawTool);
+                blockRenderer.draw(drawTool);
+
+            default:
+        }
         uiRenderer.draw(drawTool);
     }
     @Override
     public void update(double dt){
         uiRenderer.update(dt);
+        switch(scene) {
+            case 0://Menü
 
-        entityRenderer.update(dt);
+            case 1://Spiel
+                entityRenderer.update(dt);
+                blockRenderer.update(dt);
+        }
 
-        blockRenderer.update(dt);
 
     }
 
 
     public static Vec2d getOFFSET() {
         return OFFSET;
+    }
+    public static int getSCENE() {
+        return scene;
     }
     public static void setOFFSET(Vec2d offset) {
         OFFSET = offset;
