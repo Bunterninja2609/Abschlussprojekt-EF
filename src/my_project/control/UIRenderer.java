@@ -23,8 +23,11 @@ public class UIRenderer {
         switch(Renderer.getSCENE()){
             case 0:
                 startMenu.draw(drawTool);
+                break;
             case 1:
+                break;
             default:
+                break;
         }
     }
 

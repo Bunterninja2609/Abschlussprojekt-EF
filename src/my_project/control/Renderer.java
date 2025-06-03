@@ -34,11 +34,11 @@ public class Renderer extends InteractiveGraphicalObject {
     public void draw(DrawTool drawTool) {
         switch(scene){
             case 0://Menü
-
+                break;
             case 1://Spiel
                 entityRenderer.draw(drawTool);
                 blockRenderer.draw(drawTool);
-
+                break;
             default:
         }
         uiRenderer.draw(drawTool);
@@ -48,10 +48,11 @@ public class Renderer extends InteractiveGraphicalObject {
         uiRenderer.update(dt);
         switch(scene) {
             case 0://Menü
-
+                break;
             case 1://Spiel
                 entityRenderer.update(dt);
                 blockRenderer.update(dt);
+                break;
         }
 
 
