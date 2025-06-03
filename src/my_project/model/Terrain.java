@@ -2,12 +2,24 @@ package my_project.model;
 
 import KAGO_framework.view.DrawTool;
 import com.sun.javafx.geom.Vec2d;
+import my_project.control.ProgramController;
+import my_project.model.biomes.Biome;
+import my_project.model.biomes.Ocean;
 import my_project.model.blocks.*;
 import my_project.model.blocks.Block;
 
+import java.util.Random;
+
 public class Terrain {
     private Chunk[][] chunks;
+    private PerlinNoise noise;
+    private PerlinNoise biomeNoise;
+
+    private Random rand;
     public Terrain(Vec2d worldSize, int seed) {
+        rand = new Random(seed);
+        noise = new PerlinNoise(seed, 0.025, 4, 0.3, 3);
+        biomeNoise = new PerlinNoise(seed + 1, 0.005, 6, 0.3, 3);
         System.out.println("Terrain created");
         System.out.println("World Size: " + worldSize.x + " x " + worldSize.y + " Chunks");
         System.out.println("  > " + (worldSize.x * Chunk.SIZE.x) + " x " + (worldSize.y * Chunk.SIZE.y) + " Blocks");
@@ -23,30 +35,26 @@ public class Terrain {
     public void draw(DrawTool drawTool) {
         for (Chunk[] column : chunks) {
             for (Chunk chunk : column) {
-                chunk.draw(drawTool);
+                if (chunk.isLoaded()) {
+                    chunk.draw(drawTool);
+                }
             }
         }
     }
+    public Chunk getChunkByPosition(double x, double y) {
+        int chunkX = (int) ProgramController.clamp( 0, chunks.length - 1,x / (Chunk.getSIZE().x * Block.getSIZE().x));
+        int chunkY = (int) ProgramController.clamp( 0, chunks[0].length - 1,y / (Chunk.getSIZE().y * Block.getSIZE().y));
+
+        return chunks[chunkX][chunkY];
+    }
     public Block generate(double x, double y) {
-        //TODO spätere implementierung des Perlin Noise
-        int block = (int)(Math.random()*3);
-        if (y < 30){
-            block = 0;
-        } else if (y < 55 ){
-            block = 1;
-        } else if (y < 60 && Math.random()<0.6){
-            block = 1;
-        } else {
-            block = 2;
+        double floorHeight = noise.getValue(x) * 30;
+        double biomeHeight = biomeNoise.getValue(x) * 300;
+        if (biomeNoise.getValue(x) < 0) {
+            return Ocean.generate(noise, biomeNoise, x, y);
         }
-        switch (block){
-            case 0:
-                return new Air(new Vec2d(x, y));
-            case 1:
-                return new Dirt(new Vec2d(x, y));
-            case 2:
-                return new Stone(new Vec2d(x, y));
-        }
-        return new Air(new Vec2d(x, y));
+        return Biome.generate(noise, biomeNoise, x, y);
+
+
     }
 }

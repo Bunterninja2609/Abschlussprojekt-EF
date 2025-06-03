@@ -14,7 +14,7 @@ public class EntityRenderer {
 
     public EntityRenderer(ViewController viewController) {
         this.viewController = viewController;
-        this.addEntity(new Player());
+        this.addEntity(new Player(9));
     }
 
     public void draw(DrawTool drawTool) {

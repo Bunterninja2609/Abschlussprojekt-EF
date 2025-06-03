@@ -10,11 +10,13 @@ public class UIRenderer {
 
     public UIRenderer() {}
 
+    public void update(double dt) {
+        fps = (int) Math.floor(1/dt);
+    }
     public void draw(DrawTool drawTool) {
         drawTool.setCurrentColor(new Color(0,0,0));
         drawTool.drawText(10,10, String.valueOf(fps));
     }
-    public void update(double dt) {
-        fps = (int) Math.floor(1/dt);
-    }
+
+
 }

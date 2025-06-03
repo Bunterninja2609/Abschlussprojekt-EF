@@ -19,17 +19,22 @@ public class ProgramController {
     private BlockRenderer blockRenderer;
     private EntityRenderer entityRenderer;
     private UIRenderer uiRenderer;
+    private Keyboard keyboard;
 
     public ProgramController(ViewController viewController){
         this.viewController = viewController;
     }
 
     public void startProgram() {
+        keyboard = new Keyboard();
+        viewController.register(keyboard);
         blockRenderer = new BlockRenderer();
         entityRenderer = new EntityRenderer(viewController);
+        uiRenderer = new UIRenderer();
         renderer = new Renderer(blockRenderer, entityRenderer, uiRenderer);
         viewController.draw(renderer);
         viewController.register(renderer);
+
     }
 
     public void updateProgram(double dt){
@@ -38,5 +43,11 @@ public class ProgramController {
 
     public void mouseClicked(MouseEvent e){
 
+    }
+    public static double clamp(double min, double max, double value){
+        if(value > max){
+            return max;
+        }
+        return Math.max(value, min);
     }
 }
