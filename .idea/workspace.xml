@@ -5,15 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a3a0b6c3-3531-4b83-899a-66618f48675b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/my_project/model/biomes/Biome.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/my_project/model/biomes/Ocean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/control/BlockRenderer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/control/BlockRenderer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/control/Renderer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/control/Renderer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/Terrain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/Terrain.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/my_project/control/BlockRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/my_project/control/BlockRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/my_project/control/Renderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/my_project/control/Renderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/my_project/model/Terrain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/my_project/model/Terrain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/control/UIRenderer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/control/UIRenderer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/entities/Entity.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/entities/Entity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/my_project/model/Cage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/my_project/model/Cage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/my_project/model/Collider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/my_project/model/Collider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/my_project/model/biomes/Biome.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/my_project/model/biomes/Biome.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/my_project/model/entities/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/my_project/model/entities/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/my_project/model/entities/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/my_project/model/entities/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,22 +69,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.MainProgram.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "project.propCompiler",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.MainProgram.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propCompiler&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="MainProgram" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MainProgram" />
@@ -122,6 +122,7 @@
       <workItem from="1746894623448" duration="3289000" />
       <workItem from="1747075758849" duration="6819000" />
       <workItem from="1747943940861" duration="3511000" />
+      <workItem from="1749049016711" duration="1865000" />
     </task>
     <servers />
   </component>

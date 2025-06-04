@@ -18,7 +18,7 @@ public class Biome {
         return 1;
     }
     protected static int alterCurrentBlocks(PerlinNoise noise, PerlinNoise biomes, double x, double y, int block){
-        return 0;
+        return block;
     }
     private static Block returnBlock(int block, double x, double y){
         switch (block){

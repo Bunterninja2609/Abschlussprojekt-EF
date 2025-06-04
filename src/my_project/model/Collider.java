@@ -2,6 +2,7 @@ package my_project.model;
 
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
+import my_project.control.Renderer;
 
 import java.awt.*;
 
@@ -22,7 +23,7 @@ public class Collider extends GraphicalObject {
     @Override
     public void draw(DrawTool drawTool) {
         drawTool.setCurrentColor(new Color(255, 0, 0));
-        //drawTool.drawFilledRectangle(x,y,width,height);
+        drawTool.drawFilledRectangle(Renderer.translateAndScaleX(x),Renderer.translateAndScaleY(y),Renderer.scale(width),Renderer.scale(height));
     }
 
     @Override
@@ -33,7 +34,7 @@ public class Collider extends GraphicalObject {
             x = cage.getX();
             if(direction.equals("up")) {
                 y = cage.getY() - distance - thickness;
-            } else {
+            } else { //down
                 y = cage.getY() + distance + cage.getHeight();
             }
         }else{
@@ -42,7 +43,7 @@ public class Collider extends GraphicalObject {
             y = cage.getY();
             if(direction.equals("left")) {
                 x = cage.getX() - distance - thickness;
-            }else{
+            }else{ //right
                 x = cage.getX() + distance + cage.getWidth();
             }
         }

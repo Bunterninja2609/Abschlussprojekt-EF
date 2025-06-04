@@ -22,7 +22,7 @@ public class Player extends Entity {
     public Player(int invSize) {
         super(invSize);
         x = 400;
-        y = 400;
+        y = 0;
         width = 40;
         height = 100;
 
@@ -33,11 +33,12 @@ public class Player extends Entity {
         drawTool.setCurrentColor(new Color(0, 7, 23, 255));
 
         drawHitbox(drawTool);
+        cage.draw(drawTool);
     }
 
     @Override
     public void update(double dt) {
-        super.update(dt);
+
 
         Renderer.follow(new Vec2d(-x, -y), true);
         Renderer.loadChunks(x, y);
@@ -85,6 +86,7 @@ public class Player extends Entity {
                 height = 100;
             }
         }
+        super.update(dt);
     }
 
     @Override
