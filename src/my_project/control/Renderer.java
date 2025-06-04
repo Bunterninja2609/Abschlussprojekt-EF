@@ -15,17 +15,15 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 public class Renderer extends InteractiveGraphicalObject {
-    private static double SCALE = 0.3;
+    private static double SCALE = 0.2;
     private static Vec2d OFFSET = new Vec2d(0, 0);
     private static Vec2d OFFSET2 = new Vec2d(0, 0);
-    private Vec2d cameraMovement = new Vec2d(0,0);
+    private static int scene = 1;
+    //TODO Mousehandler Klasse
+    private static Vec2d mousePos = new Vec2d(0, 0);
+    private static boolean mousePressed = false;
 
     private static final int RENDERDISTANCE = 5;
-
-    private boolean wIsDown = false;
-    private boolean sIsDown = false;
-    private boolean aIsDown = false;
-    private boolean dIsDown = false;
 
     private static BlockRenderer blockRenderer;
     private static EntityRenderer entityRenderer;
@@ -37,23 +35,51 @@ public class Renderer extends InteractiveGraphicalObject {
     }
     @Override
     public void draw(DrawTool drawTool) {
-        entityRenderer.draw(drawTool);
-        blockRenderer.draw(drawTool);
+        switch(scene){
+            case 0://Menü
+                break;
+            case 1://Spiel
+                entityRenderer.draw(drawTool);
+                blockRenderer.draw(drawTool);
+                break;
+            default:
+        }
         uiRenderer.draw(drawTool);
+
+        drawTool.drawCircle(mousePos.x, mousePos.y, 10);
     }
     @Override
     public void update(double dt){
         uiRenderer.update(dt);
-
-        entityRenderer.update(dt);
-
-        blockRenderer.update(dt);
+        switch(scene) {
+            case 0://Menü
+                break;
+            case 1://Spiel
+                entityRenderer.update(dt);
+                blockRenderer.update(dt);
+                break;
+        }
 
     }
-
+    @Override
+    public void mouseMoved(MouseEvent e) {
+        mousePos.x = e.getX();
+        mousePos.y = e.getY();
+    }
+    @Override
+    public void mousePressed(MouseEvent e) {
+        mousePressed = true;
+    }
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        mousePressed = false;
+    }
 
     public static Vec2d getOFFSET() {
         return OFFSET;
+    }
+    public static int getSCENE() {
+        return scene;
     }
     public static void setOFFSET(Vec2d offset) {
         OFFSET = offset;
@@ -63,6 +89,15 @@ public class Renderer extends InteractiveGraphicalObject {
     }
     public static void setSCALE(double scale) {
         SCALE = scale;
+    }
+    public static Vec2d getMousePos() {
+        return mousePos;
+    }
+    public static boolean isMousePressed() {
+        return mousePressed;
+    }
+    public static void setScene(int scene) {
+        Renderer.scene = scene;
     }
     public static Vec2d translate(Vec2d vec) {
         return new Vec2d((vec.x + OFFSET.x), (vec.y + OFFSET.y));
@@ -79,6 +114,7 @@ public class Renderer extends InteractiveGraphicalObject {
     public static double translateAndScaleX(double x) {
         return (x + Renderer.getOFFSET().x)*Renderer.getSCALE() + OFFSET2.x;
     }
+
     public static double translateAndScaleY(double y) {
         return (y + Renderer.getOFFSET().y)*Renderer.getSCALE() + OFFSET2.y;
     }

@@ -1,7 +1,5 @@
 package my_project.model;
 
-import my_project.control.Item;
-
 public class Inventory {
 
     private int size;
