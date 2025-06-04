@@ -23,7 +23,7 @@ public class Renderer extends InteractiveGraphicalObject {
     private static Vec2d mousePos = new Vec2d(0, 0);
     private static boolean mousePressed = false;
 
-    private static final int RENDERDISTANCE = 5;
+    private static final int RENDERDISTANCE = 10;
 
     private static BlockRenderer blockRenderer;
     private static EntityRenderer entityRenderer;

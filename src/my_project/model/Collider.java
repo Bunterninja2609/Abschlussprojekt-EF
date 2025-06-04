@@ -7,28 +7,44 @@ import java.awt.*;
 
 public class Collider extends GraphicalObject {
 
-    private double xOffset,yOffset;
+    private Cage cage;
+    private String direction;
+    private double distance;
+    private double thickness;
 
-    public Collider(double xOffset, double yOffset, double width, double height) {
-        this.xOffset = xOffset;
-        this.yOffset = yOffset;
-        this.width = 10;
-        this.height = 10;
+    public Collider(Cage cage, String direction, double distance, double thickness) {
+        this.cage = cage;
+        this.direction = direction;
+        this.distance = distance;
+        this.thickness = thickness;
     }
 
     @Override
     public void draw(DrawTool drawTool) {
         drawTool.setCurrentColor(new Color(255, 0, 0));
-        drawTool.drawFilledRectangle(x,y,width,height);
+        //drawTool.drawFilledRectangle(x,y,width,height);
     }
 
     @Override
     public void update(double dt) {
-
-    }
-
-    public void setPos(double x,double y) {
-        this.x = x + xOffset;
-        this.y = y + yOffset;
+        if(direction.equals("up") ||direction.equals("down")) {
+            width = cage.getWidth();
+            height = thickness;
+            x = cage.getX();
+            if(direction.equals("up")) {
+                y = cage.getY() - distance - thickness;
+            } else {
+                y = cage.getY() + distance + cage.getHeight();
+            }
+        }else{
+            height = cage.getHeight();
+            width = thickness;
+            y = cage.getY();
+            if(direction.equals("left")) {
+                x = cage.getX() - distance - thickness;
+            }else{
+                x = cage.getX() + distance + cage.getWidth();
+            }
+        }
     }
 }

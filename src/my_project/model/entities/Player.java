@@ -17,6 +17,7 @@ public class Player extends Entity {
     private boolean goRight = false;
     private boolean goDown = false;
     private double walkSpeed = 0;
+    private double floor = 1000;
 
     public Player(int invSize) {
         super(invSize);
@@ -32,25 +33,22 @@ public class Player extends Entity {
         drawTool.setCurrentColor(new Color(0, 7, 23, 255));
 
         drawHitbox(drawTool);
-
-        leftCollider.draw(drawTool);
-        rightCollider.draw(drawTool);
-        topCollider.draw(drawTool);
-        bottomCollider.draw(drawTool);
     }
 
     @Override
     public void update(double dt) {
+        super.update(dt);
+
         Renderer.follow(new Vec2d(-x, -y), true);
         Renderer.loadChunks(x, y);
 
         y += gravity*dt;
         gravity += 2300*dt;
 
-        if(y > 540 - height){
+        if(y > floor - height){
             onGround = true;
             gravity = 0;
-            y = 540 - height;
+            y = floor - height;
         }
 
         if(Keyboard.isPressed(KeyEvent.VK_A) && walkSpeed > -300){
@@ -87,7 +85,6 @@ public class Player extends Entity {
                 height = 100;
             }
         }
-        super.update(dt);
     }
 
     @Override
