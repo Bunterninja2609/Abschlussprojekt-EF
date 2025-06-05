@@ -42,6 +42,16 @@ public class Terrain {
             }
         }
     }
+    public void update(double dt) {
+        for (Chunk[] column : chunks) {
+            for (Chunk chunk : column) {
+                if (chunk.isLoaded()) {
+                    chunk.update(dt);
+                }
+            }
+        }
+    }
+
     public Chunk getChunkByPosition(double x, double y) {
         int chunkX = (int) ProgramController.clamp( 0, chunks.length - 1,x / (Chunk.getSIZE().x * Block.getSIZE().x));
         int chunkY = (int) ProgramController.clamp( 0, chunks[0].length - 1,y / (Chunk.getSIZE().y * Block.getSIZE().y));

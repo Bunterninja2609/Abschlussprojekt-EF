@@ -17,7 +17,9 @@ public class BlockRenderer {
         terrain.draw(drawTool);
     }
 
-    public void update(double dt) {}
+    public void update(double dt) {
+        terrain.update(dt);
+    }
     public Terrain getTerrain() {
         return terrain;
     }
