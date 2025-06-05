@@ -14,6 +14,8 @@ public class Biome {
     protected static int generateBasicTerrain(PerlinNoise noise, PerlinNoise biomes, double x, double y) {
         if (y > Terrain.getGROUNDHEIGHT()) {
             return 2;
+        } else if (y == Terrain.getGROUNDHEIGHT()) {
+            return 6;
         }
         return 1;
     }
@@ -34,6 +36,8 @@ public class Biome {
                 return new Water(new Vec2d(x, y));
             case 5:
                 return new Iron(new Vec2d(x, y));
+            case 6:
+                return new Grass(new Vec2d(x, y));
             default:
                 return new Debug(new Vec2d(x, y), 0);
         }

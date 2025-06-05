@@ -56,4 +56,16 @@ public class Cage extends GraphicalObject {
         rightCollider = new Collider(this, "right", distance, thickness);
 
     }
+    public Collider getUpCollider() {
+        return upCollider;
+    }
+    public Collider getDownCollider() {
+        return downCollider;
+    }
+    public Collider getLeftCollider() {
+        return leftCollider;
+    }
+    public Collider getRightCollider() {
+        return rightCollider;
+    }
 }

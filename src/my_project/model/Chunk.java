@@ -3,6 +3,7 @@ package my_project.model;
 import KAGO_framework.view.DrawTool;
 import com.sun.javafx.geom.Vec2d;
 import my_project.BlockSpace;
+import my_project.control.ProgramController;
 import my_project.control.Renderer;
 import my_project.model.blocks.*;
 import my_project.model.blocks.Block;
@@ -60,5 +61,15 @@ public class Chunk {
     }
     public void setLoaded(boolean loaded) {
         this.loaded = loaded;
+    }
+    public Block getBlockByPosition(double x, double y) {
+        int blockX = (int) ProgramController.clamp( 0, blockSpaces.length - 1,x / (Block.getSIZE().x));
+        int blockY = (int) ProgramController.clamp( 0, blockSpaces[0].length - 1,y / (Block.getSIZE().y));
+        return blockSpaces[blockX][blockY].getBlock();
+    }
+    public Block getBlockByBlockGridPosition(int x, int y) {
+        x = (int)ProgramController.clamp(0, blockSpaces.length - 1, x);
+        y = (int)ProgramController.clamp(0, blockSpaces[0].length - 1, y);
+        return blockSpaces[x][y].getBlock();
     }
 }

@@ -5,7 +5,6 @@ import com.sun.javafx.geom.Vec2d;
 import my_project.control.ProgramController;
 import my_project.model.biomes.Biome;
 import my_project.model.biomes.Ocean;
-import my_project.model.blocks.*;
 import my_project.model.blocks.Block;
 
 import java.util.Random;
@@ -14,7 +13,7 @@ public class Terrain {
     private Chunk[][] chunks;
     private PerlinNoise noise;
     private PerlinNoise biomeNoise;
-    private static double GROUNDHEIGHT = 40;
+    private static double GROUNDHEIGHT = 64;
 
     private Random rand;
     public Terrain(Vec2d worldSize, int seed) {
@@ -53,14 +52,76 @@ public class Terrain {
     }
 
     public Chunk getChunkByPosition(double x, double y) {
-        int chunkX = (int) ProgramController.clamp( 0, chunks.length - 1,x / (Chunk.getSIZE().x * Block.getSIZE().x));
-        int chunkY = (int) ProgramController.clamp( 0, chunks[0].length - 1,y / (Chunk.getSIZE().y * Block.getSIZE().y));
+        x = convertPositionToChunkGrid(x, y).x;
+        y = convertPositionToChunkGrid(y, y).y;
+        return getChunkByChunkGrid((int) x, (int) y);
+    }
+    public Chunk getChunkByBlockGrid(int x, int y){
+        x = (int)convertBlockGridToChunkGrid(x, y).x;
+        y = (int)convertBlockGridToChunkGrid(y, y).y;
 
-        return chunks[chunkX][chunkY];
+        return getChunkByChunkGrid(x, y);
     }
-    public static double getGROUNDHEIGHT() {
-        return GROUNDHEIGHT;
+    public Chunk getChunkByChunkGrid(int x, int y){
+        //avoiding nullPointerExeption
+        x = (int)ProgramController.clamp( 0, chunks.length - 1, x);
+        y = (int)ProgramController.clamp( 0, chunks[0].length - 1, y);
+        return chunks[x][y];
     }
+
+    public Block getBlockByPosition(double x, double y) {
+        x = convertPositionToBlockGrid(x, y).x;
+        y = convertPositionToBlockGrid(y, y).y;
+        return getBlockByBlockGrid((int) x, (int) y);
+    }
+    public Block getBlockByBlockGrid(int x, int y){
+        Chunk chunk = getChunkByBlockGrid(x, y);
+        if (chunk != null) {
+            return chunk.getBlockByBlockGridPosition(x, y);
+        }
+        return null;
+    }
+    public Block getBlockByChunkGrid(int x, int y){
+        x = (int)convertChunkGridToBlockGrid(x, y).x;
+        y = (int)convertChunkGridToBlockGrid(y, y).y;
+        return getBlockByBlockGrid(x, y);
+    }
+
+
+
+    public static Vec2d convertChunkGridToBlockGrid(int x, int y){
+        x = (int)(x * Chunk.getSIZE().x);
+        y = (int)(y * Chunk.getSIZE().y);
+        return new Vec2d(x, y);
+    }
+    public static Vec2d convertBlockGridToChunkGrid(int x, int y){
+        x = (int)(x / Chunk.getSIZE().x);
+        y = (int)(y / Chunk.getSIZE().y);
+        return new Vec2d(x, y);
+    }
+
+    public static Vec2d convertPositionToChunkGrid(double x, double y){
+        x = (int)(x / (Chunk.getSIZE().x * Block.getSIZE().x));
+        y = (int)(y / (Chunk.getSIZE().y * Block.getSIZE().y));
+        return new Vec2d(x, y);
+    }
+    public static Vec2d convertChunkGridToPosition(int x, int y){
+        x = (int)(x * (Chunk.getSIZE().x * Block.getSIZE().x));
+        y = (int)(y * (Chunk.getSIZE().y * Block.getSIZE().y));
+        return new Vec2d(x, y);
+    }
+
+    public static Vec2d convertPositionToBlockGrid(double x, double y){
+        x = (int)(x / Block.getSIZE().x);
+        y = (int)(y / Block.getSIZE().y);
+        return new Vec2d(x, y);
+    }
+    public static Vec2d convertBlockGridToPosition(int x, int y){
+        x = (int)(x * Block.getSIZE().x);
+        y = (int)(y * Block.getSIZE().y);
+        return new Vec2d(x, y);
+    }
+
 
     public Block generate(double x, double y) {
         double floorHeight = noise.getValue(x) * 30;
@@ -71,5 +132,10 @@ public class Terrain {
         return Biome.generate(noise, biomeNoise, x, y);
 
 
+    }
+
+
+    public static double getGROUNDHEIGHT() {
+        return GROUNDHEIGHT;
     }
 }

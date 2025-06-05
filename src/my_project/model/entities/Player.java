@@ -2,6 +2,7 @@ package my_project.model.entities;
 
 import KAGO_framework.view.DrawTool;
 import com.sun.javafx.geom.Vec2d;
+import my_project.control.EntityRenderer;
 import my_project.control.Keyboard;
 import my_project.control.Renderer;
 import my_project.model.Collider;
@@ -19,13 +20,12 @@ public class Player extends Entity {
     private double walkSpeed = 0;
     private double floor = 1000;
 
-    public Player(int invSize) {
-        super(invSize);
+    public Player(EntityRenderer eR, int invSize) {
+        super(eR, invSize);
         x = 400;
         y = 0;
         width = 40;
         height = 100;
-
     }
 
     @Override
