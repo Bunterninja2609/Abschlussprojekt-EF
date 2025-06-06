@@ -28,7 +28,7 @@ public class UIRenderer {
     }
     public void draw(DrawTool drawTool) {
         drawTool.setCurrentColor(new Color(0,0,0));
-        drawTool.drawText(10,10, String.valueOf(fps));
+        drawTool.drawText(10,10,"FPS: " + fps);
         switch(Renderer.getSCENE()){
             case 0:
                 startMenu.draw(drawTool);

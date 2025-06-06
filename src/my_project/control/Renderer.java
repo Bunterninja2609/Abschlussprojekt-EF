@@ -6,6 +6,7 @@ import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.model.InteractiveGraphicalObject;
 import KAGO_framework.view.DrawTool;
 import com.sun.javafx.geom.Vec2d;
+import my_project.model.Background;
 import my_project.model.Chunk;
 import my_project.model.blocks.Block;
 import my_project.control.UIRenderer;
@@ -28,10 +29,15 @@ public class Renderer extends InteractiveGraphicalObject {
     private static BlockRenderer blockRenderer;
     private static EntityRenderer entityRenderer;
     private static UIRenderer uiRenderer;
+
+    private Background background;
+
     public Renderer(BlockRenderer blockRenderer, EntityRenderer entityRenderer, UIRenderer uiRenderer) {
         this.blockRenderer = blockRenderer;
         this.entityRenderer = entityRenderer;
         this.uiRenderer = uiRenderer;
+
+        background = new Background();
     }
     @Override
     public void draw(DrawTool drawTool) {
@@ -39,6 +45,7 @@ public class Renderer extends InteractiveGraphicalObject {
             case 0://Menü
                 break;
             case 1://Spiel
+                background.draw(drawTool);
                 entityRenderer.draw(drawTool);
                 blockRenderer.draw(drawTool);
                 break;
@@ -55,6 +62,7 @@ public class Renderer extends InteractiveGraphicalObject {
             case 0://Menü
                 break;
             case 1://Spiel
+                background.update(dt);
                 entityRenderer.update(dt);
                 blockRenderer.update(dt);
                 break;
