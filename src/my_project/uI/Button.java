@@ -26,8 +26,11 @@ public class Button {
         drawTool.formatText("monospaced",2,25);
         drawTool.drawText(position.x + 63,position.y + 28,"Start");
         if(Renderer.getMousePos().x > position.x && Renderer.getMousePos().x < position.x + widthButton && Renderer.getMousePos().y > position.y && Renderer.getMousePos().y < position.y + heightButton) {
+            drawTool.setCurrentColor(new Color(80, 80, 80, 255));
+            drawTool.drawFilledRectangle(position.x, position.y, widthButton, heightButton);
             drawTool.setCurrentColor(new Color(255, 255, 255, 255));
             drawTool.drawRectangle(position.x, position.y, widthButton,heightButton);
+            drawTool.drawText(position.x + 63,position.y + 28,"Start");
 
         }
     }
