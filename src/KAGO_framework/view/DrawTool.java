@@ -42,9 +42,9 @@ public class DrawTool {
             if(scale > 0) {
                 transform.scale(scale,scale);
                 if(scale < 1){
-                    transform.translate(+bI.getWidth() * (1-scale), +bI.getHeight() * (1-scale));
+                    //transform.translate(+bI.getWidth() * (1-scale), +bI.getHeight() * (1-scale));
                 } else {
-                    transform.translate(-bI.getWidth()*(scale-1)*0.25, -bI.getHeight()*(scale-1)*0.25);
+                    //transform.translate(-bI.getWidth()*(scale-1)*0.25, -bI.getHeight()*(scale-1)*0.25);
                 }
             }
             transform.rotate( Math.toRadians(degrees), bI.getWidth()/ (double) 2, bI.getHeight()/ (double) 2 );

@@ -3,6 +3,7 @@ package my_project.control;
 import KAGO_framework.view.DrawTool;
 import com.sun.javafx.geom.Vec2d;
 import my_project.model.Terrain;
+import com.sun.javafx.geom.*;
 import my_project.model.blocks.Block;
 
 import java.util.ArrayList;

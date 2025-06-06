@@ -9,6 +9,8 @@ import my_project.model.blocks.*;
 import my_project.model.blocks.Block;
 
 public class Chunk {
+    Terrain terrain;
+
     Vec2d position;
     Vec2d chunkGridPosition;//Position in the Chunks array
     Vec2d gridPosition;//Position in the Block grid
@@ -18,6 +20,8 @@ public class Chunk {
     static Vec2d SIZE = new Vec2d(16, 16); // wie viele blöcke ein chunk enthält
     BlockSpace[][] blockSpaces; // empty spaces for blocks
     public Chunk(Vec2d chunkGridPosition, Terrain terrain) {
+        this.terrain = terrain;
+
         blockSpaces = new BlockSpace[(int)(SIZE.x)][(int)(SIZE.y)];
         this.chunkGridPosition = chunkGridPosition;
         this.gridPosition = new Vec2d(this.chunkGridPosition.x * SIZE.x, this.chunkGridPosition.y * SIZE.y);
@@ -60,6 +64,13 @@ public class Chunk {
         return SIZE;
     }
     public void setLoaded(boolean loaded) {
+
+        if (loaded && !this.loaded) {
+            terrain.loadChunk(this);
+        }else if(!loaded && this.loaded) {
+            terrain.unloadChunk(this);
+        }
+
         this.loaded = loaded;
     }
     public Block getBlockByPosition(double x, double y) {

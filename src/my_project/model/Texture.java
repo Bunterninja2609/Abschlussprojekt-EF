@@ -12,7 +12,7 @@ public class Texture extends GraphicalObject {
         drawTool.drawTransformedImage(getMyImage(), x, y, 0, scale);
     }
     public void autoDraw(DrawTool drawTool, double x, double y, double width) {
-        drawTool.drawTransformedImage(getMyImage(), Renderer.translateAndScaleX(x-width), Renderer.translateAndScaleY(y-(width/getMyImage().getWidth())*getMyImage().getHeight()), 0, Renderer.scale(width/getMyImage().getWidth()));
+        drawTool.drawTransformedImage(getMyImage(), Renderer.translateAndScaleX(x), Renderer.translateAndScaleY(y-(width/getMyImage().getWidth())*getMyImage().getHeight()), 0, Renderer.scale(width/getMyImage().getWidth()));
     }
 
 }

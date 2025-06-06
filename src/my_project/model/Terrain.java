@@ -7,12 +7,14 @@ import my_project.model.biomes.Biome;
 import my_project.model.biomes.Ocean;
 import my_project.model.blocks.Block;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Terrain {
     private Chunk[][] chunks;
     private PerlinNoise noise;
     private PerlinNoise biomeNoise;
+    private ArrayList<Chunk> loadedChunks;
     private static double GROUNDHEIGHT = 64;
 
     private Random rand;
@@ -25,6 +27,7 @@ public class Terrain {
         System.out.println("  > " + (worldSize.x * Chunk.SIZE.x) + " x " + (worldSize.y * Chunk.SIZE.y) + " Blocks");
         System.out.println("Seed: " + seed);
         chunks = new Chunk[(int)worldSize.x][(int)worldSize.y];
+        loadedChunks = new ArrayList<>();
         for (int x = 0; x < worldSize.x; x++) {
             for (int y = 0; y < worldSize.y; y++) {
                 chunks[x][y] = new Chunk(new Vec2d(x, y), this);
@@ -33,6 +36,8 @@ public class Terrain {
     }
 
     public void draw(DrawTool drawTool) {
+        System.out.println("Drawing Terrain");
+        /*
         for (Chunk[] column : chunks) {
             for (Chunk chunk : column) {
                 if (chunk.isLoaded()) {
@@ -40,14 +45,24 @@ public class Terrain {
                 }
             }
         }
+
+         */
+        for (Chunk chunk : loadedChunks) {
+            chunk.draw(drawTool);
+        }
     }
     public void update(double dt) {
+        /*
         for (Chunk[] column : chunks) {
             for (Chunk chunk : column) {
                 if (chunk.isLoaded()) {
                     chunk.update(dt);
                 }
             }
+        }
+        */
+        for (Chunk chunk : loadedChunks) {
+            chunk.update(dt);
         }
     }
 
@@ -137,5 +152,18 @@ public class Terrain {
 
     public static double getGROUNDHEIGHT() {
         return GROUNDHEIGHT;
+    }
+    public void loadChunk(Chunk chunk) {
+
+        if (!loadedChunks.contains(chunk)) {
+            System.out.println("loaded chunk");
+            loadedChunks.add(chunk);
+        }
+    }
+    public void unloadChunk(Chunk chunk) {
+        if (loadedChunks.contains(chunk)) {
+            System.out.println("unaloaded chunk");
+            loadedChunks.remove(chunk);
+        }
     }
 }
