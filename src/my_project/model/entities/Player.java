@@ -6,6 +6,7 @@ import my_project.control.EntityRenderer;
 import my_project.control.Keyboard;
 import my_project.control.Renderer;
 import my_project.model.Collider;
+import my_project.model.Texture;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -19,6 +20,7 @@ public class Player extends Entity {
     private boolean goDown = false;
     private double walkSpeed = 0;
     private double floor = 1000;
+    private Texture texture;
 
     public Player(EntityRenderer eR, int invSize) {
         super(eR, invSize);
@@ -26,6 +28,7 @@ public class Player extends Entity {
         y = 0;
         width = 40;
         height = 100;
+        texture = new Texture("src/my_project/ressources/player.jpg");
     }
 
     @Override
@@ -34,6 +37,7 @@ public class Player extends Entity {
 
         drawHitbox(drawTool);
         cage.draw(drawTool);
+        texture.autoDraw(drawTool, x, y, width);
     }
 
     @Override
