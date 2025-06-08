@@ -73,6 +73,11 @@ public class Renderer extends InteractiveGraphicalObject {
                 background.update(dt);
                 entityRenderer.update(dt);
                 blockRenderer.update(dt);
+                if(Keyboard.isPressed(KeyEvent.VK_O)){
+                    SCALE = 0.2;
+                }else{
+                    SCALE = 5;
+                }
                 break;
         }
 

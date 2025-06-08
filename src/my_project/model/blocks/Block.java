@@ -36,7 +36,7 @@ public abstract class Block extends GraphicalObject {
 				texture.autoDraw(drawtool, x, y, SIZE.x);
 			}
 			if (highlighted) {
-				System.out.println("highlighted :D");
+				//System.out.println("highlighted :D");
 				drawtool.setCurrentColor(Color.WHITE);
 
 				BlockTextures.getTexture("highlight").autoDraw(drawtool, x, y, SIZE.x);

@@ -51,4 +51,16 @@ public class ProgramController {
         }
         return Math.max(value, min);
     }
+    public static double extrapolate(double min, double max, double value, String type){
+        double difference = max - min;
+        double formular = min + difference*value;
+        if(type.equals("linear")){
+            //linear ist standart
+        }else if(type.equals("parabola")){
+            formular = Math.pow(value, 2)*difference + min;
+        }else if(type.equals("sine")){
+            formular = ((Math.sin((value - 0.5)*Math.PI)+1)/(2))*difference+min;
+        }
+        return formular;
+    }
 }
