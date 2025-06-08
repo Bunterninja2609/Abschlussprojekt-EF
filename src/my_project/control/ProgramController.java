@@ -32,6 +32,7 @@ public class ProgramController {
         entityRenderer = new EntityRenderer(viewController);
         uiRenderer = new UIRenderer();
         renderer = new Renderer(blockRenderer, entityRenderer, uiRenderer);
+        CollisionHandler.setRenderer(renderer, true);
         viewController.draw(renderer);
         viewController.register(renderer);
 

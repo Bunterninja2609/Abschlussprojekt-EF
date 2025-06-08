@@ -7,7 +7,7 @@ import my_project.control.ProgramController;
 public class Debug extends Block {
     double value;
     public Debug(Vec2d gridPosition, double value) {
-        super(gridPosition);
+        super(gridPosition, false);
         this.value = value;
     }
     public void draw(DrawTool drawTool) {
@@ -15,7 +15,7 @@ public class Debug extends Block {
 
         drawTool.setCurrentColor(0, (int)ProgramController.clamp(0, 255, v),0, 255);
 
-        drawHitbox(drawTool);
+        drawTexture(drawTool);
 
     }
 }

@@ -31,16 +31,23 @@ public class Cage extends GraphicalObject {
 
     @Override
     public void update(double dt) {
+        updatePosition();
+        upCollider.update(dt);
+        downCollider.update(dt);
+        leftCollider.update(dt);
+        rightCollider.update(dt);
+    }
+    public void updatePosition() {
         if (parent != null) {
             x = parent.getX();
             y = parent.getY();
             width = parent.getWidth();
             height = parent.getHeight();
         }
-        upCollider.update(dt);
-        downCollider.update(dt);
-        leftCollider.update(dt);
-        rightCollider.update(dt);
+        upCollider.updatePosition();
+        downCollider.updatePosition();
+        leftCollider.updatePosition();
+        rightCollider.updatePosition();
     }
     @Override
     public void draw(DrawTool drawTool) {
@@ -68,4 +75,5 @@ public class Cage extends GraphicalObject {
     public Collider getRightCollider() {
         return rightCollider;
     }
+
 }

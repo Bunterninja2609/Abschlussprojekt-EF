@@ -13,22 +13,18 @@ import java.awt.event.KeyEvent;
 
 public class Player extends Entity {
 
-    private double gravity = 0;
-    private boolean onGround = false;
-    private boolean goLeft = false;
-    private boolean goRight = false;
-    private boolean goDown = false;
-    private double walkSpeed = 0;
-    private double floor = 1000;
     private Texture texture;
+    private double jumpSpeed;
 
     public Player(EntityRenderer eR, int invSize) {
         super(eR, invSize);
         x = 400;
         y = 0;
-        width = 40;
-        height = 100;
-        texture = new Texture("src/my_project/ressources/player.jpg");
+        width = 10;
+        height = 30;
+        speed = 100;
+        jumpSpeed = 300;
+        texture = new Texture("src/my_project/resources/player.jpg");
     }
 
     @Override
@@ -44,82 +40,32 @@ public class Player extends Entity {
     public void update(double dt) {
 
 
+        if (Keyboard.isPressed(KeyEvent.VK_A)) {
+          velocity.x = -speed;
+        }
+        if (Keyboard.isPressed(KeyEvent.VK_D)) {
+            velocity.x = speed;
+        }
+        if ((Keyboard.isPressed(KeyEvent.VK_W) || Keyboard.isPressed(KeyEvent.VK_UP) || Keyboard.isPressed(KeyEvent.VK_SPACE)) && cage.getDownCollider().collides()) {
+            System.out.println("jumping");
+            velocity.y = -jumpSpeed;
+        }
+        velocity.y -= -1000*dt;
+        //System.out.println("Player position: "+x+"|"+y);
+        super.update(dt);
+
         Renderer.follow(new Vec2d(-x, -y), true);
         Renderer.loadChunks(x, y);
-
-        y += gravity*dt;
-        gravity += 2300*dt;
-
-        if(y > floor - height){
-            onGround = true;
-            gravity = 0;
-            y = floor - height;
-        }
-
-        if(Keyboard.isPressed(KeyEvent.VK_A) && walkSpeed > -300){
-            walkSpeed -= 800*dt;
-        }
-        if(Keyboard.isPressed(KeyEvent.VK_D) && walkSpeed < 300){
-            walkSpeed += 800*dt;
-        }
-        if(!Keyboard.isPressed(KeyEvent.VK_A) && !Keyboard.isPressed(KeyEvent.VK_D)){
-            if(walkSpeed > 0){
-                walkSpeed -= 1600*dt;
-                if (walkSpeed < 0) {
-                    walkSpeed = 0;
-                }
-            }else if(walkSpeed < 0){
-                walkSpeed += 1600*dt;
-                if(walkSpeed > 0){
-                    walkSpeed = 0;
-                }
-            }
-        }
-        x += walkSpeed*dt;
-
-        if(goDown) {
-            if(height > 70) {
-                height -= 100*dt;
-            }else{
-                height = 70;
-            }
-        } else {
-            if(height < 100) {
-                height += 100*dt;
-            }else{
-                height = 100;
-            }
-        }
-        super.update(dt);
+        Renderer.getBlockRenderer().getTerrain().getBlockByPosition(x, y).highlight();
     }
 
     @Override
     public void keyPressed(int key) {
-        if(onGround && (key == KeyEvent.VK_SPACE || key == KeyEvent.VK_W)){
-            gravity = -850;
-            onGround = false;
-        }
-        if(key == KeyEvent.VK_A){
-            goLeft = true;
-        }
-        if(key == KeyEvent.VK_D){
-            goRight = true;
-        }
-        if(key == KeyEvent.VK_S){
-            goDown = true;
-        }
+
     }
 
     @Override
     public void keyReleased(int key) {
-        if(key == KeyEvent.VK_A){
-            goLeft = false;
-        }
-        if(key == KeyEvent.VK_D){
-            goRight = false;
-        }
-        if(key == KeyEvent.VK_S){
-            goDown = false;
-        }
+
     }
 }

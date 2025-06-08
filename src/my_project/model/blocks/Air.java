@@ -2,12 +2,15 @@ package my_project.model.blocks;
 
 import KAGO_framework.view.DrawTool;
 import com.sun.javafx.geom.Vec2d;
+import my_project.model.BlockTextures;
+import my_project.model.Texture;
 
 import java.awt.*;
 
 public class Air extends Block {
     public Air(Vec2d gridPosition) {
-        super(gridPosition);
+        super(gridPosition, true);
+
     }
 
     public void draw(DrawTool drawTool) {

@@ -36,7 +36,7 @@ public class Terrain {
     }
 
     public void draw(DrawTool drawTool) {
-        System.out.println("Drawing Terrain");
+        //System.out.println("Drawing Terrain");
         /*
         for (Chunk[] column : chunks) {
             for (Chunk chunk : column) {
@@ -48,6 +48,7 @@ public class Terrain {
 
          */
         for (Chunk chunk : loadedChunks) {
+            //System.out.println("drawing chunk: ");
             chunk.draw(drawTool);
         }
     }
@@ -68,12 +69,12 @@ public class Terrain {
 
     public Chunk getChunkByPosition(double x, double y) {
         x = convertPositionToChunkGrid(x, y).x;
-        y = convertPositionToChunkGrid(y, y).y;
+        y = convertPositionToChunkGrid(x, y).y;
         return getChunkByChunkGrid((int) x, (int) y);
     }
     public Chunk getChunkByBlockGrid(int x, int y){
         x = (int)convertBlockGridToChunkGrid(x, y).x;
-        y = (int)convertBlockGridToChunkGrid(y, y).y;
+        y = (int)convertBlockGridToChunkGrid(x, y).y;
 
         return getChunkByChunkGrid(x, y);
     }
@@ -86,7 +87,7 @@ public class Terrain {
 
     public Block getBlockByPosition(double x, double y) {
         x = convertPositionToBlockGrid(x, y).x;
-        y = convertPositionToBlockGrid(y, y).y;
+        y = convertPositionToBlockGrid(x, y).y;
         return getBlockByBlockGrid((int) x, (int) y);
     }
     public Block getBlockByBlockGrid(int x, int y){
@@ -98,7 +99,7 @@ public class Terrain {
     }
     public Block getBlockByChunkGrid(int x, int y){
         x = (int)convertChunkGridToBlockGrid(x, y).x;
-        y = (int)convertChunkGridToBlockGrid(y, y).y;
+        y = (int)convertChunkGridToBlockGrid(x, y).y;
         return getBlockByBlockGrid(x, y);
     }
 
@@ -156,13 +157,13 @@ public class Terrain {
     public void loadChunk(Chunk chunk) {
 
         if (!loadedChunks.contains(chunk)) {
-            System.out.println("loaded chunk");
+            //System.out.println("loaded chunk");
             loadedChunks.add(chunk);
         }
     }
     public void unloadChunk(Chunk chunk) {
         if (loadedChunks.contains(chunk)) {
-            System.out.println("unaloaded chunk");
+            //System.out.println("unaloaded chunk");
             loadedChunks.remove(chunk);
         }
     }
