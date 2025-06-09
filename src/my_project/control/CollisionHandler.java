@@ -38,14 +38,14 @@ public class CollisionHandler {
         collider.getCage().updatePosition();
         if (blockRenderer == null) return false;
         //System.out.println("checking collidesWithBlock");
-        int widthInBlocks = (int)(collider.getWidth()/Block.getSIZE().x);
-        int heightInBlocks = (int)(collider.getHeight()/Block.getSIZE().y);
+        int widthInBlocks = (int)(collider.getWidth()/Block.getSIZE().x) + 1;
+        int heightInBlocks = (int)(collider.getHeight()/Block.getSIZE().y) + 1;
         //System.out.println("widthInBlocks: " + widthInBlocks);
         //System.out.println("heightInBlocks: " + heightInBlocks);
         for (int x = 0; x <= widthInBlocks; x++) {
             for (int y = 0; y <= heightInBlocks; y++) {
                 Block block = blockRenderer.getTerrain().getBlockByPosition(collider.getX() + x * Block.getSIZE().x, collider.getY() + y * Block.getSIZE().y);
-                boolean collides = !block.getTransparent();
+                boolean collides = (!block.getTransparent())&&collider.collidesWith(block);
                 //System.out.println("collides at " +Terrain.convertPositionToBlockGrid(block.getX(), block.getY()).x+"|"+ Terrain.convertPositionToBlockGrid(block.getX(), block.getY()).y+": "+ collides);
                 //System.out.println(block.getClass().getSimpleName());
                 if (collides){

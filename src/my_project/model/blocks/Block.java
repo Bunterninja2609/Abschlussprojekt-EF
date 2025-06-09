@@ -20,6 +20,8 @@ public abstract class Block extends GraphicalObject {
 		this.gridPosition = gridPosition;
 		x = gridPosition.x * SIZE.x;
 		y = gridPosition.y * SIZE.y;
+		width = SIZE.x;
+		height = SIZE.y;
 		this.isTransparent = isTransparent;
 
 	}
