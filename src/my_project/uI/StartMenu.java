@@ -8,10 +8,11 @@ import java.awt.*;
 
 
 public class StartMenu {
-    private Button startButton = new Button(Config.WINDOW_HEIGHT/2-122,Config.WINDOW_WIDTH/2-20, 200, 40);
+    private Button startButton = new Button(Config.WINDOW_HEIGHT/2-122,Config.WINDOW_WIDTH/2-20, 200, 40,"src/my_project/resources/Startbutton.png");
 
 
     public void draw(DrawTool drawTool){
+
         drawTool.setCurrentColor(new Color(209, 209, 209, 150));
         drawTool.drawFilledRectangle(-1,-1,600,600);
         startButton.draw(drawTool);
