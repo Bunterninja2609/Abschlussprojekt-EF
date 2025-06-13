@@ -6,6 +6,7 @@ import my_project.control.EntityRenderer;
 import my_project.control.Keyboard;
 import my_project.control.Renderer;
 import my_project.model.Collider;
+import my_project.model.Terrain;
 import my_project.model.Texture;
 
 import java.awt.*;
@@ -67,5 +68,8 @@ public class Player extends Entity {
     @Override
     public void keyReleased(int key) {
 
+    }
+    private void damageBlock(double x, double y){
+        Renderer.getBlockRenderer().getTerrain().getBlockByPosition(x, y).damage(100000000);
     }
 }

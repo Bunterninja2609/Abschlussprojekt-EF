@@ -89,4 +89,19 @@ public class Chunk {
         int By = (int)ProgramController.clamp(0, blockSpaces[0].length - 1, y);
         return blockSpaces[Bx][By].getBlock();
     }
+    public BlockSpace getBlockSpaceByPosition(double x, double y) {
+        int blockX = (int) ProgramController.clamp( 0, blockSpaces.length - 1,x / (Block.getSIZE().x));
+        int blockY = (int) ProgramController.clamp( 0, blockSpaces[0].length - 1,y / (Block.getSIZE().y));
+        return blockSpaces[blockX][blockY];
+    }
+    public BlockSpace getBlockSpaceByBlockGridPosition(double x, double y) {
+        x = (int)(x - blockGridPosition.x);
+        y = (int)(y - blockGridPosition.y);
+        //System.out.println("min:"+0+" max:"+blockSpaces.length+" x:"+x);
+        //System.out.println("Result: "+ProgramController.clamp( 0, blockSpaces.length - 1,x));
+        //System.out.println("min:"+0+" max:"+blockSpaces[0].length+" y:"+y);
+        int Bx = (int)ProgramController.clamp(0, blockSpaces.length - 1, x);
+        int By = (int)ProgramController.clamp(0, blockSpaces[0].length - 1, y);
+        return blockSpaces[Bx][By];
+    }
 }

@@ -84,7 +84,7 @@ public abstract class Entity extends InteractiveGraphicalObject {
     }
     protected void processMovement(double dt){
         double frictionX = 0.9;
-        double frictionY = 0.9;
+        double frictionY = 0.99;
 
         move(velocity.x, velocity.y, dt);
 
