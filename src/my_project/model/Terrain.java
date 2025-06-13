@@ -2,6 +2,7 @@ package my_project.model;
 
 import KAGO_framework.view.DrawTool;
 import com.sun.javafx.geom.Vec2d;
+import my_project.BlockSpace;
 import my_project.control.ProgramController;
 import my_project.model.biomes.Biome;
 import my_project.model.biomes.Ocean;
@@ -102,6 +103,15 @@ public class Terrain {
         y = (int)convertChunkGridToBlockGrid(x, y).y;
         return getBlockByBlockGrid(x, y);
     }
+    /*
+    public BlockSpace getBlockSpaceByPosition(double x, double y){
+        x = convertPositionToBlockGrid(x, y).x;
+        y = convertPositionToBlockGrid(x, y).y;
+        return getBlockSpaceByBlockGrid((int) x, (int) y);
+    }
+    public BlockSpace getBlockSpaceByBlockGrid(int x, int y){
+        
+    }*/
 
 
 

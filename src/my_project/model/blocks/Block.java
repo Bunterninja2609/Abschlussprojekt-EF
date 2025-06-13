@@ -3,6 +3,7 @@ package my_project.model.blocks;
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
 import com.sun.javafx.geom.Vec2d;
+import my_project.BlockSpace;
 import my_project.Config;
 import my_project.control.Renderer;
 import my_project.model.BlockTextures;
@@ -16,6 +17,8 @@ public abstract class Block extends GraphicalObject {
 	protected Vec2d gridPosition;
 	protected boolean isTransparent;
 	protected boolean highlighted = false;
+	double hitpoints = 0;
+	BlockSpace blockSpace;
 	public Block(Vec2d gridPosition, boolean isTransparent) {
 		this.gridPosition = gridPosition;
 		x = gridPosition.x * SIZE.x;
@@ -23,7 +26,6 @@ public abstract class Block extends GraphicalObject {
 		width = SIZE.x;
 		height = SIZE.y;
 		this.isTransparent = isTransparent;
-
 	}
 	@Override
 	public void draw(DrawTool drawtool){
@@ -55,5 +57,12 @@ public abstract class Block extends GraphicalObject {
 	}
 	public void highlight() {
 		highlighted = true;
+	}
+	public void damage(double damage){
+		this.hitpoints += damage;
+
+	}
+	public void destroy(){
+
 	}
 }
