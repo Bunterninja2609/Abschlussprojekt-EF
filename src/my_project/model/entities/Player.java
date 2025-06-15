@@ -21,8 +21,8 @@ public class Player extends Entity {
         super(eR, invSize);
         x = 400;
         y = 0;
-        width = 10;
-        height = 29;
+        width = 6;
+        height = 25;
         speed = 100;
         jumpSpeed = 300;
         texture = new Texture("src/my_project/resources/player.png");
@@ -34,7 +34,7 @@ public class Player extends Entity {
 
         //drawHitbox(drawTool);
         //cage.draw(drawTool);
-        texture.autoDraw(drawTool, x, y, width);
+        texture.autoDraw(drawTool, x-2, y-4, 10);
     }
 
     @Override
