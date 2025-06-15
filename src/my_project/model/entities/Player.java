@@ -25,7 +25,7 @@ public class Player extends Entity {
         height = 30;
         speed = 100;
         jumpSpeed = 300;
-        texture = new Texture("src/my_project/resources/player.jpg");
+        texture = new Texture("src/my_project/resources/player.png");
     }
 
     @Override

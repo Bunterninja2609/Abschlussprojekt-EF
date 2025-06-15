@@ -67,6 +67,6 @@ public class Spritesheet {
         drawTool.drawTransformedImage(image[frameX][frameY], x, y, 0, scale);
     }
     public void autoDraw(DrawTool drawTool, double x, double y, double width) {
-        drawTool.drawTransformedImage(image[frameX][frameY], Renderer.translateAndScaleX(x), Renderer.translateAndScaleY(y), 0, Renderer.scale(width/getMyImage().getWidth()));
+        drawTool.drawTransformedImage(image[frameX][frameY], Renderer.translateAndScaleX(x), Renderer.translateAndScaleY(y), 0, Renderer.scale(width/image[frameX][frameY].getWidth()));
     }
 }
