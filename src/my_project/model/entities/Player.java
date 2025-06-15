@@ -22,7 +22,7 @@ public class Player extends Entity {
         x = 400;
         y = 0;
         width = 10;
-        height = 30;
+        height = 29;
         speed = 100;
         jumpSpeed = 300;
         texture = new Texture("src/my_project/resources/player.png");
@@ -32,8 +32,8 @@ public class Player extends Entity {
     public void draw(DrawTool drawTool) {
         drawTool.setCurrentColor(new Color(0, 7, 23, 255));
 
-        drawHitbox(drawTool);
-        cage.draw(drawTool);
+        //drawHitbox(drawTool);
+        //cage.draw(drawTool);
         texture.autoDraw(drawTool, x, y, width);
     }
 
