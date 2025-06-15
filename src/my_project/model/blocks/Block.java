@@ -32,10 +32,9 @@ public abstract class Block extends GraphicalObject {
 		drawTexture(drawtool);
 	}
 	protected void drawTexture(DrawTool drawtool){
-		//TODO Fix Scale
 		boolean onscreen = (Renderer.translateAndScaleX(x) >= Renderer.scale(-SIZE.x) && Renderer.translateAndScaleY(y) >= Renderer.scale(-SIZE.y)) && (Renderer.translateAndScaleX(x) < Config.WINDOW_WIDTH && Renderer.translateAndScaleY(y) < Config.WINDOW_HEIGHT);
 		if (onscreen) {
-			drawtool.drawFilledRectangle(Renderer.translateAndScaleX(x), Renderer.translateAndScaleY(y), Renderer.scale(SIZE.x), Renderer.scale(SIZE.y));
+			//drawtool.drawFilledRectangle(Renderer.translateAndScaleX(x), Renderer.translateAndScaleY(y), Renderer.scale(SIZE.x), Renderer.scale(SIZE.y));
 			if(texture.getMyImage() != null) {
 				texture.autoDraw(drawtool, x, y, SIZE.x);
 			}
@@ -48,7 +47,14 @@ public abstract class Block extends GraphicalObject {
 			}
 		}
 	}
-
+	public void drawBorder(DrawTool drawtool){
+		boolean onscreen = (Renderer.translateAndScaleX(x) >= Renderer.scale(-SIZE.x) && Renderer.translateAndScaleY(y) >= Renderer.scale(-SIZE.y)) && (Renderer.translateAndScaleX(x) < Config.WINDOW_WIDTH && Renderer.translateAndScaleY(y) < Config.WINDOW_HEIGHT);
+		if (onscreen) {
+			if (!isTransparent) {
+				BlockTextures.getTexture("solidBorder").autoDraw(drawtool, x - 1, y - 1, SIZE.x + 2);
+			}
+		}
+	}
 	public static Vec2d getSIZE() {
 		return SIZE;
 	}

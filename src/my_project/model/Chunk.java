@@ -50,6 +50,14 @@ public class Chunk {
         drawTool.drawRectangle(Renderer.translateAndScaleX(position.x), Renderer.translateAndScaleY(position.y), SIZE.x * Block.getSIZE().x * Renderer.getSCALE(), SIZE.y * Block.getSIZE().y * Renderer.getSCALE());
         loaded = false;
     }
+    public void drawBorder(DrawTool drawTool) {
+        drawTool.setCurrentColor(0,0,0, 255);
+        for(BlockSpace[] row : blockSpaces) {
+            for (BlockSpace blockSpace : row) {
+                blockSpace.getBlock().drawBorder(drawTool);
+            }
+        }
+    }
     public void update(double dt) {
         for(BlockSpace[] row : blockSpaces) {
             for (BlockSpace blockSpace : row) {

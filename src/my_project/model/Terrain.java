@@ -50,6 +50,10 @@ public class Terrain {
          */
         for (Chunk chunk : loadedChunks) {
             //System.out.println("drawing chunk: ");
+            chunk.drawBorder(drawTool);
+        }
+        for (Chunk chunk : loadedChunks) {
+            //System.out.println("drawing chunk: ");
             chunk.draw(drawTool);
         }
     }
