@@ -38,7 +38,7 @@ public class Button {
             drawTool.drawText(position.x + 63,position.y + 28,"Start");
 
         }*/
-        texture.draw(drawTool, position.x, position.y, 1);
+        texture.drawToWidth(drawTool, position.x, position.y, widthButton);
     }
     public void update(double dt) {
         if(Renderer.getMousePos().x > position.x && Renderer.getMousePos().x < position.x + widthButton && Renderer.getMousePos().y > position.y && Renderer.getMousePos().y < position.y + heightButton && Renderer.isMousePressed()){

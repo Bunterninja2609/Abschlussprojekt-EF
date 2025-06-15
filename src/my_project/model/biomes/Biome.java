@@ -42,7 +42,7 @@ public class Biome {
                 return new Debug(new Vec2d(x, y), 0);
         }
     }
-    private int getFloorHeight() {
+    private int getFloorHeight(int x, int y) {
         return 40;
     }
 

@@ -3,6 +3,7 @@ package my_project.model;
 import KAGO_framework.control.ViewController;
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
+import my_project.Config;
 
 import java.awt.*;
 
@@ -18,9 +19,10 @@ public class Background extends GraphicalObject {
     @Override
     public void draw(DrawTool drawTool) {
         drawTool.setCurrentColor(new Color(0,0,0));
-        drawTool.drawFilledRectangle(0,0,800,800);
+        drawTool.drawFilledRectangle(0,0, Config.WINDOW_WIDTH,Config.WINDOW_HEIGHT);
+
         drawTool.setCurrentColor(new Color(85, 167, 255, (int) alpha));
-        drawTool.drawFilledRectangle(0,0,800,800);
+        drawTool.drawFilledRectangle(0,0, Config.WINDOW_WIDTH,Config.WINDOW_HEIGHT);
     }
 
     @Override
