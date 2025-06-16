@@ -1,6 +1,7 @@
 package my_project.control;
 
 import KAGO_framework.view.DrawTool;
+import my_project.uI.Credits;
 import my_project.uI.StartMenu;
 
 import java.awt.*;
@@ -9,9 +10,11 @@ public class UIRenderer {
 
     private int fps = 0;
     private StartMenu startMenu;
+    private Credits credits;
 
     public UIRenderer() {
-        startMenu = new StartMenu();
+        startMenu = new StartMenu("src/my_project/resources/Background.jpg");
+        credits = new Credits("src/my_project/resources/Background.jpg");
     }
 
     public void update(double dt) {
@@ -21,6 +24,13 @@ public class UIRenderer {
                 startMenu.update(dt);
                 break;
             case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                credits.update(dt);
                 break;
             default:
                 break;
@@ -35,6 +45,13 @@ public class UIRenderer {
                 startMenu.draw(drawTool);
                 break;
             case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                credits.draw(drawTool);
                 break;
             default:
                 break;
