@@ -24,7 +24,7 @@ public class Player extends Entity {
         width = 6;
         height = 25;
         speed = 100;
-        jumpSpeed = 300;
+        jumpSpeed = 500;
         texture = new Texture("src/my_project/resources/player.png");
     }
 

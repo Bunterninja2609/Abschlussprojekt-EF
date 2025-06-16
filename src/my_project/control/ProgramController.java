@@ -53,6 +53,7 @@ public class ProgramController {
     }
     public static double extrapolate(double min, double max, double value, String type){
         double difference = max - min;
+        value = ProgramController.clamp(0,1, value);
         double formular = min + difference*value;
         if(type.equals("linear")){
             //linear ist standart
@@ -62,5 +63,11 @@ public class ProgramController {
             formular = ((Math.sin((value - 0.5)*Math.PI)+1)/(2))*difference+min;
         }
         return formular;
+    }
+    public static boolean isAt(double goal, double fluctuation, double value){
+        return goal+fluctuation >= value && goal-fluctuation <= value;
+    }
+    public static boolean isBetween(double min, double max, double value){
+        return value>=min && value<=max;
     }
 }
