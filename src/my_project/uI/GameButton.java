@@ -30,7 +30,7 @@ public abstract class GameButton extends GraphicalObject {
         drawTool.drawFilledRectangle(x, y, width, height);
 
         drawTool.setCurrentColor(Color.BLACK);
-        drawTool.setCurrentFont(new Font("SansSerif", Font.BOLD, 20));//Keine Ahnung wie man Font macht
+        //drawTool.setCurrentFont(new Font("SansSerif", Font.BOLD, 20));//Keine Ahnung wie man Font macht
         drawTool.drawText( x + 20, y + 30, label); //Button position
     }
 
@@ -38,7 +38,7 @@ public abstract class GameButton extends GraphicalObject {
         int mx = mouseEvent.getX();
         int my = mouseEvent.getY();
         if (mx >= x && mx <= x + width && my >= y && my <= y + height) {
-            onClick.run();//keine Ahnung wie man szene wechselt
+            //onClick.run();//keine Ahnung wie man szene wechselt
         }
     }
 }

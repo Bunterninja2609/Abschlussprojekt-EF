@@ -7,6 +7,7 @@ import my_project.model.MenuButton;
 import KAGO_framework.view.DrawTool;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
 
 
 public class EndScreen extends GraphicalObject {
@@ -25,7 +26,7 @@ public class EndScreen extends GraphicalObject {
 
         int buttonWidth = 200;
         int buttonHeight = 50;
-        int centerX = screenWidth/2 - buttonWidth/2
+        int centerX = screenWidth/2 - buttonWidth/2;
 
         respawnButton = new RespawnButton(centerX, screenHeight / 2, buttonWidth, buttonHeight, onRespawn);
         menuButton = new MenuButton(centerX, screenHeight / 2 + 70, buttonWidth, buttonHeight, onMenu);
@@ -39,11 +40,11 @@ public class EndScreen extends GraphicalObject {
     public void draw(DrawTool drawTool){
         if (visible == true) {
 
-            drawTool.setCurrentColor(0, 0, 0, 180, 50);
+            //drawTool.setCurrentColor(0, 0, 0, 180, 50);
             drawTool.drawFilledRectangle(0, 0, screenWidth, screenHeight);
 
             drawTool.setCurrentColor(Color.RED);
-            drawTool.setCurrentFont(new Font("SansSerif", Font.BOLD, 60));
+            //drawTool.setCurrentFont(new Font("SansSerif", Font.BOLD, 60));
             drawTool.drawText(screenWidth / 2 - 160, screenHeight / 2 - 60, "Game Over");
 
             respawnButton.draw(drawTool);
