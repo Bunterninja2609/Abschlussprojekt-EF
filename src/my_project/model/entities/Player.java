@@ -21,20 +21,20 @@ public class Player extends Entity {
         super(eR, invSize);
         x = 400;
         y = 0;
-        width = 10;
-        height = 30;
+        width = 6;
+        height = 25;
         speed = 100;
-        jumpSpeed = 300;
-        texture = new Texture("src/my_project/resources/player.jpg");
+        jumpSpeed = 500;
+        texture = new Texture("src/my_project/resources/player.png");
     }
 
     @Override
     public void draw(DrawTool drawTool) {
         drawTool.setCurrentColor(new Color(0, 7, 23, 255));
 
-        drawHitbox(drawTool);
-        cage.draw(drawTool);
-        texture.autoDraw(drawTool, x, y, width);
+        //drawHitbox(drawTool);
+        //cage.draw(drawTool);
+        texture.autoDraw(drawTool, x-2, y-4, 10);
     }
 
     @Override

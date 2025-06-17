@@ -8,7 +8,7 @@ public class BlockTextures {
             "dirt", new Texture("src/my_project/resources/blocks/Dirt.png"),
             "grass", new Texture("src/my_project/resources/blocks/Grass.png"),
             "stone", new Texture("src/my_project/resources/blocks/Stone.png"),
-            "iron", new Texture("src/my_project/resources/blocks/Iron.png"),
+            "iron", new Texture("src/my_project/resources/blocks/Iron Ore.png"),
             "leaf", new Texture("src/my_project/resources/blocks/Leaf.png"),
             "water", new Texture("src/my_project/resources/blocks/Water.png"),
             "solidBorder", new Texture("src/my_project/resources/Solid Block Border.png")

@@ -6,15 +6,15 @@ import my_project.model.Terrain;
 import my_project.model.blocks.*;
 
 public class Biome {
-    public static Block generate(PerlinNoise noise, PerlinNoise biomes, double x, double y) {
+    public static Block generate(PerlinNoise noise, PerlinNoise biomes, double x, double y, int height) {
         int block = generateBasicTerrain(noise, biomes, x, y);
         block = alterCurrentBlocks(noise, biomes, x, y, block);
         return returnBlock(block, x, y);
     }
     protected static int generateBasicTerrain(PerlinNoise noise, PerlinNoise biomes, double x, double y) {
-        if (y > Terrain.getGROUNDHEIGHT()) {
+        if (y > Terrain.getGroundheight(x, noise)) {
             return 2;
-        } else if (y == Terrain.getGROUNDHEIGHT()) {
+        } else if (y == Terrain.getGroundheight(x, noise)) {
             return 6;
         }
         return 1;
@@ -42,7 +42,7 @@ public class Biome {
                 return new Debug(new Vec2d(x, y), 0);
         }
     }
-    private int getFloorHeight() {
+    public static int getFloorHeight(double x, PerlinNoise noise) {
         return 40;
     }
 
