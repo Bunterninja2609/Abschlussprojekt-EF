@@ -7,8 +7,15 @@
     <list default="true" id="a3a0b6c3-3531-4b83-899a-66618f48675b" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/src/my_project/model/Background.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/my_project/control/Renderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/my_project/control/Renderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/my_project/control/UIRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/my_project/control/UIRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KAGO-Framework/KAGO_framework/control/ViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KAGO-Framework/KAGO_framework/control/ViewController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/Config.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/Config.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/Chunk.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/Chunk.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/Entities/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/Entities/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/Terrain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/Terrain.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/blocks/Block.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/blocks/Block.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/entities/Entity.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/entities/Entity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/my_project/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/my_project/Config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/my_project/model/Background.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/my_project/model/Background.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/my_project/model/Texture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/my_project/model/Texture.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/my_project/model/blocks/Air.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/my_project/model/blocks/Air.java" afterDir="false" />
     </list>

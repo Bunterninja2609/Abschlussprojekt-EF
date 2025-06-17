@@ -1,50 +1,64 @@
 package my_project.uI;
-
-import KAGO_framework.view.DrawTool;
-import com.sun.javafx.geom.Vec2d;
 import my_project.Config;
-import my_project.control.Renderer;
+
+import KAGO_framework.model.GraphicalObject;
+import my_project.model.RespawnButton;
+import my_project.model.MenuButton;
+import KAGO_framework.view.DrawTool;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
 
 
-public class RespawnButton {
-    private Vec2d position;
-    private boolean isPressen;
-    private int widthRespawnButton;
-    private int heightRespawnButton;
+public class EndScreen extends GraphicalObject {
 
-    public RespawnButton(double x, double y, int width, int height) {
-        position = new Vec2d(x, y);
-        isPressen = false;
-        heightRespawnButton = height;
-        widthRespawnButton = width;
+    protected int screenWidth;
+    protected int screenHeight;
+    protected boolean visible;
+
+    protected RespawnButton respawnButton;
+    protected MenuButton menuButton;
+
+    public EndScreen(int screenWidth, int screenHeight, Runnable onRespawn, Runnable onMenu) {
+        this.screenWidth = screenWidth;
+        this.screenHeight = screenHeight;
+        this.visible = false;
+
+        int buttonWidth = 200;
+        int buttonHeight = 50;
+        int centerX = screenWidth/2 - buttonWidth/2;
+
+        respawnButton = new RespawnButton(centerX, screenHeight / 2, buttonWidth, buttonHeight, onRespawn);
+        menuButton = new MenuButton(centerX, screenHeight / 2 + 70, buttonWidth, buttonHeight, onMenu);
     }
+
+    public void setVisible(boolean visible) {
+        //Muss noch ergänzt werden, wenn der spieler stirbt blablabla
+    }
+
+    @Override
     public void draw(DrawTool drawTool){
-        drawTool.setCurrentColor(Color.GRAY);
-        drawTool.drawFilledRectangle(position.x, position.y, widthRespawnButton, heightRespawnButton);
-        drawTool.setCurrentColor(Color.CYAN);
-        drawTool.formatText("monospaced",2,35);
-        drawTool.drawText(position.x + 50, position.y + 20, "Respawn you dumb Fuck");
-            if(Renderer.getMousePos().x > position.x && Renderer.getMousePos().x < position.x + widthRespawnButton && Renderer.getMousePos().y > position.y && Renderer.getMousePos().y < position.y + heightRespawnButton) {
-                    drawTool.setCurrentColor(Color.MAGENTA);
-                    drawTool.drawFilledRectangle(position.x, position.y, widthRespawnButton, heightRespawnButton);
-                    drawTool.setCurrentColor(Color.red);
-                    drawTool.drawRectangle(position.x, position.y, widthRespawnButton,heightRespawnButton);
-                    drawTool.drawText(position.x + 63,position.y + 28,"Start");
-            }
-    }
-    public void update(double dt) {
-        if(Renderer.getMousePos().x > position.x && Renderer.getMousePos().x < position.x + widthRespawnButton && Renderer.getMousePos().y > position.y && Renderer.getMousePos().y < position.y + heightRespawnButton && Renderer.isMousePressed()){
-            isPressed = true;
-        }else {
-            isPressed = false;
-        }
-        if(isPressed) {
-            Renderer.setScene(1);
+        if (visible == true) {
+
+            //drawTool.setCurrentColor(0, 0, 0, 180, 50);
+            drawTool.drawFilledRectangle(0, 0, screenWidth, screenHeight);
+
+            drawTool.setCurrentColor(Color.RED);
+            //drawTool.setCurrentFont(new Font("SansSerif", Font.BOLD, 60));
+            drawTool.drawText(screenWidth / 2 - 160, screenHeight / 2 - 60, "Game Over");
+
+            respawnButton.draw(drawTool);
+            menuButton.draw(drawTool);
         }
     }
 
+
+    //keine ahnung wie ich mouse event mache
+    public void handleClick(MouseEvent mouseEvent) {
+        if (visible == true) {
+
+            respawnButton.handleClick(mouseEvent);
+            menuButton.handleClick(mouseEvent);
+        }
+    }
 }
-
-

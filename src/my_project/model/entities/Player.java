@@ -6,6 +6,7 @@ import my_project.control.EntityRenderer;
 import my_project.control.Keyboard;
 import my_project.control.Renderer;
 import my_project.model.Collider;
+import my_project.model.Terrain;
 import my_project.model.Texture;
 
 import java.awt.*;
@@ -20,20 +21,20 @@ public class Player extends Entity {
         super(eR, invSize);
         x = 400;
         y = 0;
-        width = 10;
-        height = 30;
+        width = 6;
+        height = 25;
         speed = 100;
-        jumpSpeed = 300;
-        texture = new Texture("src/my_project/resources/player.jpg");
+        jumpSpeed = 500;
+        texture = new Texture("src/my_project/resources/player.png");
     }
 
     @Override
     public void draw(DrawTool drawTool) {
         drawTool.setCurrentColor(new Color(0, 7, 23, 255));
 
-        drawHitbox(drawTool);
-        cage.draw(drawTool);
-        texture.autoDraw(drawTool, x, y, width);
+        //drawHitbox(drawTool);
+        //cage.draw(drawTool);
+        texture.autoDraw(drawTool, x-2, y-4, 10);
     }
 
     @Override
@@ -67,5 +68,8 @@ public class Player extends Entity {
     @Override
     public void keyReleased(int key) {
 
+    }
+    private void damageBlock(double x, double y){
+        Renderer.getBlockRenderer().getTerrain().getBlockByPosition(x, y).damage(100000000);
     }
 }

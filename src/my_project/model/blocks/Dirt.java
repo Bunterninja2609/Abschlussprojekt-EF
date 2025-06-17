@@ -13,5 +13,4 @@ public class Dirt extends Block {
         drawTool.setCurrentColor(128,64,0, 255);
         drawTexture(drawTool);
     }
-
 }

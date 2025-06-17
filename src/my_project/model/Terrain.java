@@ -3,8 +3,7 @@ package my_project.model;
 import KAGO_framework.view.DrawTool;
 import com.sun.javafx.geom.Vec2d;
 import my_project.control.ProgramController;
-import my_project.model.biomes.Biome;
-import my_project.model.biomes.Ocean;
+import my_project.model.biomes.*;
 import my_project.model.blocks.Block;
 
 import java.util.ArrayList;
@@ -12,10 +11,9 @@ import java.util.Random;
 
 public class Terrain {
     private Chunk[][] chunks;
-    private PerlinNoise noise;
-    private PerlinNoise biomeNoise;
+    private static PerlinNoise noise;
+    private static PerlinNoise biomeNoise;
     private ArrayList<Chunk> loadedChunks;
-    private static double GROUNDHEIGHT = 64;
 
     private Random rand;
     public Terrain(Vec2d worldSize, int seed) {
@@ -47,6 +45,10 @@ public class Terrain {
         }
 
          */
+        for (Chunk chunk : loadedChunks) {
+            //System.out.println("drawing chunk: ");
+            chunk.drawBorder(drawTool);
+        }
         for (Chunk chunk : loadedChunks) {
             //System.out.println("drawing chunk: ");
             chunk.draw(drawTool);
@@ -102,6 +104,15 @@ public class Terrain {
         y = (int)convertChunkGridToBlockGrid(x, y).y;
         return getBlockByBlockGrid(x, y);
     }
+    /*
+    public BlockSpace getBlockSpaceByPosition(double x, double y){
+        x = convertPositionToBlockGrid(x, y).x;
+        y = convertPositionToBlockGrid(x, y).y;
+        return getBlockSpaceByBlockGrid((int) x, (int) y);
+    }
+    public BlockSpace getBlockSpaceByBlockGrid(int x, int y){
+        
+    }*/
 
 
 
@@ -140,19 +151,30 @@ public class Terrain {
 
 
     public Block generate(double x, double y) {
-        double floorHeight = noise.getValue(x) * 30;
-        double biomeHeight = biomeNoise.getValue(x) * 300;
+        int height = (int)ProgramController.extrapolate(10, 20, biomeNoise.getValue(x), "sine");
+
         if (biomeNoise.getValue(x) < 0) {
-            return Ocean.generate(noise, biomeNoise, x, y);
+            return Plains.generate(noise, biomeNoise, x, y, height);
         }
-        return Biome.generate(noise, biomeNoise, x, y);
+        return Mountains.generate(noise, biomeNoise, x, y, height);
 
 
     }
 
 
-    public static double getGROUNDHEIGHT() {
-        return GROUNDHEIGHT;
+    public static double getGroundheight(double x, PerlinNoise noise) {
+        double flux = 0.1;
+        if (ProgramController.isBetween(-1, 0-flux, biomeNoise.getValue(x))) {
+            //plains
+            return Plains.getFloorHeight(x, noise);
+        }else if (ProgramController.isAt(0, flux, biomeNoise.getValue(x))) {
+            //übergang plains zu mountains
+            double mask = ((ProgramController.clamp(0-flux, 0+flux, biomeNoise.getValue(x))/flux)+1)/2;
+            return (int) (ProgramController.extrapolate(Plains.getFloorHeight(x, noise), Mountains.getFloorHeight(x, noise), mask, "sine"));
+        } else if (ProgramController.isBetween(0+flux, 1, biomeNoise.getValue(x))) {
+            //mountains
+            return Mountains.getFloorHeight(x, noise);
+        } else return 0;
     }
     public void loadChunk(Chunk chunk) {
 

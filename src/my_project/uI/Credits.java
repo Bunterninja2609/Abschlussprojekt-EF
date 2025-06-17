@@ -7,12 +7,12 @@ import my_project.model.Texture;
 import java.awt.*;
 
 
-public class StartMenu {
+public class Credits {
     private Texture texture;
     private Button startButton01 = new Button(Config.WINDOW_WIDTH/2-150,Config.WINDOW_HEIGHT/2+150, 200, 40,"src/my_project/resources/Startbutton.png",1);
     private Button startButton02 = new Button(Config.WINDOW_WIDTH/2-150,Config.WINDOW_HEIGHT/2+300, 200, 40,"src/my_project/resources/Startbutton.png",2);
 
-    public StartMenu( String texturePath) {
+    public Credits( String texturePath) {
         texture = new Texture(texturePath);
 
     }
