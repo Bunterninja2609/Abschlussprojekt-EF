@@ -51,6 +51,14 @@ public class Button {
             drawTool.drawText(position.x , position.y+heightButton - 10,"Credits");
 
         }
+        if (buttonType == 3) {
+            drawTool.setCurrentColor(new Color(255, 0, 0, 255));
+            drawTool.drawFilledRectangle(position.x, position.y, widthButton, heightButton);
+            drawTool.setCurrentColor(new Color(0, 0, 0, 255));
+            drawTool.formatText("monospaced",3,45);
+            drawTool.drawText(position.x , position.y+heightButton - 10,"Mainmenu");
+
+        }
     }
     public void update(double dt) {
         if(Renderer.getMousePos().x > position.x && Renderer.getMousePos().x < position.x + widthButton && Renderer.getMousePos().y > position.y && Renderer.getMousePos().y < position.y + heightButton && Renderer.isMousePressed()){
@@ -66,6 +74,11 @@ public class Button {
         if(buttonType == 2 ){
             if(isPressed) {
                 Renderer.setScene(4);
+            }
+        }
+        if(buttonType == 3 ){
+            if(isPressed) {
+                Renderer.setScene(0);
             }
         }
     }
