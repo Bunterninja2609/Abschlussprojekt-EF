@@ -104,15 +104,19 @@ public class Terrain {
         y = (int)convertChunkGridToBlockGrid(x, y).y;
         return getBlockByBlockGrid(x, y);
     }
-    /*
+
     public BlockSpace getBlockSpaceByPosition(double x, double y){
         x = convertPositionToBlockGrid(x, y).x;
         y = convertPositionToBlockGrid(x, y).y;
         return getBlockSpaceByBlockGrid((int) x, (int) y);
     }
     public BlockSpace getBlockSpaceByBlockGrid(int x, int y){
-        
-    }*/
+        Chunk chunk = getChunkByBlockGrid(x, y);
+        if (chunk != null) {
+            return chunk.getBlockSpaceByBlockGridPosition(x, y);
+        }
+        return null;
+    }
 
 
 

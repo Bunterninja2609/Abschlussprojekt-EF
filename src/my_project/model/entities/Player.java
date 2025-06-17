@@ -51,6 +51,9 @@ public class Player extends Entity {
             System.out.println("jumping");
             velocity.y = -jumpSpeed;
         }
+        if (Renderer.isMousePressed()) {
+            damageBlock(Renderer.getRelativeMousePos().x, Renderer.getRelativeMousePos().y, -10*dt);
+        }
         velocity.y -= -1000*dt;
         //System.out.println("Player position: "+x+"|"+y);
         super.update(dt);
@@ -69,7 +72,7 @@ public class Player extends Entity {
     public void keyReleased(int key) {
 
     }
-    private void damageBlock(double x, double y){
-        Renderer.getBlockRenderer().getTerrain().getBlockByPosition(x, y).damage(100000000);
+    private void damageBlock(double x, double y, double damage) {
+        Renderer.getBlockRenderer().getTerrain().getBlockByPosition(x, y).damage(damage);
     }
 }

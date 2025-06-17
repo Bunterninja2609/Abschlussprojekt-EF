@@ -2,7 +2,6 @@ package my_project.model;
 
 import KAGO_framework.view.DrawTool;
 import com.sun.javafx.geom.Vec2d;
-import my_project.BlockSpace;
 import my_project.control.ProgramController;
 import my_project.control.Renderer;
 import my_project.model.blocks.Block;

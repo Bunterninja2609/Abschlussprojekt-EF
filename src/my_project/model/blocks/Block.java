@@ -3,7 +3,7 @@ package my_project.model.blocks;
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
 import com.sun.javafx.geom.Vec2d;
-import my_project.BlockSpace;
+import my_project.model.BlockSpace;
 import my_project.Config;
 import my_project.control.Renderer;
 import my_project.model.BlockTextures;
@@ -31,11 +31,17 @@ public abstract class Block extends GraphicalObject {
 	public void draw(DrawTool drawtool){
 		drawTexture(drawtool);
 	}
+	@Override
+	public void update(double dt){
+		if (hitpoints <= 0){
+			destroy();
+		}
+	}
 	protected void drawTexture(DrawTool drawtool){
 		boolean onscreen = (Renderer.translateAndScaleX(x) >= Renderer.scale(-SIZE.x) && Renderer.translateAndScaleY(y) >= Renderer.scale(-SIZE.y)) && (Renderer.translateAndScaleX(x) < Config.WINDOW_WIDTH && Renderer.translateAndScaleY(y) < Config.WINDOW_HEIGHT);
 		if (onscreen) {
 			//drawtool.drawFilledRectangle(Renderer.translateAndScaleX(x), Renderer.translateAndScaleY(y), Renderer.scale(SIZE.x), Renderer.scale(SIZE.y));
-			if(texture.getMyImage() != null) {
+			if(texture.getMyImage() != null ) {
 				texture.autoDraw(drawtool, x, y, SIZE.x);
 			}
 			if (highlighted) {
@@ -66,9 +72,8 @@ public abstract class Block extends GraphicalObject {
 	}
 	public void damage(double damage){
 		this.hitpoints += damage;
-
 	}
 	public void destroy(){
-
+		Renderer.getBlockRenderer().getTerrain().getBlockSpaceByBlockGrid((int)gridPosition.x, (int)gridPosition.y).setBlock(new Air((gridPosition)));
 	}
 }
