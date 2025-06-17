@@ -7,6 +7,7 @@ import my_project.model.BlockTextures;
 public class Iron extends Block {
     public Iron(Vec2d gridPosition) {
         super(gridPosition, false);
+        hitpoints = 20;
         texture = BlockTextures.getTexture("iron");
     }
     public void draw(DrawTool drawTool) {

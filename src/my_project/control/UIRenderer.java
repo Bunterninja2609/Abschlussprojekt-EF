@@ -1,20 +1,25 @@
 package my_project.control;
 
 import KAGO_framework.view.DrawTool;
+import my_project.model.Inventory;
 import my_project.uI.Credits;
 import my_project.uI.StartMenu;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.concurrent.Callable;
 
 public class UIRenderer {
 
     private int fps = 0;
     private StartMenu startMenu;
     private Credits credits;
+    private ArrayList<Inventory> inventoriesToDraw;
 
     public UIRenderer() {
         startMenu = new StartMenu("src/my_project/resources/Background.jpg");
         credits = new Credits("src/my_project/resources/Background.jpg");
+        inventoriesToDraw = new ArrayList<>();
     }
 
     public void update(double dt) {
@@ -24,6 +29,7 @@ public class UIRenderer {
                 startMenu.update(dt);
                 break;
             case 1:
+
                 break;
             case 2:
                 break;
@@ -45,6 +51,10 @@ public class UIRenderer {
                 startMenu.draw(drawTool);
                 break;
             case 1:
+                for(Inventory inv : inventoriesToDraw){
+                    inv.draw(drawTool);
+                }
+                inventoriesToDraw.clear();
                 break;
             case 2:
                 break;
@@ -57,6 +67,7 @@ public class UIRenderer {
                 break;
         }
     }
-
-
+    public void addInventoryToDraw(Inventory inventory){
+        inventoriesToDraw.add(inventory);
+    }
 }

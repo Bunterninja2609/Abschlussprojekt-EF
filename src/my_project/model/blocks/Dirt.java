@@ -7,6 +7,7 @@ import my_project.model.BlockTextures;
 public class Dirt extends Block {
     public Dirt(Vec2d gridPosition) {
         super(gridPosition, false);
+        hitpoints = 10;
         texture = BlockTextures.getTexture("dirt");
     }
     public void draw(DrawTool drawTool) {

@@ -1,4 +1,4 @@
-package my_project;
+package my_project.model;
 
 import com.sun.javafx.geom.Vec2d;
 import my_project.model.blocks.Block;

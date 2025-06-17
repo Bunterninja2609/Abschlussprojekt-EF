@@ -9,8 +9,8 @@ import java.awt.*;
 
 public class Credits {
     private Texture texture;
-    private Button startButton01 = new Button(Config.WINDOW_WIDTH/2-150,Config.WINDOW_HEIGHT/2+150, 200, 40,"src/my_project/resources/Startbutton.png",1);
-    private Button startButton02 = new Button(Config.WINDOW_WIDTH/2-150,Config.WINDOW_HEIGHT/2+300, 200, 40,"src/my_project/resources/Startbutton.png",2);
+
+    private Button startButton01 = new Button(Config.WINDOW_WIDTH/2-175,Config.WINDOW_HEIGHT/2+340, 250, 40,"src/my_project/resources/Startbutton.png",3);
 
     public Credits( String texturePath) {
         texture = new Texture(texturePath);
@@ -23,13 +23,12 @@ public class Credits {
         texture.drawToWidth(drawTool, 0, 0, Config.WINDOW_WIDTH);
         drawTool.setCurrentColor(new Color(0, 0, 0, 255));
         drawTool.formatText("monospaced",3,60);
-        drawTool.drawText((Config.WINDOW_WIDTH/2)-195,Config.WINDOW_HEIGHT/3,"Terrarium");
+        drawTool.drawText((Config.WINDOW_WIDTH/2)-153,Config.WINDOW_HEIGHT/3,"Credits");
         startButton01.draw(drawTool);
-        startButton02.draw(drawTool);
 
     }
     public void update(double dt){
         startButton01.update(dt);
-        startButton02.update(dt);
+
     }
 }

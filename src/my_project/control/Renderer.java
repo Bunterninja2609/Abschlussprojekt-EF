@@ -185,4 +185,7 @@ public class Renderer extends InteractiveGraphicalObject {
     public static EntityRenderer getEntityRenderer() {
         return entityRenderer;
     }
+    public static UIRenderer getUIRenderer() {
+        return uiRenderer;
+    }
 }

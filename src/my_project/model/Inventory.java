@@ -19,7 +19,7 @@ public class Inventory extends GraphicalObject {
     public void draw(DrawTool drawTool) {
         for (int i = 0; i < size; i++) {
             drawTool.setCurrentColor(new Color(131, 131, 131, 100));
-            drawTool.drawFilledRectangle(20*i,20,50,50);
+            drawTool.drawFilledRectangle(20+ 55*i,20,50,50);
         }
     }
 
