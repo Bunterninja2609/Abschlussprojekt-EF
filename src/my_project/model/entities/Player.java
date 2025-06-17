@@ -35,6 +35,7 @@ public class Player extends Entity {
         //drawHitbox(drawTool);
         //cage.draw(drawTool);
         texture.autoDraw(drawTool, x-2, y-4, 10);
+        Renderer.getUIRenderer().addInventoryToDraw(inventory);
     }
 
     @Override
