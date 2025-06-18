@@ -90,12 +90,17 @@ public class Renderer extends InteractiveGraphicalObject {
     @Override
     public void mousePressed(MouseEvent e) {
         mousePressed = true;
-        mousePos.x = e.getX();
-        mousePos.y = e.getY();
+        //mousePos.x = e.getX();
+        //mousePos.y = e.getY();
     }
     @Override
     public void mouseReleased(MouseEvent e) {
         mousePressed = false;
+        mousePos.x = e.getX();
+        mousePos.y = e.getY();
+    }
+    @Override
+    public void mouseDragged(MouseEvent e) {
         mousePos.x = e.getX();
         mousePos.y = e.getY();
     }

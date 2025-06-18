@@ -4,21 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a3a0b6c3-3531-4b83-899a-66618f48675b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/my_project/model/Background.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KAGO-Framework/KAGO_framework/control/ViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KAGO-Framework/KAGO_framework/control/ViewController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/Config.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/Config.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/Chunk.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/Chunk.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/Entities/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/Entities/Player.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/Terrain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/Terrain.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/blocks/Block.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/blocks/Block.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/entities/Entity.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/entities/Entity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/my_project/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/my_project/Config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/my_project/model/Background.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/my_project/model/Background.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/my_project/model/Texture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/my_project/model/Texture.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/my_project/model/blocks/Air.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/my_project/model/blocks/Air.java" afterDir="false" />
-    </list>
+    <list default="true" id="a3a0b6c3-3531-4b83-899a-66618f48675b" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -59,7 +45,7 @@
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
     "url": "https://github.com/Bunterninja2609/Abschlussprojekt-EF.git",
-    "accountId": "7a57a3bc-4eab-4e85-a916-08c6a81bb081"
+    "accountId": "b24e6f26-cac6-4166-88f5-906b8fd818d7"
   }
 }]]></component>
   <component name="ProjectColorInfo">{
@@ -106,8 +92,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.25410.109" />
-        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-IU-251.25410.109" />
+        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.25659.59" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.25659.59" />
       </set>
     </attachedChunks>
   </component>
@@ -128,6 +114,7 @@
       <workItem from="1747943940861" duration="3511000" />
       <workItem from="1749049016711" duration="1865000" />
       <workItem from="1749208794780" duration="2452000" />
+      <workItem from="1750195188152" duration="868000" />
     </task>
     <servers />
   </component>
