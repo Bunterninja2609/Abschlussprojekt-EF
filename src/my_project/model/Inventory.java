@@ -9,28 +9,30 @@ import java.awt.*;
 import java.util.Objects;
 
 public class Inventory extends GraphicalObject {
-
-    public int size;
-    public Item[] items;
+    private double highlitedSlot;
+    private int size;
+    private Item[] items;
 
     public Inventory(int size) {
         this.size = size;
         items = new Item[size];
+        highlitedSlot = 0;
     }
 
     @Override
     public void draw(DrawTool drawTool) {
         for (int i = 0; i < size; i++) {
-            drawTool.setCurrentColor(new Color(131, 131, 131, 100));
+            if (i != highlitedSlot) {
+                drawTool.setCurrentColor(new Color(131, 131, 131, 100));
+            }else{
+                drawTool.setCurrentColor(new Color(255, 255, 255, 100));
+            }
+
             drawTool.drawFilledRectangle(20 + 55*i,20,50,50);
             if (items[i] != null) {
-                if(Objects.equals(items[i].getName(), "Dirt")) {
-                    drawTool.setCurrentColor(new Color(133, 63, 40));
-                    drawTool.drawFilledRectangle(30 + 55*i, 30, 30, 30);
-                }else if(Objects.equals(items[i].getName(), "Stone")) {
-                    drawTool.setCurrentColor(new Color(88, 95, 99));
-                    drawTool.drawFilledRectangle(30 + 55*i, 30, 30, 30);
-                }
+                drawTool.setCurrentColor(0,0,0,255);
+                items[i].getTexture().drawToWidth(drawTool,30 + 55*i, 30, 30);
+                //drawTool.drawFilledRectangle(30 + 55*i, 30, 30, 30);
                 drawTool.setCurrentColor(new Color(219, 226, 230));
                 drawTool.drawText(32 + 55*i, 56, String.valueOf(items[i].getAmount()));
             }
@@ -74,5 +76,8 @@ public class Inventory extends GraphicalObject {
 
     public Item getItem(int slot){
         return null;
+    }
+    public void highlitedSlot(int slot) {
+        highlitedSlot = slot;
     }
 }

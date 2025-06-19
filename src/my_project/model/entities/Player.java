@@ -18,6 +18,7 @@ public class Player extends Entity {
 
     private Texture texture;
     private double jumpSpeed;
+    private int currentSlot;
 
     public Player(EntityRenderer eR, int invSize) {
         super(eR, invSize);
@@ -30,6 +31,7 @@ public class Player extends Entity {
         hitpoints = 20;
         //texture = new Texture("src/my_project/resources/playerAnimations/0|0.png");
         spritesheet = new Spritesheet("src/my_project/resources/playerAnimations/",".png", 2, 4, 0.2, 0.2);
+        currentSlot = 0;
     }
 
     @Override
@@ -44,7 +46,7 @@ public class Player extends Entity {
 
     @Override
     public void update(double dt) {
-
+        changeSlot();
         if (Keyboard.isPressed(KeyEvent.VK_A)) {
           velocity.x = -speed;
         }
@@ -95,5 +97,27 @@ public class Player extends Entity {
     }
     private void damageBlock(double x, double y, double damage) {
         Renderer.getBlockRenderer().getTerrain().getBlockByPosition(x, y).damage(damage);
+    }
+    private void changeSlot(){
+        if(Keyboard.isPressed(KeyEvent.VK_1)){
+            currentSlot = 0;
+        }else if(Keyboard.isPressed(KeyEvent.VK_2)){
+            currentSlot = 1;
+        }else if(Keyboard.isPressed(KeyEvent.VK_3)){
+            currentSlot = 2;
+        }else if(Keyboard.isPressed(KeyEvent.VK_4)){
+            currentSlot = 3;
+        }else if(Keyboard.isPressed(KeyEvent.VK_5)){
+            currentSlot = 4;
+        }else if(Keyboard.isPressed(KeyEvent.VK_6)){
+            currentSlot = 5;
+        }else if(Keyboard.isPressed(KeyEvent.VK_7)){
+            currentSlot = 6;
+        }else if(Keyboard.isPressed(KeyEvent.VK_8)){
+            currentSlot = 7;
+        }else if(Keyboard.isPressed(KeyEvent.VK_9)){
+            currentSlot = 8;
+        }
+        inventory.highlitedSlot(currentSlot);
     }
 }

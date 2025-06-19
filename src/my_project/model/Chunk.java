@@ -46,7 +46,7 @@ public class Chunk {
         drawTool.setCurrentColor(0, 0, 255, 255);
 
 
-        drawTool.drawRectangle(Renderer.translateAndScaleX(position.x), Renderer.translateAndScaleY(position.y), SIZE.x * Block.getSIZE().x * Renderer.getSCALE(), SIZE.y * Block.getSIZE().y * Renderer.getSCALE());
+        //drawTool.drawRectangle(Renderer.translateAndScaleX(position.x), Renderer.translateAndScaleY(position.y), SIZE.x * Block.getSIZE().x * Renderer.getSCALE(), SIZE.y * Block.getSIZE().y * Renderer.getSCALE());
         loaded = false;
     }
     public void drawBorder(DrawTool drawTool) {

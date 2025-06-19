@@ -25,7 +25,7 @@ public abstract class Entity extends InteractiveGraphicalObject {
     protected Spritesheet spritesheet;
 
     public Entity(EntityRenderer er, int invSize) {
-        cage = new Cage(this, 0, 1);
+        cage = new Cage(this, -1, 1);
         inventory = new Inventory(invSize);
     }
 
