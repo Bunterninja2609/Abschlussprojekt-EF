@@ -21,6 +21,7 @@ public class ProgramController {
     private EntityRenderer entityRenderer;
     private UIRenderer uiRenderer;
     private Keyboard keyboard;
+    private Mouse mouse;
 
     public ProgramController(ViewController viewController){
         this.viewController = viewController;
@@ -28,7 +29,9 @@ public class ProgramController {
 
     public void startProgram() {
         keyboard = new Keyboard();
+        mouse = new Mouse();
         viewController.register(keyboard);
+        viewController.register(mouse);
         blockRenderer = new BlockRenderer();
         entityRenderer = new EntityRenderer(viewController);
         uiRenderer = new UIRenderer();

@@ -2,10 +2,7 @@ package my_project.model.entities;
 
 import KAGO_framework.view.DrawTool;
 import com.sun.javafx.geom.Vec2d;
-import my_project.control.EntityRenderer;
-import my_project.control.Keyboard;
-import my_project.control.ProgramController;
-import my_project.control.Renderer;
+import my_project.control.*;
 import my_project.model.Collider;
 import my_project.model.Spritesheet;
 import my_project.model.Terrain;
@@ -58,7 +55,7 @@ public class Player extends Entity {
             //System.out.println("jumping");
             velocity.y = -jumpSpeed;
         }
-        if (Renderer.isMousePressed()) {
+        if (Mouse.isDown(1)) {
             damageBlock(Renderer.getRelativeMousePos().x, Renderer.getRelativeMousePos().y, -1000000000*dt);
         }
         velocity.y -= -1000*dt;
