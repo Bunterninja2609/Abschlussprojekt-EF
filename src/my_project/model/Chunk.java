@@ -30,7 +30,7 @@ public class Chunk {
             for (int y = 0; y < SIZE.y; y++) {
                 Vec2d blockPosition = new Vec2d((blockGridPosition.x + x), (blockGridPosition.y + y));
                 Block generatedBlock = terrain.generate(blockPosition.x, blockPosition.y);
-                System.out.println(blockPosition.x + " " + blockPosition.y);
+                //System.out.println(blockPosition.x + " " + blockPosition.y);
                 blockSpaces[x][y] = new BlockSpace( blockPosition, generatedBlock);
             }
         }

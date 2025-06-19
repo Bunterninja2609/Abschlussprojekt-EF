@@ -6,6 +6,7 @@ import my_project.control.Renderer;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 
 public class Spritesheet {
     private BufferedImage[][] image;
@@ -24,22 +25,25 @@ public class Spritesheet {
         frameX = 0;
         frameY = 0;
     }
-    public Spritesheet(String directory, int frameNumX, int frameNumY, double cooldownX, double cooldownY) {
-        setNewImage(directory, frameNumX, frameNumY);
-        cooldownX = cooldownX;
-        cooldownY = cooldownY;
+    public Spritesheet(String directory, String fileType, int frameNumX, int frameNumY, double cooldownX, double cooldownY) {
+        setNewImage(directory, fileType, frameNumX, frameNumY);
+        this.cooldownX = cooldownX;
+        this.cooldownY = cooldownY;
         timerX = 0;
         timerY = 0;
         frameX = 0;
         frameY = 0;
     }
-    public void setNewImage(String directory, int frameNumX, int frameNumY) {
+    public void setNewImage(String directory, String fileType, int frameNumX, int frameNumY) {
+        image = new BufferedImage[frameNumX][frameNumY];
         for (int fx = 0; fx < frameNumX; fx++) {
             for (int fy = 0; fy < frameNumY; fy++) {
                 try {
-                    image[fx][fy] = ImageIO.read(new File(directory + fx + "|" + fy));
-                } catch (Exception e) {
-                    System.err.println("Error adding frame: " + directory + fx + "|" + fy);
+                    //System.out.println("adding frame " + fx + "|" + fy);
+                    image[fx][fy] = ImageIO.read(new File(directory + fx + "|" + fy + fileType));
+                    //System.out.println("Successfully added frame " + fx + "|" + fy);
+                } catch (IOException e) {
+                    System.err.println("Error adding frame: " + directory + fx + "|" + fy + fileType);
                     e.printStackTrace();
                 }
             }
@@ -48,19 +52,22 @@ public class Spritesheet {
     public void updateX(double dt){
         timerX += dt;
         if (timerX > cooldownX){
-            int framesSkipped = (int)(cooldownX/timerX);
+            int framesSkipped = (int)(timerX/cooldownX);
+            //System.out.println(framesSkipped);
+
             timerX %= cooldownX;
             frameX += framesSkipped;
-            frameX %=image.length-1;
+            frameX %=image.length;
+
         }
     }
     public void updateY(double dt){
         timerY += dt;
         if (timerY > cooldownY){
-            int framesSkipped = (int)(cooldownY/timerY);
+            int framesSkipped = (int)(timerY/cooldownY);
             timerY %= cooldownY;
             frameY += framesSkipped;
-            frameY %=image[0].length-1;
+            frameY %=image[0].length;
         }
     }
     public void draw(DrawTool drawTool, double x, double y, double scale) {
@@ -68,5 +75,17 @@ public class Spritesheet {
     }
     public void autoDraw(DrawTool drawTool, double x, double y, double width) {
         drawTool.drawTransformedImage(image[frameX][frameY], Renderer.translateAndScaleX(x), Renderer.translateAndScaleY(y), 0, Renderer.scale(width/image[frameX][frameY].getWidth()));
+    }
+    public void setFrameX(int frameX) {
+        this.frameX = frameX;
+    }
+    public void setFrameY(int frameY) {
+        this.frameY = frameY;
+    }
+    public int getFrameX() {
+        return frameX;
+    }
+    public int getFrameY() {
+        return frameY;
     }
 }

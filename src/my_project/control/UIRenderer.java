@@ -3,6 +3,7 @@ package my_project.control;
 import KAGO_framework.view.DrawTool;
 import my_project.model.Inventory;
 import my_project.uI.Credits;
+import my_project.uI.EndScreen;
 import my_project.uI.StartMenu;
 
 import java.awt.*;
@@ -13,6 +14,7 @@ public class UIRenderer {
 
     private int fps = 0;
     private StartMenu startMenu;
+    private EndScreen endScreen;
     private Credits credits;
     private ArrayList<Inventory> inventoriesToDraw;
 
@@ -34,6 +36,7 @@ public class UIRenderer {
             case 2:
                 break;
             case 3:
+                endScreen.update(dt);
                 break;
             case 4:
                 credits.update(dt);
@@ -59,6 +62,7 @@ public class UIRenderer {
             case 2:
                 break;
             case 3:
+                endScreen.draw(drawTool);
                 break;
             case 4:
                 credits.draw(drawTool);

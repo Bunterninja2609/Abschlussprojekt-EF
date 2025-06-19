@@ -25,7 +25,7 @@ public class Renderer extends InteractiveGraphicalObject {
     private static Vec2d relativeMousePos = new Vec2d(0, 0);
     private static boolean mousePressed = false;
 
-    private static final int RENDERDISTANCE = 10;
+    private static final int RENDERDISTANCE = 3;
 
     private static BlockRenderer blockRenderer;
     private static EntityRenderer entityRenderer;
@@ -63,6 +63,7 @@ public class Renderer extends InteractiveGraphicalObject {
     }
     @Override
     public void update(double dt){
+        // System.out.println(scene);
         uiRenderer.update(dt);
         relativeMousePos.x = (mousePos.x - OFFSET2.x)/SCALE - OFFSET.x;
         relativeMousePos.y =(mousePos.y - OFFSET2.y)/SCALE - OFFSET.y;

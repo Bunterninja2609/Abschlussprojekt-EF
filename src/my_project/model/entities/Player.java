@@ -4,8 +4,10 @@ import KAGO_framework.view.DrawTool;
 import com.sun.javafx.geom.Vec2d;
 import my_project.control.EntityRenderer;
 import my_project.control.Keyboard;
+import my_project.control.ProgramController;
 import my_project.control.Renderer;
 import my_project.model.Collider;
+import my_project.model.Spritesheet;
 import my_project.model.Terrain;
 import my_project.model.Texture;
 
@@ -25,43 +27,61 @@ public class Player extends Entity {
         height = 25;
         speed = 100;
         jumpSpeed = 500;
-        texture = new Texture("src/my_project/resources/player.png");
+        hitpoints = 20;
+        //texture = new Texture("src/my_project/resources/playerAnimations/0|0.png");
+        spritesheet = new Spritesheet("src/my_project/resources/playerAnimations/",".png", 2, 4, 0.2, 0.2);
     }
 
     @Override
     public void draw(DrawTool drawTool) {
         drawTool.setCurrentColor(new Color(0, 7, 23, 255));
-
         //drawHitbox(drawTool);
         //cage.draw(drawTool);
-        texture.autoDraw(drawTool, x-2, y-4, 10);
+        //texture.autoDraw(drawTool, x-2, y-4, 12);
+        spritesheet.autoDraw(drawTool, x-3, y-4, 12);
         Renderer.getUIRenderer().addInventoryToDraw(inventory);
     }
 
     @Override
     public void update(double dt) {
 
-
         if (Keyboard.isPressed(KeyEvent.VK_A)) {
           velocity.x = -speed;
         }
         if (Keyboard.isPressed(KeyEvent.VK_D)) {
             velocity.x = speed;
+
         }
         if ((Keyboard.isPressed(KeyEvent.VK_W) || Keyboard.isPressed(KeyEvent.VK_UP) || Keyboard.isPressed(KeyEvent.VK_SPACE)) && cage.getDownCollider().collides()) {
-            System.out.println("jumping");
+            //System.out.println("jumping");
             velocity.y = -jumpSpeed;
         }
         if (Renderer.isMousePressed()) {
-            damageBlock(Renderer.getRelativeMousePos().x, Renderer.getRelativeMousePos().y, -10*dt);
+            damageBlock(Renderer.getRelativeMousePos().x, Renderer.getRelativeMousePos().y, -1000000000*dt);
         }
         velocity.y -= -1000*dt;
         //System.out.println("Player position: "+x+"|"+y);
         super.update(dt);
+        if (velocity.x > 0) {
+            spritesheet.setFrameY(2);
+        } else if (velocity.x < 0) {
+            spritesheet.setFrameY(3);
+        }
+        if (ProgramController.isAt(0, 1, velocity.x)) {
+            if (spritesheet.getFrameY() == 2) {
+                spritesheet.setFrameY(0);
+            } else if (spritesheet.getFrameY() == 3) {
+                spritesheet.setFrameY(1);
+            }
+        }
+        spritesheet.updateX(dt);
 
         Renderer.follow(new Vec2d(-x, -y), true);
         Renderer.loadChunks(x, y);
         Renderer.getBlockRenderer().getTerrain().getBlockByPosition(x, y).highlight();
+        if (hitpoints <= 0) {
+            Renderer.setScene(3);
+        }
     }
 
     @Override

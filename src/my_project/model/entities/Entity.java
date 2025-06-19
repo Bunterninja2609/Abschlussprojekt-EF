@@ -5,10 +5,12 @@ import KAGO_framework.view.DrawTool;
 import com.sun.javafx.geom.Vec2d;
 import my_project.control.CollisionHandler;
 import my_project.control.EntityRenderer;
+import my_project.control.ProgramController;
 import my_project.control.Renderer;
 import my_project.model.Cage;
 import my_project.model.Collider;
 import my_project.model.Inventory;
+import my_project.model.Spritesheet;
 import my_project.model.blocks.Block;
 
 public abstract class Entity extends InteractiveGraphicalObject {
@@ -20,6 +22,7 @@ public abstract class Entity extends InteractiveGraphicalObject {
     protected double damage;
     protected Inventory inventory;
     protected Cage cage;
+    protected Spritesheet spritesheet;
 
     public Entity(EntityRenderer er, int invSize) {
         cage = new Cage(this, 0, 1);
@@ -46,7 +49,7 @@ public abstract class Entity extends InteractiveGraphicalObject {
     }
     protected void moveX(double mx,double dt){
         float precision = 0.01f;
-        double dir = (Math.abs(mx)/mx);
+        double dir = ProgramController.clamp(-1, 1, Math.abs(mx)/mx);
         int maxIterations = 1000;
         int iteration = 0;
         Collider colliderToCheck = cage.getLeftCollider();
@@ -65,7 +68,7 @@ public abstract class Entity extends InteractiveGraphicalObject {
     }
     protected void moveY(double my,double dt){
         float precision = 0.1f;
-        double dir = (Math.abs(my)/my);
+        double dir = ProgramController.clamp(-1, 1, Math.abs(my)/my);
         int maxIterations = 1000;
         int iteration = 0;
         Collider colliderToCheck = cage.getUpCollider();
