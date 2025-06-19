@@ -3,13 +3,16 @@ package my_project.model.entities;
 import KAGO_framework.view.DrawTool;
 import com.sun.javafx.geom.Vec2d;
 import my_project.control.*;
-import my_project.model.Collider;
-import my_project.model.Spritesheet;
-import my_project.model.Terrain;
-import my_project.model.Texture;
+import my_project.model.*;
+import my_project.model.blocks.Air;
+import my_project.model.blocks.Block;
+import my_project.model.blocks.Debug;
+import my_project.model.blocks.Dirt;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 
 public class Player extends Entity {
 
@@ -58,6 +61,9 @@ public class Player extends Entity {
         if (Mouse.isDown(1)) {
             damageBlock(Renderer.getRelativeMousePos().x, Renderer.getRelativeMousePos().y, -1000000000*dt);
         }
+        if (Mouse.isDown(3)) {
+            placeBlock(Renderer.getRelativeMousePos().x, Renderer.getRelativeMousePos().y, Dirt.class);
+        }
         velocity.y -= -1000*dt;
         //System.out.println("Player position: "+x+"|"+y);
         super.update(dt);
@@ -95,6 +101,15 @@ public class Player extends Entity {
     private void damageBlock(double x, double y, double damage) {
         Renderer.getBlockRenderer().getTerrain().getBlockByPosition(x, y).damage(damage);
     }
+    private void placeBlock(double x, double y, Class<? extends Block> blockType) {
+        if (Renderer.getBlockRenderer().getTerrain().getBlockByPosition(x, y) instanceof Air) {
+            int blockPosX = (int)Terrain.convertPositionToBlockGrid(x, y).x;
+            int blockPosY = (int)Terrain.convertPositionToBlockGrid(x, y).y;
+            Renderer.getBlockRenderer().getTerrain().setBlock(blockPosX, blockPosY, blockType);
+        }
+    }
+
+
     private void changeSlot(){
         if(Keyboard.isPressed(KeyEvent.VK_1)){
             currentSlot = 0;

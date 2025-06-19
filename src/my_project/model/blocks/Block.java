@@ -7,6 +7,7 @@ import my_project.model.BlockSpace;
 import my_project.Config;
 import my_project.control.Renderer;
 import my_project.model.BlockTextures;
+import my_project.model.Terrain;
 import my_project.model.Texture;
 import my_project.model.entities.Entity;
 import my_project.model.entities.Player;
@@ -24,8 +25,9 @@ public abstract class Block extends GraphicalObject {
 	BlockSpace blockSpace;
 	public Block(Vec2d gridPosition, boolean isTransparent) {
 		this.gridPosition = gridPosition;
-		x = gridPosition.x * SIZE.x;
-		y = gridPosition.y * SIZE.y;
+		x = Terrain.convertBlockGridToPosition((int)gridPosition.x, (int)gridPosition.y).x;
+		y = Terrain.convertBlockGridToPosition((int)gridPosition.x, (int)gridPosition.y).y;
+
 		width = SIZE.x;
 		height = SIZE.y;
 		this.isTransparent = isTransparent;
@@ -111,5 +113,10 @@ public abstract class Block extends GraphicalObject {
 	}
 	public double getIllumination(){
 		return illumination;
+	}
+	public void setGridPosition(Vec2d gridPosition) {
+		this.gridPosition = gridPosition;
+		x = Terrain.convertBlockGridToPosition((int)gridPosition.x, (int)gridPosition.y).x;
+		y = Terrain.convertBlockGridToPosition((int)gridPosition.x, (int)gridPosition.y).y;
 	}
 }

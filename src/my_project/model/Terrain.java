@@ -3,9 +3,13 @@ package my_project.model;
 import KAGO_framework.view.DrawTool;
 import com.sun.javafx.geom.Vec2d;
 import my_project.control.ProgramController;
+import my_project.control.Renderer;
 import my_project.model.biomes.*;
+import my_project.model.blocks.Air;
 import my_project.model.blocks.Block;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -191,6 +195,21 @@ public class Terrain {
         if (loadedChunks.contains(chunk)) {
             //System.out.println("unaloaded chunk");
             loadedChunks.remove(chunk);
+        }
+    }
+    public void setBlock(int x, int y, Class<? extends Block> blockType) {
+        try {
+            Constructor<? extends Block> constructor = blockType.getDeclaredConstructor(Vec2d.class);
+            constructor.setAccessible(true);
+
+            BlockSpace blockSpace = getBlockSpaceByBlockGrid(x, y);
+            Block block = constructor.newInstance(blockSpace.getGridPosition());
+            System.out.println(blockSpace.getGridPosition());
+            blockSpace.setBlock(block);
+
+        } catch (NoSuchMethodException | InstantiationException | IllegalAccessException |
+                 InvocationTargetException e) {
+            e.printStackTrace();
         }
     }
 }

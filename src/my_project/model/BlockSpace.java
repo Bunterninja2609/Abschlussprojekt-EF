@@ -10,6 +10,7 @@ public class BlockSpace {
     public BlockSpace(Vec2d gridPosition, Block block) {
         this.gridPosition = gridPosition;
         this.block = block;
+        this.block.setGridPosition(gridPosition);
     }
 
     public Block getBlock() {
@@ -17,8 +18,7 @@ public class BlockSpace {
     }
     public void setBlock(Block block) {
         this.block = block;
-        block.setX(gridPosition.x);
-        block.setY(gridPosition.y);
+        block.setGridPosition(gridPosition);
     }
     public Vec2d getGridPosition() {
         return gridPosition;
