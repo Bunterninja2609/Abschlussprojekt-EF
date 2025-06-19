@@ -16,6 +16,7 @@ import java.awt.*;
 public abstract class Block extends GraphicalObject {
 	protected Texture texture;
 	static Vec2d SIZE = new Vec2d(16, 16);
+	double illumination;
 	protected Vec2d gridPosition;
 	protected boolean isTransparent;
 	protected boolean highlighted = false;
@@ -35,9 +36,11 @@ public abstract class Block extends GraphicalObject {
 	}
 	@Override
 	public void update(double dt){
+		calculateIllumination();
 		if (hitpoints <= 0){
 			destroy();
 		}
+
 	}
 	protected void drawTexture(DrawTool drawtool){
 		boolean onscreen = (Renderer.translateAndScaleX(x) >= Renderer.scale(-SIZE.x) && Renderer.translateAndScaleY(y) >= Renderer.scale(-SIZE.y)) && (Renderer.translateAndScaleX(x) < Config.WINDOW_WIDTH && Renderer.translateAndScaleY(y) < Config.WINDOW_HEIGHT);
@@ -47,13 +50,15 @@ public abstract class Block extends GraphicalObject {
 			Entity player = Renderer.getEntityRenderer().getPlayer();
 			if (player != null) {
 
-				if (!Renderer.raycast(new Vec2d(x, y), new Vec2d(player.getX(), player.getY()), 15000, 1)){
+				if (illumination <= 0.1){
 					drawtool.setCurrentColor(Color.BLACK);
 					drawtool.drawFilledRectangle(Renderer.translateAndScaleX(x), Renderer.translateAndScaleY(y), Renderer.scale(SIZE.x), Renderer.scale(SIZE.y));
 				} else {
 					if(texture.getMyImage() != null ) {
 						texture.autoDraw(drawtool, x, y, SIZE.x);
 					}
+					drawtool.setCurrentColor(new Color(0, 0, 0, (int)(255 - 255*illumination)));
+					drawtool.drawFilledRectangle(Renderer.translateAndScaleX(x), Renderer.translateAndScaleY(y), Renderer.scale(SIZE.x), Renderer.scale(SIZE.y));
 				}
 			}
 			if (highlighted) {
@@ -87,5 +92,23 @@ public abstract class Block extends GraphicalObject {
 	}
 	public void destroy(){
 		Renderer.getBlockRenderer().getTerrain().getBlockSpaceByBlockGrid((int)gridPosition.x, (int)gridPosition.y).setBlock(new Air((gridPosition)));
+	}
+	public void calculateIllumination(){
+		if (isTransparent) {
+
+		} else {
+			Block topBlock = Renderer.getBlockRenderer().getTerrain().getBlockByBlockGrid((int)gridPosition.x, (int)gridPosition.y-1);
+			Block bottomBlock = Renderer.getBlockRenderer().getTerrain().getBlockByBlockGrid((int)gridPosition.x, (int)gridPosition.y+1);
+			Block leftBlock = Renderer.getBlockRenderer().getTerrain().getBlockByBlockGrid((int)gridPosition.x-1, (int)gridPosition.y);
+			Block rightBlock = Renderer.getBlockRenderer().getTerrain().getBlockByBlockGrid((int)gridPosition.x+1, (int)gridPosition.y);
+			if (topBlock.getTransparent() || bottomBlock.getTransparent() || leftBlock.getTransparent() || rightBlock.getTransparent()) {
+				illumination = 1;
+			} else {
+				illumination = Math.max(Math.max(topBlock.getIllumination(), bottomBlock.getIllumination()), Math.max(leftBlock.getIllumination(), rightBlock.getIllumination()))*0.5;
+			}
+		}
+	}
+	public double getIllumination(){
+		return illumination;
 	}
 }
