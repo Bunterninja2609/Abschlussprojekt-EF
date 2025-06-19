@@ -95,4 +95,8 @@ public abstract class Entity extends InteractiveGraphicalObject {
         velocity.x *= frictionX;
         velocity.y *= frictionY;
     }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
 }

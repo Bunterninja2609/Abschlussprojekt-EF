@@ -91,6 +91,7 @@ public abstract class Block extends GraphicalObject {
 		this.hitpoints += damage;
 	}
 	public void destroy(){
+		Renderer.getEntityRenderer().getPlayer().getInventory().addItem(this);
 		Renderer.getBlockRenderer().getTerrain().getBlockSpaceByBlockGrid((int)gridPosition.x, (int)gridPosition.y).setBlock(new Air((gridPosition)));
 	}
 	public void calculateIllumination(){
