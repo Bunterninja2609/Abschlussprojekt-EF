@@ -39,11 +39,11 @@ public class Spritesheet {
         for (int fx = 0; fx < frameNumX; fx++) {
             for (int fy = 0; fy < frameNumY; fy++) {
                 try {
-                    //System.out.println("adding frame " + fx + "|" + fy);
-                    image[fx][fy] = ImageIO.read(new File(directory + fx + "|" + fy + fileType));
-                    //System.out.println("Successfully added frame " + fx + "|" + fy);
+                    //System.out.println("adding frame " + fx + "-" + fy);
+                    image[fx][fy] = ImageIO.read(new File(directory + fx + "-" + fy + fileType));
+                    //System.out.println("Successfully added frame " + fx + "-" + fy);
                 } catch (IOException e) {
-                    System.err.println("Error adding frame: " + directory + fx + "|" + fy + fileType);
+                    System.err.println("Error adding frame: " + directory + fx + "-" + fy + fileType);
                     e.printStackTrace();
                 }
             }

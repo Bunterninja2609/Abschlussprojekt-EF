@@ -194,4 +194,21 @@ public class Renderer extends InteractiveGraphicalObject {
     public static UIRenderer getUIRenderer() {
         return uiRenderer;
     }
+    public static boolean raycast(Vec2d start, Vec2d end, double maxDistance, double rayDistance) {
+        double distance = Math.abs(end.distance(start));
+        double direction = Math.atan2(end.y - start.y, end.x - start.x);
+        if (distance > maxDistance) {
+            return false;
+        }
+        double posX = start.x;
+        double posY = start.y;
+        for (double i = 0; i < 100000; i++) {
+            double tempX = posX + Math.cos(direction) * i * rayDistance;
+            double tempY = posY + Math.sin(direction) * i * rayDistance;
+            if (!Renderer.getBlockRenderer().getTerrain().getBlockByPosition(tempX, tempY).getTransparent()) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

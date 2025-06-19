@@ -8,6 +8,8 @@ import my_project.Config;
 import my_project.control.Renderer;
 import my_project.model.BlockTextures;
 import my_project.model.Texture;
+import my_project.model.entities.Entity;
+import my_project.model.entities.Player;
 
 import java.awt.*;
 
@@ -41,8 +43,18 @@ public abstract class Block extends GraphicalObject {
 		boolean onscreen = (Renderer.translateAndScaleX(x) >= Renderer.scale(-SIZE.x) && Renderer.translateAndScaleY(y) >= Renderer.scale(-SIZE.y)) && (Renderer.translateAndScaleX(x) < Config.WINDOW_WIDTH && Renderer.translateAndScaleY(y) < Config.WINDOW_HEIGHT);
 		if (onscreen) {
 			//drawtool.drawFilledRectangle(Renderer.translateAndScaleX(x), Renderer.translateAndScaleY(y), Renderer.scale(SIZE.x), Renderer.scale(SIZE.y));
-			if(texture.getMyImage() != null ) {
-				texture.autoDraw(drawtool, x, y, SIZE.x);
+
+			Entity player = Renderer.getEntityRenderer().getPlayer();
+			if (player != null) {
+
+				if (!Renderer.raycast(new Vec2d(x, y), new Vec2d(player.getX(), player.getY()), 15000, 1)){
+					drawtool.setCurrentColor(Color.BLACK);
+					drawtool.drawFilledRectangle(Renderer.translateAndScaleX(x), Renderer.translateAndScaleY(y), Renderer.scale(SIZE.x), Renderer.scale(SIZE.y));
+				} else {
+					if(texture.getMyImage() != null ) {
+						texture.autoDraw(drawtool, x, y, SIZE.x);
+					}
+				}
 			}
 			if (highlighted) {
 				//System.out.println("highlighted :D");

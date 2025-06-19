@@ -36,4 +36,27 @@ public class EntityRenderer {
             viewController.register(entity);
         }
     }
+    public Entity getEntity(String type) {
+        try {
+            Class<?> entityClass = Class.forName(type);
+            for (Entity entity : entities) {
+                if (entityClass.isInstance(entity)) {
+                    return entity;
+                }
+            }
+        } catch (ClassNotFoundException e) {
+
+            System.out.println("Class not found: " + type);
+            return null;
+        }
+        return null;
+    }
+    public Player getPlayer() {
+        for (Entity entity : entities) {
+            if (entity instanceof Player) {
+                return (Player) entity;
+            }
+        }
+        return null;
+    }
 }
