@@ -11,6 +11,7 @@ public class BlockTextures {
             "iron", new Texture("src/my_project/resources/blocks/Iron Ore.png"),
             "leaf", new Texture("src/my_project/resources/blocks/Leaf.png"),
             "water", new Texture("src/my_project/resources/blocks/Water.png"),
+            "brick", new Texture("src/my_project/resources/blocks/Brick.png"),
             "solidBorder", new Texture("src/my_project/resources/Solid Block Border.png")
     );
 

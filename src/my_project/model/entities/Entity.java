@@ -44,8 +44,8 @@ public abstract class Entity extends InteractiveGraphicalObject {
         drawTool.drawFilledRectangle(Renderer.translateAndScaleX(x), Renderer.translateAndScaleY(y), Renderer.scale(width), Renderer.scale(height));
     }
     protected void move(double x, double y,double dt){
-        moveX(x, dt);
         moveY(y, dt);
+        moveX(x, dt);
     }
     protected void moveX(double mx,double dt){
         float precision = 0.01f;

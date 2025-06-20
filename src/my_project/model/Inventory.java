@@ -69,6 +69,17 @@ public class Inventory extends GraphicalObject {
             }
         }
     }
+    public void addItem(Item item) {}
+    /*
+    public void addItem(String itemName,int amount) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+        try {
+
+        } throw new ClassNotFoundException() | new InstantiationException() | new IllegalAccessException(){
+
+        }
+        Object obj = Class.forName("my_project.model.blocks."+itemName).newInstance();
+    }
+    */
 
     public void removeItem(Block block){
 

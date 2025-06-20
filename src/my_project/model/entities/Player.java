@@ -4,10 +4,7 @@ import KAGO_framework.view.DrawTool;
 import com.sun.javafx.geom.Vec2d;
 import my_project.control.*;
 import my_project.model.*;
-import my_project.model.blocks.Air;
-import my_project.model.blocks.Block;
-import my_project.model.blocks.Debug;
-import my_project.model.blocks.Dirt;
+import my_project.model.blocks.*;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -62,7 +59,7 @@ public class Player extends Entity {
             damageBlock(Renderer.getRelativeMousePos().x, Renderer.getRelativeMousePos().y, -1000000000*dt);
         }
         if (Mouse.isDown(3)) {
-            placeBlock(Renderer.getRelativeMousePos().x, Renderer.getRelativeMousePos().y, Dirt.class);
+            placeBlock(Renderer.getRelativeMousePos().x, Renderer.getRelativeMousePos().y, Brick.class);
         }
         velocity.y -= -1000*dt;
         //System.out.println("Player position: "+x+"|"+y);

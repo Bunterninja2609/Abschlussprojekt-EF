@@ -21,5 +21,4 @@ public class Grass extends Block {
             Renderer.getBlockRenderer().getTerrain().setBlock((int)gridPosition.x, (int)gridPosition.y, Dirt.class);
         }
     }
-
 }
