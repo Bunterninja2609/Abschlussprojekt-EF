@@ -11,6 +11,7 @@ import my_project.model.Terrain;
 import my_project.model.Texture;
 import my_project.model.entities.Entity;
 import my_project.model.entities.Player;
+import my_project.model.items.Item;
 
 import java.awt.*;
 
@@ -21,7 +22,9 @@ public abstract class Block extends GraphicalObject {
 	protected Vec2d gridPosition;
 	protected boolean isTransparent;
 	protected boolean highlighted = false;
-	double hitpoints = 0;
+	protected double hitpoints = 0;
+
+	protected Item drop;
 	BlockSpace blockSpace;
 	public Block(Vec2d gridPosition, boolean isTransparent) {
 		this.gridPosition = gridPosition;
@@ -93,7 +96,7 @@ public abstract class Block extends GraphicalObject {
 		this.hitpoints += damage;
 	}
 	public void destroy(){
-		Renderer.getEntityRenderer().getPlayer().getInventory().addItem(this);
+		Renderer.getEntityRenderer().getPlayer().getInventory().addItem(drop);
 		Renderer.getBlockRenderer().getTerrain().getBlockSpaceByBlockGrid((int)gridPosition.x, (int)gridPosition.y).setBlock(new Air((gridPosition)));
 	}
 	public void calculateIllumination(){

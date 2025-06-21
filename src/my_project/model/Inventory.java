@@ -3,10 +3,11 @@ package my_project.model;
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
 import my_project.model.blocks.*;
+import my_project.model.items.DirtItem;
 import my_project.model.items.Item;
+import my_project.model.items.StoneItem;
 
 import java.awt.*;
-import java.util.Objects;
 
 public class Inventory extends GraphicalObject {
     private double highlitedSlot;
@@ -60,16 +61,39 @@ public class Inventory extends GraphicalObject {
             for (int i = 0; i < items.length; i++) {
                 if (items[i] == null) {
                     if(name.equals("Stone")) {
-                        items[i] = new my_project.model.items.Stone();
+                        items[i] = new StoneItem(1);
                     }else if (name.equals("Dirt")) {
-                        items[i] = new my_project.model.items.Dirt();
+                        items[i] = new DirtItem(1);
                     }
                     break;
                 }
             }
         }
     }
-    public void addItem(Item item) {}
+    public void addItem(Item item) {
+        if (item == null) {
+            return;
+        }
+        boolean added = false;
+        for (Item nItem : items) {
+            if (nItem == null) {
+                continue;
+            }
+            if (nItem.getClass() == item.getClass()) {
+                nItem.changeAmount(item.getAmount());
+                added = true;
+                break;
+            }
+        }
+        if (!added) {
+            for (int i = 0; i < items.length; i++) {
+                if (items[i] == null) {
+                    items[i] = item;
+                    break;
+                }
+            }
+        }
+    }
     /*
     public void addItem(String itemName,int amount) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
         try {

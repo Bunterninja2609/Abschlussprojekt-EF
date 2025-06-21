@@ -1,5 +1,6 @@
 package my_project.model.items;
 
+import com.sun.javafx.geom.Vec2d;
 import my_project.model.Texture;
 
 public abstract class Item {
@@ -8,8 +9,8 @@ public abstract class Item {
     protected String name;
     protected Texture texture;
 
-    public Item() {
-        amount = 1;
+    public Item(int amount) {
+        this.amount = amount;
     }
 
     public String getName() {

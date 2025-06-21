@@ -4,11 +4,13 @@ import KAGO_framework.view.DrawTool;
 import com.sun.javafx.geom.Vec2d;
 import my_project.control.Renderer;
 import my_project.model.BlockTextures;
+import my_project.model.items.DirtItem;
 
 public class Grass extends Block {
     public Grass(Vec2d gridPosition) {
         super(gridPosition, false);
         hitpoints = 12;
+        drop = new DirtItem(2);
         texture = BlockTextures.getTexture("grass");
     }
     public void draw(DrawTool drawTool) {
