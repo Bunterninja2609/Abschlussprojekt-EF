@@ -31,7 +31,7 @@ public class Button {
 
     }
     public void draw(DrawTool drawTool) {
-
+        //spiel starten
         if (buttonType == 1) {
 
             if(Renderer.getMousePos().x > position.x && Renderer.getMousePos().x < position.x + widthButton && Renderer.getMousePos().y > position.y && Renderer.getMousePos().y < position.y + texture.getHeightRelativeToWidth(widthButton)){
@@ -40,6 +40,7 @@ public class Button {
                 texture.drawToWidth(drawTool, position.x, position.y, widthButton);
             }
         }
+        //Credits
         if (buttonType == 2) {
             if(Renderer.getMousePos().x > position.x && Renderer.getMousePos().x < position.x + widthButton && Renderer.getMousePos().y > position.y && Renderer.getMousePos().y < position.y + texture.getHeightRelativeToWidth(widthButton)){
                 textureDown.drawToWidth(drawTool, position.x, position.y, widthButton);
@@ -47,6 +48,7 @@ public class Button {
                 texture.drawToWidth(drawTool, position.x, position.y, widthButton);
             }
         }
+        //Main menu
         if (buttonType == 3) {
             if(Renderer.getMousePos().x > position.x && Renderer.getMousePos().x < position.x + widthButton && Renderer.getMousePos().y > position.y && Renderer.getMousePos().y < position.y + texture.getHeightRelativeToWidth(widthButton)){
                 textureDown.drawToWidth(drawTool, position.x, position.y, widthButton);
@@ -54,14 +56,24 @@ public class Button {
                 texture.drawToWidth(drawTool, position.x, position.y, widthButton);
             }
         }
+        // Endscreen
         if (buttonType == 4) {
             if(Renderer.getMousePos().x > position.x && Renderer.getMousePos().x < position.x + widthButton && Renderer.getMousePos().y > position.y && Renderer.getMousePos().y < position.y + texture.getHeightRelativeToWidth(widthButton)){
                 textureDown.drawToWidth(drawTool, position.x, position.y, widthButton);
             }else{
                 texture.drawToWidth(drawTool, position.x, position.y, widthButton);
             }
-
-        }if (buttonType == 5) {
+        //Spiel beenden
+        }
+        if (buttonType == 5) {
+            if(Renderer.getMousePos().x > position.x && Renderer.getMousePos().x < position.x + widthButton && Renderer.getMousePos().y > position.y && Renderer.getMousePos().y < position.y + texture.getHeightRelativeToWidth(widthButton)){
+                textureDown.drawToWidth(drawTool, position.x, position.y, widthButton);
+            }else{
+                texture.drawToWidth(drawTool, position.x, position.y, widthButton);
+            }
+        }
+        //Menu (Settings)
+        if (buttonType == 6) {
             if(Renderer.getMousePos().x > position.x && Renderer.getMousePos().x < position.x + widthButton && Renderer.getMousePos().y > position.y && Renderer.getMousePos().y < position.y + texture.getHeightRelativeToWidth(widthButton)){
                 textureDown.drawToWidth(drawTool, position.x, position.y, widthButton);
             }else{
@@ -99,6 +111,11 @@ public class Button {
         if(buttonType == 5 ){
             if(isPressed) {
                 System.exit(0);
+            }
+        }
+        if(buttonType == 6 ){
+            if(isPressed) {
+                Renderer.setScene(2);
             }
         }
     }

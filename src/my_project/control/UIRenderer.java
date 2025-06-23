@@ -6,6 +6,8 @@ import my_project.model.Inventory;
 import my_project.uI.Credits;
 import my_project.uI.EndScreen;
 import my_project.uI.StartMenu;
+import my_project.uI.Overlay;
+import my_project.uI.Menu;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -17,6 +19,8 @@ public class UIRenderer {
     private StartMenu startMenu;
     private EndScreen endScreen;
     private Credits credits;
+    private Overlay overlay;
+    private Menu menu;
     private ArrayList<Inventory> inventoriesToDraw;
 
     public UIRenderer() {
@@ -24,6 +28,8 @@ public class UIRenderer {
         credits = new Credits("src/my_project/resources/Background.png");
         inventoriesToDraw = new ArrayList<>();
         endScreen = new EndScreen(Config.WINDOW_WIDTH, Config.WINDOW_HEIGHT,"src/my_project/resources/Background.png" );
+        overlay = new Overlay();
+        menu = new Menu();
     }
 
     public void update(double dt) {
@@ -33,9 +39,10 @@ public class UIRenderer {
                 startMenu.update(dt);
                 break;
             case 1:
-
+                overlay.update(dt);
                 break;
             case 2:
+                menu.update(dt);
                 break;
             case 3:
                 endScreen.update(dt);
@@ -60,8 +67,10 @@ public class UIRenderer {
                     inv.draw(drawTool);
                 }
                 inventoriesToDraw.clear();
+                overlay.draw(drawTool);
                 break;
             case 2:
+                menu.draw(drawTool);
                 break;
             case 3:
                 endScreen.draw(drawTool);

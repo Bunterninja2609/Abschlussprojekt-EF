@@ -50,6 +50,11 @@ public class Renderer extends InteractiveGraphicalObject {
                 entityRenderer.draw(drawTool);
                 blockRenderer.draw(drawTool);
                 break;
+            case 2:
+                background.draw(drawTool);
+                entityRenderer.draw(drawTool);
+                blockRenderer.draw(drawTool);
+                break;
             default:
         }
         uiRenderer.draw(drawTool);
