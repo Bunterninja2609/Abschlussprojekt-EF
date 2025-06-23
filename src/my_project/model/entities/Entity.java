@@ -91,7 +91,9 @@ public abstract class Entity extends InteractiveGraphicalObject {
             while (CollisionHandler.collidesWithBlock(colliderToCheck) && iteration < maxIterations) {
                 y -= precision * dir;
                 if (Math.abs(velocity.y) > fallDamageHeight){
-                    damage((Math.abs(velocity.y)-fallDamageHeight)*fallDamageFactor);
+                    //System.out.println("Fall damage: " + (Math.abs(velocity.y)-fallDamageHeight)*fallDamageFactor);
+                    damage(-(Math.abs(velocity.y)-fallDamageHeight)*fallDamageFactor);
+                    System.out.println(hitpoints);
                 }
                 velocity.y = 0;
                 iteration++;

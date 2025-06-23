@@ -16,6 +16,7 @@ public class Player extends Entity {
     private Texture texture;
     private double jumpSpeed;
     private int currentSlot;
+    private double spawnProtection;
 
     public Player(EntityRenderer eR, int invSize) {
         super(eR, invSize);
@@ -29,7 +30,9 @@ public class Player extends Entity {
         //texture = new Texture("src/my_project/resources/playerAnimations/0|0.png");
         spritesheet = new Spritesheet("src/my_project/resources/playerAnimations/",".png", 2, 4, 0.2, 0.2);
         currentSlot = 0;
-
+        fallDamageFactor = 0.01;
+        fallDamageHeight = 550;
+        spawnProtection = 2;
     }
 
     @Override
@@ -44,6 +47,9 @@ public class Player extends Entity {
 
     @Override
     public void update(double dt) {
+        if (spawnProtection > 0){
+            spawnProtection -= dt;
+        }
         changeSlot();
         if (Keyboard.isPressed(KeyEvent.VK_A)) {
           velocity.x = -speed;
@@ -104,6 +110,13 @@ public class Player extends Entity {
 
     @Override
     public void keyReleased(int key) {
+
+    }
+    @Override
+    public void damage(double damage) {
+        if (spawnProtection < 0){
+            super.damage(damage);
+        }
 
     }
     private void damageBlock(double x, double y, double damage) {
