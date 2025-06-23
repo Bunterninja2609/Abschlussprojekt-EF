@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a3a0b6c3-3531-4b83-899a-66618f48675b" name="Changes" comment="endscreen fix">
+    <list default="true" id="a3a0b6c3-3531-4b83-899a-66618f48675b" name="Changes" comment="EndScreen fertig">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/control/BlockRenderer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/control/BlockRenderer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/control/ProgramController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/control/ProgramController.class" afterDir="false" />
@@ -12,16 +12,11 @@
       <change beforePath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/control/UIRenderer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/control/UIRenderer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/Chunk.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/Chunk.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/Entities/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/Entities/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/Terrain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/Terrain.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/Texture.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/Texture.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/blocks/Block.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/blocks/Block.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/entities/Entity.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/entities/Entity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/my_project/control/UIRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/my_project/control/UIRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/my_project/resources/Background.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/my_project/resources/Startbutton.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/my_project/resources/Startbutton.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/my_project/uI/Button.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/my_project/uI/Button.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/my_project/uI/Credits.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/my_project/uI/Credits.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/my_project/uI/EndScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/my_project/uI/EndScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/my_project/uI/StartMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/my_project/uI/StartMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,6 +128,7 @@
       <workItem from="1749049016711" duration="1865000" />
       <workItem from="1749208794780" duration="2452000" />
       <workItem from="1750675168186" duration="4191000" />
+      <workItem from="1750699846064" duration="703000" />
     </task>
     <task id="LOCAL-00001" summary="endscreen fix">
       <option name="closed" value="true" />
