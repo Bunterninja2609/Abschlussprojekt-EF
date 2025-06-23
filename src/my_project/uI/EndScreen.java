@@ -27,6 +27,7 @@ public class EndScreen extends GraphicalObject {
     private final Random random = new Random();
     private double xOffset = 0;
 
+    private Button startButton02 = new Button(Config.WINDOW_WIDTH/2-60,Config.WINDOW_HEIGHT/2+300, 50, 40,"src/my_project/resources/Creditsbutton.png", "src/my_project/resources/Creditsbutton_down.png" ,5);
 
     public EndScreen(int screenWidth, int screenHeight, String texturePath) {
 
@@ -48,8 +49,8 @@ public class EndScreen extends GraphicalObject {
         int buttonHeight = 50;
         int centerX = screenWidth/2 - buttonWidth/2;
 
-        respawnButton = new RespawnButton(centerX, screenHeight / 2, buttonWidth, buttonHeight, false, 1);
-        menuButton = new MenuButton(centerX , screenHeight / 2 + 70, buttonWidth, buttonHeight, false, 2);
+        //respawnButton = new RespawnButton(centerX, screenHeight / 2, buttonWidth, buttonHeight, false, 1);
+        //menuButton = new MenuButton(centerX , screenHeight / 2 + 70, buttonWidth, buttonHeight, false, 2);
     }
 
     public void setVisible(boolean visible) {
@@ -77,8 +78,9 @@ public class EndScreen extends GraphicalObject {
             drawTool.formatText("monospaced",3,45);
             drawTool.drawText(screenWidth / 2 - 140, screenHeight / 2 - 60, "Game Over");
 
-            respawnButton.draw(drawTool);
-            menuButton.draw(drawTool);
+            startButton02.draw(drawTool);
+            //respawnButton.draw(drawTool);
+            //menuButton.draw(drawTool);
         }
     }
 
@@ -93,8 +95,9 @@ public class EndScreen extends GraphicalObject {
             }
 
 
-            respawnButton.update(dt);
-            menuButton.update(dt);
+            startButton02.update(dt);
+            //respawnButton.update(dt);
+            //menuButton.update(dt);
         }
     }
 }

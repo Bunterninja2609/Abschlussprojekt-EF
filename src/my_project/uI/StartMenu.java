@@ -9,8 +9,8 @@ import java.awt.*;
 
 public class StartMenu {
     private Texture texture;
-    private Button startButton01 = new Button(Config.WINDOW_WIDTH/2-150,Config.WINDOW_HEIGHT/2+150, 200, 86,"src/my_project/resources/Startbutton.png",1);
-    private Button startButton02 = new Button(Config.WINDOW_WIDTH/2-150,Config.WINDOW_HEIGHT/2+300, 200, 40,"src/my_project/resources/Startbutton.png",2);
+    private Button startButton01 = new Button(Config.WINDOW_WIDTH/2-235,Config.WINDOW_HEIGHT/2+50, 400, 86,"src/my_project/resources/Startbutton.png", "src/my_project/resources/Startbutton_down.png" , 1);
+    private Button startButton02 = new Button(Config.WINDOW_WIDTH/2-60,Config.WINDOW_HEIGHT/2+300, 50, 40,"src/my_project/resources/Creditsbutton.png", "src/my_project/resources/Creditsbutton_down.png" ,2);
 
     public StartMenu( String texturePath) {
         texture = new Texture(texturePath);

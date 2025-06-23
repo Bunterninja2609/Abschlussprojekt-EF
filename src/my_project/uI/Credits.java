@@ -10,7 +10,7 @@ import java.awt.*;
 public class Credits {
     private Texture texture;
 
-    private Button startButton01 = new Button(Config.WINDOW_WIDTH/2-175,Config.WINDOW_HEIGHT/2+340, 250, 40,"src/my_project/resources/Startbutton.png",3);
+    private Button startButton01 = new Button(Config.WINDOW_WIDTH/2-60,Config.WINDOW_HEIGHT/2+240, 50, 40,"src/my_project/resources/Creditsbutton.png", "src/my_project/resources/Creditsbutton_down.png" ,3);
 
     public Credits( String texturePath) {
         texture = new Texture(texturePath);
