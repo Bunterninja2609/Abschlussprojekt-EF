@@ -37,7 +37,7 @@ public class EndScreen extends GraphicalObject {
             stars[i][1] = random.nextInt(screenHeight);  // y
             stars[i][2] = 1 + random.nextInt(6);   // radius
         }
-
+        texture = new Texture(texturePath);
 
 
         this.screenWidth = screenWidth;
@@ -58,6 +58,9 @@ public class EndScreen extends GraphicalObject {
 
     @Override
     public void draw(DrawTool drawTool){
+        texture.drawToWidth(drawTool, 0, 0, Config.WINDOW_WIDTH);
+        drawTool.setCurrentColor(0, 0, 0, 180);
+        drawTool.drawFilledRectangle(0, 0, screenWidth, screenHeight);
         if (Renderer.getSCENE() == 3) {
 
             drawTool.setCurrentColor(Color.RED);
@@ -67,9 +70,8 @@ public class EndScreen extends GraphicalObject {
                 drawTool.drawFilledCircle(x, y, star[2]);
             }
 
-            //texture.drawToWidth(drawTool, 0, 0, Config.WINDOW_WIDTH);
-            drawTool.setCurrentColor(0, 0, 0, 180);
-            drawTool.drawFilledRectangle(0, 0, screenWidth, screenHeight);
+
+
 
             drawTool.setCurrentColor(Color.RED);
             drawTool.formatText("monospaced",3,45);
