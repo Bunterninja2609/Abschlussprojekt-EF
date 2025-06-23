@@ -59,10 +59,8 @@ public class Renderer extends InteractiveGraphicalObject {
         }
         uiRenderer.draw(drawTool);
 
-        drawTool.drawCircle(mousePos.x, mousePos.y, 10);
-        drawTool.setCurrentColor(Color.RED);
-        drawTool.drawCircle(translateAndScaleX(relativeMousePos.x), translateAndScaleY(relativeMousePos.y), 5);
-        drawTool.drawLine(mousePos.x, mousePos.y, translateAndScaleX(relativeMousePos.x), translateAndScaleY(relativeMousePos.y));
+        drawTool.drawFilledCircle(mousePos.x, mousePos.y, 10);
+        
         blockRenderer.getTerrain().getBlockByPosition(relativeMousePos.x, relativeMousePos.y).highlight();
         drawTool.drawText(mousePos.x, mousePos.y,blockRenderer.getTerrain().getBlockByPosition(relativeMousePos.x, relativeMousePos.y).getClass().getSimpleName());
     }
