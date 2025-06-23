@@ -27,6 +27,7 @@ public class Player extends Entity {
         height = 25;
         speed = 100;
         jumpSpeed = 500;
+        maxHitpoints = 20;
         hitpoints = 20;
         //texture = new Texture("src/my_project/resources/playerAnimations/0|0.png");
         spritesheet = new Spritesheet("src/my_project/resources/playerAnimations/",".png", 2, 4, 0.2, 0.2);
@@ -44,6 +45,12 @@ public class Player extends Entity {
         //texture.autoDraw(drawTool, x-2, y-4, 12);
         spritesheet.autoDraw(drawTool, x-3, y-4, 12);
         Renderer.getUIRenderer().addInventoryToDraw(inventory);
+        drawTool.setCurrentColor(new Color(0, 7, 23, 255));
+        drawTool.drawFilledRectangle(Renderer.translateAndScaleX(x-width), Renderer.translateAndScaleY(y- 10), Renderer.scale(width*3), Renderer.scale(3));
+        drawTool.setCurrentColor(new Color(67, 198, 48, 255));
+        drawTool.drawFilledRectangle(Renderer.translateAndScaleX(x-width), Renderer.translateAndScaleY(y- 10), Renderer.scale(width*3*(hitpoints/maxHitpoints)), Renderer.scale(3));
+
+
     }
 
     @Override

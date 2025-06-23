@@ -103,7 +103,7 @@ public abstract class Entity extends InteractiveGraphicalObject {
         //System.out.println("iteration y: " + iteration);
     }
     protected void processMovement(double dt){
-        double frictionX = 0.9;
+        double frictionX = 0.7;
         double frictionY = 0.99;
 
         move(velocity.x, velocity.y, dt);
