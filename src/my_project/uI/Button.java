@@ -108,14 +108,15 @@ public class Button {
                 Renderer.setScene(3);
             }
         }
+
         if(buttonType == 5 ){
             if(isPressed) {
-                System.exit(0);
+                Renderer.setScene(2);
             }
         }
         if(buttonType == 6 ){
             if(isPressed) {
-                Renderer.setScene(2);
+                System.exit(0);
             }
         }
     }

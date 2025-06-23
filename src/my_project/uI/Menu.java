@@ -9,7 +9,7 @@ import java.awt.*;
 
 public class Menu {
     private Button startButton01 = new Button(Config.WINDOW_WIDTH/2-60,Config.WINDOW_HEIGHT/2+150, 50, 40,"src/my_project/resources/Settingsbutton.png", "src/my_project/resources/Settingsbutton_down.png" , 1);
-    private Button startButton02 = new Button(Config.WINDOW_WIDTH/2-60,Config.WINDOW_HEIGHT/2+300, 50, 40,"src/my_project/resources/Settingsbutton.png", "src/my_project/resources/Settingsbutton_down.png" , 5);
+    private Button startButton02 = new Button(Config.WINDOW_WIDTH/2-60,Config.WINDOW_HEIGHT/2+300, 50, 40,"src/my_project/resources/Settingsbutton.png", "src/my_project/resources/Settingsbutton_down.png" , 6);
     public Menu() {
 
     }
