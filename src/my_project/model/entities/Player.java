@@ -29,6 +29,7 @@ public class Player extends Entity {
         //texture = new Texture("src/my_project/resources/playerAnimations/0|0.png");
         spritesheet = new Spritesheet("src/my_project/resources/playerAnimations/",".png", 2, 4, 0.2, 0.2);
         currentSlot = 0;
+
     }
 
     @Override
@@ -56,10 +57,16 @@ public class Player extends Entity {
             velocity.y = -jumpSpeed;
         }
         if (Mouse.isDown(1)) {
-            damageBlock(Renderer.getRelativeMousePos().x, Renderer.getRelativeMousePos().y, -1000000000*dt);
+            damageBlock(Renderer.getRelativeMousePos().x, Renderer.getRelativeMousePos().y, -10*dt);
         }
         if (Mouse.isDown(3)) {
-            placeBlock(Renderer.getRelativeMousePos().x, Renderer.getRelativeMousePos().y, Brick.class);
+            System.out.println("use Item " + currentSlot);
+
+            if (inventory.getItem(currentSlot) != null) {
+                System.out.println("Item Exists");
+                inventory.getItem(currentSlot).use(Renderer.getRelativeMousePos().x, Renderer.getRelativeMousePos().y, this);
+            }
+            //placeBlock(Renderer.getRelativeMousePos().x, Renderer.getRelativeMousePos().y, Brick.class);
         }
         velocity.y -= -1000*dt;
         //System.out.println("Player position: "+x+"|"+y);
@@ -84,6 +91,10 @@ public class Player extends Entity {
         if (hitpoints <= 0) {
             Renderer.setScene(3);
         }
+        /*
+        System.out.println("position: " + x +"\t" + y);
+        System.out.println("velocity: " + velocity);
+         */
     }
 
     @Override

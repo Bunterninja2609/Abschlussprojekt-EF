@@ -22,7 +22,11 @@ public class Inventory extends GraphicalObject {
 
     @Override
     public void draw(DrawTool drawTool) {
+
         for (int i = 0; i < size; i++) {
+            if (items[i] != null && items[i].getAmount()<= 0) {
+                items[i] = null;
+            }
             if (i != highlitedSlot) {
                 drawTool.setCurrentColor(new Color(131, 131, 131, 100));
             }else{
@@ -110,7 +114,10 @@ public class Inventory extends GraphicalObject {
     }
 
     public Item getItem(int slot){
-        return null;
+        if (slot < 0 || slot >= items.length) {
+            return null;
+        }
+        return items[slot];
     }
     public void highlitedSlot(int slot) {
         highlitedSlot = slot;

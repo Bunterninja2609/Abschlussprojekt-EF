@@ -16,6 +16,7 @@ import my_project.model.blocks.Block;
 public abstract class Entity extends InteractiveGraphicalObject {
 
     protected Vec2d velocity = new Vec2d(0,0);
+    protected double maxHitpoints;
     protected double hitpoints;
     protected double speed;
     protected double stamina;
@@ -23,6 +24,8 @@ public abstract class Entity extends InteractiveGraphicalObject {
     protected Inventory inventory;
     protected Cage cage;
     protected Spritesheet spritesheet;
+    protected double fallDamageHeight = 0;
+    protected double fallDamageFactor = 0;
 
     public Entity(EntityRenderer er, int invSize) {
         cage = new Cage(this, -1, 1);
@@ -48,41 +51,53 @@ public abstract class Entity extends InteractiveGraphicalObject {
         moveX(x, dt);
     }
     protected void moveX(double mx,double dt){
-        float precision = 0.01f;
-        double dir = ProgramController.clamp(-1, 1, Math.abs(mx)/mx);
-        int maxIterations = 1000;
-        int iteration = 0;
-        Collider colliderToCheck = cage.getLeftCollider();
-        if (mx > 0){
-            colliderToCheck = cage.getRightCollider();
+        if (mx != 0) {
+            float precision = 0.01f;
+            double dir = ProgramController.clamp(-1, 1, Math.abs(mx) / mx);
+            int maxIterations = 1000;
+            int iteration = 0;
+            Collider colliderToCheck = cage.getLeftCollider();
+            if (mx > 0) {
+                colliderToCheck = cage.getRightCollider();
+            }
+            if (!CollisionHandler.collidesWithBlock(colliderToCheck)) {
+                x += mx * dt;
+            }
+
+            while (CollisionHandler.collidesWithBlock(colliderToCheck) && iteration < maxIterations) {
+                x -= precision * dir;
+                velocity.x = 0;
+                iteration++;
+            }
         }
-        if (!CollisionHandler.collidesWithBlock(colliderToCheck)) {
-            x += mx * dt;
-        }
-        while (CollisionHandler.collidesWithBlock(colliderToCheck) && iteration < maxIterations) {
-            x -= precision * dir;
-            velocity.x = 0;
-            iteration++;
-        }
+
+
         //System.out.println("iteration x: " + iteration);
     }
     protected void moveY(double my,double dt){
-        float precision = 0.1f;
-        double dir = ProgramController.clamp(-1, 1, Math.abs(my)/my);
-        int maxIterations = 1000;
-        int iteration = 0;
-        Collider colliderToCheck = cage.getUpCollider();
-        if (my > 0){
-            colliderToCheck = cage.getDownCollider();
+        if (my != 0) {
+            float precision = 0.1f;
+            double dir = ProgramController.clamp(-1, 1, Math.abs(my) / my);
+            int maxIterations = 1000;
+            int iteration = 0;
+            Collider colliderToCheck = cage.getUpCollider();
+            if (my > 0) {
+                colliderToCheck = cage.getDownCollider();
+            }
+            if (!CollisionHandler.collidesWithBlock(colliderToCheck)) {
+                y += my * dt;
+            }
+
+            while (CollisionHandler.collidesWithBlock(colliderToCheck) && iteration < maxIterations) {
+                y -= precision * dir;
+                if (Math.abs(velocity.y) > fallDamageHeight){
+                    damage((Math.abs(velocity.y)-fallDamageHeight)*fallDamageFactor);
+                }
+                velocity.y = 0;
+                iteration++;
+            }
         }
-        if (!CollisionHandler.collidesWithBlock(colliderToCheck)) {
-            y += my * dt;
-        }
-        while (CollisionHandler.collidesWithBlock(colliderToCheck) && iteration < maxIterations) {
-            y -= precision * dir;
-            velocity.y = 0;
-            iteration++;
-        }
+
         //System.out.println("iteration y: " + iteration);
     }
     protected void processMovement(double dt){
@@ -98,5 +113,8 @@ public abstract class Entity extends InteractiveGraphicalObject {
 
     public Inventory getInventory() {
         return inventory;
+    }
+    public void damage(double damageDealt) {
+        this.hitpoints += damageDealt;
     }
 }

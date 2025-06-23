@@ -193,7 +193,7 @@ public class Terrain {
     }
     public void unloadChunk(Chunk chunk) {
         if (loadedChunks.contains(chunk)) {
-            //System.out.println("unaloaded chunk");
+            //System.out.println("unloaded chunk");
             loadedChunks.remove(chunk);
         }
     }
@@ -204,8 +204,13 @@ public class Terrain {
 
             BlockSpace blockSpace = getBlockSpaceByBlockGrid(x, y);
             Block block = constructor.newInstance(blockSpace.getGridPosition());
-            System.out.println(blockSpace.getGridPosition());
-            blockSpace.setBlock(block);
+            //System.out.println(blockSpace.getGridPosition());
+            if(!block.isColliderInside()){
+                blockSpace.setBlock(block);
+            }else{
+                System.out.println("Block could not be placed at " + blockSpace.getGridPosition());
+            }
+
 
         } catch (NoSuchMethodException | InstantiationException | IllegalAccessException |
                  InvocationTargetException e) {

@@ -45,13 +45,16 @@ public class CollisionHandler {
         for (int x = 0; x <= widthInBlocks; x++) {
             for (int y = 0; y <= heightInBlocks; y++) {
                 Block block = blockRenderer.getTerrain().getBlockByPosition(collider.getX() + x * Block.getSIZE().x, collider.getY() + y * Block.getSIZE().y);
-                boolean collides = (!block.getTransparent())&&collider.collidesWith(block);
+                boolean collides = collider.collidesWith(block);
+                boolean isSolid = (!block.getTransparent());
                 //System.out.println("collides at " +Terrain.convertPositionToBlockGrid(block.getX(), block.getY()).x+"|"+ Terrain.convertPositionToBlockGrid(block.getX(), block.getY()).y+": "+ collides);
                 //System.out.println(block.getClass().getSimpleName());
-                if (collides){
+                if (collides && isSolid) {
                     //System.out.println("collidesWithBlock");
                     collider.setCollides(true);
                     return true;
+                } else if (collides && !isSolid) {
+                    block.setColliderInside(true);
                 }
             }
         }

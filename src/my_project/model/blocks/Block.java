@@ -23,6 +23,9 @@ public abstract class Block extends GraphicalObject {
 	protected boolean isTransparent;
 	protected boolean highlighted = false;
 	protected double hitpoints = 0;
+	protected boolean colliderInside;
+	private double damageOverlayCooldown = 0.3;
+	private double damageOverlayCooldownTimer = damageOverlayCooldown;
 
 	protected Item drop;
 	BlockSpace blockSpace;
@@ -45,7 +48,8 @@ public abstract class Block extends GraphicalObject {
 		if (hitpoints <= 0){
 			destroy();
 		}
-
+		if(colliderInside)setColliderInside(false);
+		updateOverlayTimer(dt);
 	}
 	protected void drawTexture(DrawTool drawtool){
 		boolean onscreen = (Renderer.translateAndScaleX(x) >= Renderer.scale(-SIZE.x) && Renderer.translateAndScaleY(y) >= Renderer.scale(-SIZE.y)) && (Renderer.translateAndScaleX(x) < Config.WINDOW_WIDTH && Renderer.translateAndScaleY(y) < Config.WINDOW_HEIGHT);
@@ -73,6 +77,11 @@ public abstract class Block extends GraphicalObject {
 				BlockTextures.getTexture("highlight").autoDraw(drawtool, x, y, SIZE.x);
 				highlighted = false;
 			}
+			double overlayFactor = damageOverlayCooldownTimer/damageOverlayCooldown;
+			if (overlayFactor > 0) {
+				drawtool.setCurrentColor(new Color(255, 255, 255, (int) (255 * overlayFactor)));
+				drawtool.drawFilledRectangle(Renderer.translateAndScaleX(x), Renderer.translateAndScaleY(y), Renderer.scale(SIZE.x), Renderer.scale(SIZE.y));
+			}
 		}
 	}
 	public void drawBorder(DrawTool drawtool){
@@ -94,6 +103,7 @@ public abstract class Block extends GraphicalObject {
 	}
 	public void damage(double damage){
 		this.hitpoints += damage;
+		damageOverlayCooldownTimer = damageOverlayCooldown;
 	}
 	public void destroy(){
 		Renderer.getEntityRenderer().getPlayer().getInventory().addItem(drop);
@@ -121,5 +131,18 @@ public abstract class Block extends GraphicalObject {
 		this.gridPosition = gridPosition;
 		x = Terrain.convertBlockGridToPosition((int)gridPosition.x, (int)gridPosition.y).x;
 		y = Terrain.convertBlockGridToPosition((int)gridPosition.x, (int)gridPosition.y).y;
+	}
+	public boolean isColliderInside() {
+		return colliderInside;
+	}
+	public void setColliderInside(boolean colliderInside) {
+		this.colliderInside = colliderInside;
+	}
+	private void updateOverlayTimer(double dt) {
+		if(damageOverlayCooldownTimer < 0) {
+			damageOverlayCooldownTimer = 0;
+		} else if (damageOverlayCooldownTimer > 0) {
+			damageOverlayCooldownTimer -= dt;
+		}
 	}
 }

@@ -2,6 +2,7 @@ package my_project.model.items;
 
 import com.sun.javafx.geom.Vec2d;
 import my_project.model.Texture;
+import my_project.model.entities.Entity;
 
 public abstract class Item {
 
@@ -25,5 +26,8 @@ public abstract class Item {
     }
     public Texture getTexture() {
         return texture;
+    }
+    public void use(double x, double y, Entity user) {
+
     }
 }
