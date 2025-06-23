@@ -15,12 +15,12 @@ public class Menu {
     }
     public void draw(DrawTool drawTool){
         drawTool.setCurrentColor(new Color(254, 254, 254, 255));
-        drawTool.formatText("monospaced",3,60);
-        drawTool.drawText( Config.WINDOW_WIDTH/2-60,Config.WINDOW_HEIGHT/2+300,"Exit Game");
+        drawTool.formatText("monospaced",3,30);
+        drawTool.drawText( Config.WINDOW_WIDTH/2-115,Config.WINDOW_HEIGHT/2+300,"Exit Game");
 
         drawTool.setCurrentColor(new Color(254, 254, 254, 255));
-        drawTool.formatText("monospaced",3,60);
-        drawTool.drawText(Config.WINDOW_WIDTH/2-60,Config.WINDOW_HEIGHT/2+150,"Continue Game");
+        drawTool.formatText("monospaced",3,30);
+        drawTool.drawText(Config.WINDOW_WIDTH/2-145,Config.WINDOW_HEIGHT/2+150,"Continue Game");
         startButton01.draw(drawTool);
         startButton02.draw(drawTool);
 
