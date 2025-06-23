@@ -10,7 +10,7 @@ import java.awt.*;
 
 public class Overlay {
 
-    private Button startButton01 = new Button(Config.WINDOW_WIDTH-70,10, 50, 86,"src/my_project/resources/Settingsbutton.png", "src/my_project/resources/Settingsbutton_down.png" , 5);
+    private Button startButton01 = new Button(Config.WINDOW_WIDTH-70,10, 50, "src/my_project/resources/Settingsbutton.png", "src/my_project/resources/Settingsbutton_down.png" , 5);
 
     public Overlay() {
 

@@ -27,7 +27,7 @@ public class EndScreen extends GraphicalObject {
     private final Random random = new Random();
     private double xOffset = 0;
 
-    private Button startButton02 = new Button(Config.WINDOW_WIDTH/2-60,Config.WINDOW_HEIGHT/2+300, 50, 40,"src/my_project/resources/Creditsbutton.png", "src/my_project/resources/Creditsbutton_down.png" ,5);
+    private Button startButton02 = new Button(Config.WINDOW_WIDTH/2-60,Config.WINDOW_HEIGHT/2+300, 50,"src/my_project/resources/Creditsbutton.png", "src/my_project/resources/Creditsbutton_down.png" ,5);
 
     public EndScreen(int screenWidth, int screenHeight, String texturePath) {
 

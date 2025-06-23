@@ -20,10 +20,9 @@ public class Button {
     private int buttonType;
     private Mouse mouse;
 
-    public Button(double x, double y, int width, int height, String texturePath, String texturePathdown ,int type){
+    public Button(double x, double y, int width, String texturePath, String texturePathdown ,int type){
         position = new Vec2d(x, y);
         widthButton = width;
-        heightButton = height;
         isPressed = false;
         texture = new Texture(texturePath);
         textureDown = new Texture(texturePathdown);
