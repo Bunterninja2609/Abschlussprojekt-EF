@@ -20,10 +20,10 @@ public class UIRenderer {
     private ArrayList<Inventory> inventoriesToDraw;
 
     public UIRenderer() {
-        startMenu = new StartMenu("src/my_project/resources/Background.jpg");
-        credits = new Credits("src/my_project/resources/Background.jpg");
+        startMenu = new StartMenu("src/my_project/resources/Background.png");
+        credits = new Credits("src/my_project/resources/Background.png");
         inventoriesToDraw = new ArrayList<>();
-        endScreen = new EndScreen(Config.WINDOW_WIDTH, Config.WINDOW_HEIGHT,"src/my_project/resources/Background.jpg" );
+        endScreen = new EndScreen(Config.WINDOW_WIDTH, Config.WINDOW_HEIGHT,"src/my_project/resources/Background.png" );
     }
 
     public void update(double dt) {
