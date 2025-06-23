@@ -30,7 +30,7 @@ public class Player extends Entity {
         //texture = new Texture("src/my_project/resources/playerAnimations/0|0.png");
         spritesheet = new Spritesheet("src/my_project/resources/playerAnimations/",".png", 2, 4, 0.2, 0.2);
         currentSlot = 0;
-        fallDamageFactor = 0.01;
+        fallDamageFactor = 0.03;
         fallDamageHeight = 550;
         spawnProtection = 2;
     }
