@@ -1,11 +1,11 @@
 // === GameButton.java ===
-package my_project.model;
+package my_project.uI;
 
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
+import my_project.control.Renderer;
 
 import java.awt.*;
-import java.awt.event.MouseEvent;
 
 
 
@@ -13,15 +13,17 @@ public abstract class GameButton extends GraphicalObject {
 
     protected int x, y, width, height;
     protected String label;
-    //protected Runnable onClick;
+    protected boolean onClick;
+    protected int buttonType;
 
-    public GameButton(int x, int y, int width, int height, String label, Runnable onClick) {
+    public GameButton(int x, int y, int width, int height, String label, boolean onClick, int buttonType) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
         this.label = label;
-        //this.onClick = onClick;
+        this.onClick = false;
+        this.buttonType = buttonType;
     }
 
     @Override
@@ -30,15 +32,29 @@ public abstract class GameButton extends GraphicalObject {
         drawTool.drawFilledRectangle(x, y, width, height);
 
         drawTool.setCurrentColor(Color.BLACK);
-        //drawTool.setCurrentFont(new Font("SansSerif", Font.BOLD, 20));//Keine Ahnung wie man Font macht
-        drawTool.drawText( x + 20, y + 30, label); //Button position
+        drawTool.formatText("monospaced", 3, 18);
+        drawTool.drawText(x + 20, y + 30, label); //Button position
     }
 
-    public void handleClick(MouseEvent mouseEvent) {
-        int mx = mouseEvent.getX();
-        int my = mouseEvent.getY();
-        if (mx >= x && mx <= x + width && my >= y && my <= y + height) {
-            //onClick.run();//keine Ahnung wie man szene wechselt
+    public void update(double dt) {
+
+        if (Renderer.getMousePos().x > x && Renderer.getMousePos().x < x + width && Renderer.getMousePos().y > y && Renderer.getMousePos().y < y + height && Renderer.isMousePressed()) {
+            onClick = true;
+        } else {
+            onClick = false;
+        }
+
+
+        if (onClick == true) {
+            if (buttonType == 1) {
+                Renderer.setScene(1);
+            }
+            if (buttonType == 2) {
+                Renderer.setScene(0);
+            }
+
         }
     }
 }
+
+

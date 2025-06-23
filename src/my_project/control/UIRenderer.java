@@ -1,6 +1,7 @@
 package my_project.control;
 
 import KAGO_framework.view.DrawTool;
+import my_project.Config;
 import my_project.model.Inventory;
 import my_project.uI.Credits;
 import my_project.uI.EndScreen;
@@ -22,6 +23,7 @@ public class UIRenderer {
         startMenu = new StartMenu("src/my_project/resources/Background.jpg");
         credits = new Credits("src/my_project/resources/Background.jpg");
         inventoriesToDraw = new ArrayList<>();
+        endScreen = new EndScreen(Config.WINDOW_WIDTH, Config.WINDOW_HEIGHT,"src/my_project/resources/Background.jpg" );
     }
 
     public void update(double dt) {
