@@ -68,7 +68,7 @@ public class Button {
         }
         if(buttonType == 1 ){
             if(isPressed) {
-               Renderer.setScene(3);
+               Renderer.setScene(1);
             }
         }
         if(buttonType == 2 ){
