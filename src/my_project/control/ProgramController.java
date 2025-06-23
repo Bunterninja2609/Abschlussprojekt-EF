@@ -2,6 +2,7 @@ package my_project.control;
 
 import KAGO_framework.control.ViewController;
 import com.sun.javafx.geom.Vec2d;
+import my_project.model.Crafter;
 
 import java.awt.event.MouseEvent;
 
@@ -22,6 +23,7 @@ public class ProgramController {
     private UIRenderer uiRenderer;
     private Keyboard keyboard;
     private Mouse mouse;
+    private Crafter crafter;
 
     public ProgramController(ViewController viewController){
         this.viewController = viewController;
@@ -30,8 +32,10 @@ public class ProgramController {
     public void startProgram() {
         keyboard = new Keyboard();
         mouse = new Mouse();
+        crafter = new Crafter();
         viewController.register(keyboard);
         viewController.register(mouse);
+
         blockRenderer = new BlockRenderer();
         entityRenderer = new EntityRenderer(viewController);
         uiRenderer = new UIRenderer();

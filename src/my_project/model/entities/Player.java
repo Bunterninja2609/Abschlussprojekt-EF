@@ -5,6 +5,7 @@ import com.sun.javafx.geom.Vec2d;
 import my_project.control.*;
 import my_project.model.*;
 import my_project.model.blocks.*;
+import my_project.model.items.BrickItem;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -63,7 +64,7 @@ public class Player extends Entity {
             velocity.y = -jumpSpeed;
         }
         if (Mouse.isDown(1)) {
-            damageBlock(Renderer.getRelativeMousePos().x, Renderer.getRelativeMousePos().y, -10*dt);
+            damageBlock(Renderer.getRelativeMousePos().x, Renderer.getRelativeMousePos().y, -20*dt);
         }
         if (Mouse.isDown(3)) {
             System.out.println("use Item " + currentSlot);
@@ -73,6 +74,9 @@ public class Player extends Entity {
                 inventory.getItem(currentSlot).use(Renderer.getRelativeMousePos().x, Renderer.getRelativeMousePos().y, this);
             }
             //placeBlock(Renderer.getRelativeMousePos().x, Renderer.getRelativeMousePos().y, Brick.class);
+        }
+        if (Keyboard.isPressed(KeyEvent.VK_C)) {
+            Crafter.craft(this.inventory, BrickItem.class);
         }
         velocity.y -= -1000*dt;
         //System.out.println("Player position: "+x+"|"+y);
@@ -94,6 +98,9 @@ public class Player extends Entity {
         Renderer.follow(new Vec2d(-x, -y), true);
         Renderer.loadChunks(x, y);
         Renderer.getBlockRenderer().getTerrain().getBlockByPosition(x, y).highlight();
+        if (y > 5000) {
+            hitpoints = 0;
+        }
         if (hitpoints <= 0) {
             Renderer.setScene(3);
         }

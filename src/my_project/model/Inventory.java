@@ -112,12 +112,38 @@ public class Inventory extends GraphicalObject {
     public void removeItem(Block block){
 
     }
+    public boolean includesItem(Class<? extends Item> item, int amount) {
+        for (Item nItem : items) {
+            if(nItem.getClass() == item) {
+                if(nItem.getAmount() >= amount) {
+                    return true;
+                }else {
+                    return false;
+                }
+            }
+        }
+        return false;
+    }
 
     public Item getItem(int slot){
         if (slot < 0 || slot >= items.length) {
             return null;
         }
         return items[slot];
+    }
+    public Item getItem(Class<? extends Item> item) {
+        for (Item nItem : items) {
+            if(nItem.getClass() == item) {
+                System.out.println("Item found");
+                return nItem;
+
+            }
+        }
+        System.out.println("Item not found");
+        return null;
+    }
+    public Item[] getItems() {
+        return items;
     }
     public void highlitedSlot(int slot) {
         highlitedSlot = slot;
