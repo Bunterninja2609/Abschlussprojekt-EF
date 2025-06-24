@@ -62,7 +62,7 @@ public class Renderer extends InteractiveGraphicalObject {
         drawTool.drawFilledCircle(mousePos.x, mousePos.y, 5);
         
         blockRenderer.getTerrain().getBlockByPosition(relativeMousePos.x, relativeMousePos.y).highlight();
-        drawTool.drawText(mousePos.x, mousePos.y,blockRenderer.getTerrain().getBlockByPosition(relativeMousePos.x, relativeMousePos.y).getClass().getSimpleName());
+        //drawTool.drawText(mousePos.x, mousePos.y,blockRenderer.getTerrain().getBlockByPosition(relativeMousePos.x, relativeMousePos.y).getClass().getSimpleName());
     }
     @Override
     public void update(double dt){
