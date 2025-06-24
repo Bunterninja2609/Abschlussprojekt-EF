@@ -38,10 +38,11 @@ public class Credits {
         drawTool.formatText("monospaced",3,20);
         drawTool.drawText((Config.WINDOW_WIDTH/2)+60,Config.WINDOW_HEIGHT/3+150,"IntelliJ IDEA");
         drawTool.drawText((Config.WINDOW_WIDTH/2)+60,Config.WINDOW_HEIGHT/3+200,"GitHub");
+        drawTool.drawText((Config.WINDOW_WIDTH/2)+60,Config.WINDOW_HEIGHT/3+250,"Pixaki 6");
         drawTool.formatText("monospaced",3,25);
-        drawTool.drawText((Config.WINDOW_WIDTH/2)+60,Config.WINDOW_HEIGHT/3+250,"Grafiken:");
+        drawTool.drawText((Config.WINDOW_WIDTH/2)+60,Config.WINDOW_HEIGHT/3+300,"Grafiken:");
         drawTool.formatText("monospaced",3,20);
-        drawTool.drawText((Config.WINDOW_WIDTH/2)+60,Config.WINDOW_HEIGHT/3+300,"Alle Grafiken wurden selbst gezeichnet");
+        drawTool.drawText((Config.WINDOW_WIDTH/2)+60,Config.WINDOW_HEIGHT/3+350,"Alle Grafiken wurden selbst gezeichnet");
 
         startButton01.draw(drawTool);
 
