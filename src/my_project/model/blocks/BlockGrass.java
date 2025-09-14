@@ -2,12 +2,12 @@ package my_project.model.blocks;
 
 import KAGO_framework.view.DrawTool;
 import com.sun.javafx.geom.Vec2d;
-import my_project.control.Renderer;
-import my_project.model.BlockTextures;
+import my_project.control.ProgramManager;
+import my_project.model.textureContainers.BlockTextures;
 import my_project.model.items.DirtItem;
 
-public class Grass extends Block {
-    public Grass(Vec2d gridPosition) {
+public class BlockGrass extends Block {
+    public BlockGrass(Vec2d gridPosition) {
         super(gridPosition, false);
         hitpoints = 12;
         drop = new DirtItem(2);
@@ -19,8 +19,8 @@ public class Grass extends Block {
     }
     public void update(double dt) {
         super.update(dt);
-        if (!Renderer.getBlockRenderer().getTerrain().getBlockByBlockGrid((int)gridPosition.x, (int)gridPosition.y-1).isTransparent){
-            Renderer.getBlockRenderer().getTerrain().setBlock((int)gridPosition.x, (int)gridPosition.y, Dirt.class);
+        if (!ProgramManager.getBlockRenderer().getTerrain().getBlockByBlockGrid((int)gridPosition.x, (int)gridPosition.y-1).isTransparent){
+            ProgramManager.getBlockRenderer().getTerrain().setBlock((int)gridPosition.x, (int)gridPosition.y, BlockDirt.class);
         }
     }
 }

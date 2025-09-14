@@ -1,7 +1,6 @@
 package my_project.control;
 
 import KAGO_framework.control.ViewController;
-import com.sun.javafx.geom.Vec2d;
 import my_project.model.Crafter;
 
 import java.awt.event.MouseEvent;
@@ -17,10 +16,10 @@ public class ProgramController {
 
     // Referenzen
     private ViewController viewController;  // diese Referenz soll auf ein Objekt der Klasse viewController zeigen. Über dieses Objekt wird das Fenster gesteuert.
-    private Renderer renderer;
-    private BlockRenderer blockRenderer;
-    private EntityRenderer entityRenderer;
-    private UIRenderer uiRenderer;
+    private ProgramManager programManager;
+    private BlockManager blockManager;
+    private EntityManager entityManager;
+    private UserInterfaceManager userInterfaceManager;
     private Keyboard keyboard;
     private Mouse mouse;
     private Crafter crafter;
@@ -36,13 +35,13 @@ public class ProgramController {
         viewController.register(keyboard);
         viewController.register(mouse);
 
-        blockRenderer = new BlockRenderer();
-        entityRenderer = new EntityRenderer(viewController);
-        uiRenderer = new UIRenderer();
-        renderer = new Renderer(blockRenderer, entityRenderer, uiRenderer);
-        CollisionHandler.setRenderer(renderer, true);
-        viewController.draw(renderer);
-        viewController.register(renderer);
+        blockManager = new BlockManager();
+        entityManager = new EntityManager(viewController);
+        userInterfaceManager = new UserInterfaceManager();
+        programManager = new ProgramManager(blockManager, entityManager, userInterfaceManager);
+        CollisionHandler.setRenderer(programManager, true);
+        viewController.draw(programManager);
+        viewController.register(programManager);
 
     }
 

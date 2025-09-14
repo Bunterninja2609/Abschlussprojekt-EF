@@ -2,10 +2,8 @@ package my_project.uI;
 import my_project.Config;
 
 import KAGO_framework.model.GraphicalObject;
-import my_project.control.Renderer;
+import my_project.control.ProgramManager;
 import my_project.model.Texture;
-import my_project.uI.RespawnButton;
-import my_project.uI.MenuButton;
 import KAGO_framework.view.DrawTool;
 import java.util.Random;
 
@@ -55,7 +53,7 @@ public class EndScreen extends GraphicalObject {
         texture.drawToWidth(drawTool, 0, 0, Config.WINDOW_WIDTH);
         drawTool.setCurrentColor(0, 0, 0, 180);
         drawTool.drawFilledRectangle(0, 0, screenWidth, screenHeight);
-        if (Renderer.getSCENE() == 3) {
+        if (ProgramManager.getSCENE() == 3) {
 
             drawTool.setCurrentColor(Color.RED);
             for (int[] blut : blood) {
@@ -78,7 +76,7 @@ public class EndScreen extends GraphicalObject {
 
 
     public void update(double dt) {
-        if (Renderer.getSCENE() == 3) {
+        if (ProgramManager.getSCENE() == 3) {
 
             xOffset += 20*dt;
             if (xOffset > screenWidth) {

@@ -2,8 +2,7 @@ package my_project.model;
 
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
-import my_project.control.CollisionHandler;
-import my_project.control.Renderer;
+import my_project.control.ProgramManager;
 
 import java.awt.*;
 
@@ -29,7 +28,7 @@ public class Collider extends GraphicalObject {
         } else {
             drawTool.setCurrentColor(new Color(255, 255, 255));
         }
-        drawTool.drawFilledRectangle(Renderer.translateAndScaleX(x),Renderer.translateAndScaleY(y),Renderer.scale(width),Renderer.scale(height));
+        drawTool.drawFilledRectangle(ProgramManager.translateAndScaleX(x), ProgramManager.translateAndScaleY(y), ProgramManager.scale(width), ProgramManager.scale(height));
     }
 
     @Override

@@ -3,7 +3,6 @@ package my_project.model;
 import KAGO_framework.view.DrawTool;
 import com.sun.javafx.geom.Vec2d;
 import my_project.control.ProgramController;
-import my_project.control.Renderer;
 import my_project.model.blocks.Block;
 
 public class Chunk {
@@ -57,10 +56,41 @@ public class Chunk {
             }
         }
     }
+
     public void update(double dt) {
         for(BlockSpace[] row : blockSpaces) {
             for (BlockSpace blockSpace : row) {
-                blockSpace.getBlock().update(dt);
+                if (!blockSpace.getBlock().isUpdated()) {
+                    blockSpace.getBlock().update(dt);
+                }
+            }
+        }
+    }
+
+    public void updateOnTick() {
+        for(BlockSpace[] row : blockSpaces) {
+            for (BlockSpace blockSpace : row) {
+                if (!blockSpace.getBlock().isTickUpdated()) {
+                    blockSpace.getBlock().updateOnTick();
+                }
+            }
+        }
+    }
+    public void changeUpdatedStatus(boolean status) {
+        for(BlockSpace[] row : blockSpaces) {
+            for (BlockSpace blockSpace : row) {
+                if (blockSpace.getBlock().isUpdated()) {
+                    blockSpace.getBlock().setUpdated(status);
+                }
+            }
+        }
+    }
+    public void changeTickUpdatedStatus(boolean status) {
+        for(BlockSpace[] row : blockSpaces) {
+            for (BlockSpace blockSpace : row) {
+                if (blockSpace.getBlock().isTickUpdated()) {
+                    blockSpace.getBlock().setTickUpdated(status);
+                }
             }
         }
     }

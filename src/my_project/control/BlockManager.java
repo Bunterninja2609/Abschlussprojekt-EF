@@ -3,14 +3,10 @@ package my_project.control;
 import KAGO_framework.view.DrawTool;
 import com.sun.javafx.geom.Vec2d;
 import my_project.model.Terrain;
-import com.sun.javafx.geom.*;
-import my_project.model.blocks.Block;
 
-import java.util.ArrayList;
-
-public class BlockRenderer {
+public class BlockManager {
     private Terrain terrain;
-    public BlockRenderer() {
+    public BlockManager() {
         terrain = new Terrain(new Vec2d(1000, 10), (int)(Math.random()* 10000));
         System.out.println("BlockRenderer created");
     }
@@ -20,6 +16,9 @@ public class BlockRenderer {
 
     public void update(double dt) {
         terrain.update(dt);
+    }
+    public void updateOnTick() {
+        terrain.updateOnTick();
     }
     public Terrain getTerrain() {
         return terrain;

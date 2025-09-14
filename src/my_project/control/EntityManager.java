@@ -7,14 +7,14 @@ import my_project.model.entities.*;
 
 import java.util.ArrayList;
 
-public class EntityRenderer {
+public class EntityManager {
 
     private ArrayList<Entity> entities = new ArrayList<Entity>();
     private ViewController viewController;
 
-    public EntityRenderer(ViewController viewController) {
+    public EntityManager(ViewController viewController) {
         this.viewController = viewController;
-        this.addEntity(new Player(this, 9));
+        this.addEntity(new Player(9));
     }
 
     public void draw(DrawTool drawTool) {

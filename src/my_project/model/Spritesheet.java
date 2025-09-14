@@ -1,7 +1,7 @@
 package my_project.model;
 
 import KAGO_framework.view.DrawTool;
-import my_project.control.Renderer;
+import my_project.control.ProgramManager;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -74,7 +74,7 @@ public class Spritesheet {
         drawTool.drawTransformedImage(image[frameX][frameY], x, y, 0, scale);
     }
     public void autoDraw(DrawTool drawTool, double x, double y, double width) {
-        drawTool.drawTransformedImage(image[frameX][frameY], Renderer.translateAndScaleX(x), Renderer.translateAndScaleY(y), 0, Renderer.scale(width/image[frameX][frameY].getWidth()));
+        drawTool.drawTransformedImage(image[frameX][frameY], ProgramManager.translateAndScaleX(x), ProgramManager.translateAndScaleY(y), 0, ProgramManager.scale(width/image[frameX][frameY].getWidth()));
     }
     public void setFrameX(int frameX) {
         this.frameX = frameX;

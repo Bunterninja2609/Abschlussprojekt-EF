@@ -5,18 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a3a0b6c3-3531-4b83-899a-66618f48675b" name="Changes" comment="EndScreen fertig">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/control/BlockRenderer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/control/BlockRenderer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/control/ProgramController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/control/ProgramController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/control/Renderer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/control/Renderer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/control/UIRenderer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/control/UIRenderer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/Chunk.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/Chunk.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/Entities/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/Entities/Player.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/Terrain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/Terrain.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/Texture.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/Texture.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/blocks/Block.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/blocks/Block.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/entities/Entity.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KAGO-Framework/my_project/model/entities/Entity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/my_project/uI/EndScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/my_project/uI/EndScreen.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

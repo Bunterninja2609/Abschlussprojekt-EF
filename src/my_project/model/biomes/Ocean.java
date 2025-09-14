@@ -34,17 +34,17 @@ public class Ocean extends Biome {
 
         switch (block){
             case 0:
-                return new Air(new Vec2d(x, y));
+                return new BlockAir(new Vec2d(x, y));
             case 1:
-                return new Dirt(new Vec2d(x, y));
+                return new BlockDirt(new Vec2d(x, y));
             case 2:
-                return new Stone(new Vec2d(x, y));
+                return new BlockStone(new Vec2d(x, y));
             case 3:
-                return new Water(new Vec2d(x, y));
+                //water
             case 4:
-                return new Iron(new Vec2d(x, y));
+                return new BlockIron(new Vec2d(x, y));
             default:
-                return new Air(new Vec2d(x, y));
+                return new BlockAir(new Vec2d(x, y));
         }
     }
 }

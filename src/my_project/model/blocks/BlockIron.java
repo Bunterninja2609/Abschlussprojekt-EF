@@ -2,10 +2,10 @@ package my_project.model.blocks;
 
 import KAGO_framework.view.DrawTool;
 import com.sun.javafx.geom.Vec2d;
-import my_project.model.BlockTextures;
+import my_project.model.textureContainers.BlockTextures;
 
-public class Iron extends Block {
-    public Iron(Vec2d gridPosition) {
+public class BlockIron extends Block {
+    public BlockIron(Vec2d gridPosition) {
         super(gridPosition, false);
         hitpoints = 20;
         texture = BlockTextures.getTexture("iron");

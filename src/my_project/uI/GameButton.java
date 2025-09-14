@@ -3,7 +3,7 @@ package my_project.uI;
 
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
-import my_project.control.Renderer;
+import my_project.control.ProgramManager;
 
 import java.awt.*;
 
@@ -38,7 +38,7 @@ public abstract class GameButton extends GraphicalObject {
 
     public void update(double dt) {
 
-        if (Renderer.getMousePos().x > x && Renderer.getMousePos().x < x + width && Renderer.getMousePos().y > y && Renderer.getMousePos().y < y + height && Renderer.isMousePressed()) {
+        if (ProgramManager.getMousePos().x > x && ProgramManager.getMousePos().x < x + width && ProgramManager.getMousePos().y > y && ProgramManager.getMousePos().y < y + height && ProgramManager.isMousePressed()) {
             onClick = true;
         } else {
             onClick = false;
@@ -47,10 +47,10 @@ public abstract class GameButton extends GraphicalObject {
 
         if (onClick == true) {
             if (buttonType == 1) {
-                Renderer.setScene(1);
+                ProgramManager.setScene(1);
             }
             if (buttonType == 2) {
-                Renderer.setScene(0);
+                ProgramManager.setScene(0);
             }
 
         }

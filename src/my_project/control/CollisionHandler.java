@@ -1,42 +1,41 @@
 package my_project.control;
 
 import my_project.model.Collider;
-import my_project.model.Terrain;
 import my_project.model.blocks.Block;
 
 public class CollisionHandler {
-    private static Renderer renderer;
-    private static EntityRenderer entityRenderer;
-    private static BlockRenderer blockRenderer;
+    private static ProgramManager programManager;
+    private static EntityManager entityManager;
+    private static BlockManager blockManager;
 
-    public static void setRenderer(Renderer renderer, boolean autoAddRest) {
-        CollisionHandler.renderer = renderer;
+    public static void setRenderer(ProgramManager programManager, boolean autoAddRest) {
+        CollisionHandler.programManager = programManager;
         if (autoAddRest) {
-            blockRenderer = Renderer.getBlockRenderer();
-            entityRenderer = Renderer.getEntityRenderer();
+            blockManager = ProgramManager.getBlockRenderer();
+            entityManager = ProgramManager.getEntityRenderer();
 
         }
     }
-    public static void setEntityRenderer(EntityRenderer entityRenderer) {
-        CollisionHandler.entityRenderer = entityRenderer;
+    public static void setEntityManager(EntityManager entityManager) {
+        CollisionHandler.entityManager = entityManager;
     }
-    public static void setBlockRenderer(BlockRenderer blockRenderer) {
-        CollisionHandler.blockRenderer = blockRenderer;
+    public static void setBlockManager(BlockManager blockManager) {
+        CollisionHandler.blockManager = blockManager;
     }
 
-    public static Renderer getRenderer() {
-        return renderer;
+    public static ProgramManager getProgramManager() {
+        return programManager;
     }
-    public static EntityRenderer getEntityRenderer() {
-        return entityRenderer;
+    public static EntityManager getEntityManager() {
+        return entityManager;
     }
-    public static BlockRenderer getBlockRenderer() {
-        return blockRenderer;
+    public static BlockManager getBlockManager() {
+        return blockManager;
     }
 
     public static boolean collidesWithBlock(Collider collider) {
         collider.getCage().updatePosition();
-        if (blockRenderer == null) return false;
+        if (blockManager == null) return false;
         //System.out.println("checking collidesWithBlock");
         int widthInBlocks = (int)(collider.getWidth()/Block.getSIZE().x) + 1;
         int heightInBlocks = (int)(collider.getHeight()/Block.getSIZE().y) + 1;
@@ -44,7 +43,7 @@ public class CollisionHandler {
         //System.out.println("heightInBlocks: " + heightInBlocks);
         for (int x = 0; x <= widthInBlocks; x++) {
             for (int y = 0; y <= heightInBlocks; y++) {
-                Block block = blockRenderer.getTerrain().getBlockByPosition(collider.getX() + x * Block.getSIZE().x, collider.getY() + y * Block.getSIZE().y);
+                Block block = blockManager.getTerrain().getBlockByPosition(collider.getX() + x * Block.getSIZE().x, collider.getY() + y * Block.getSIZE().y);
                 boolean collides = collider.collidesWith(block);
                 boolean isSolid = (!block.getTransparent());
                 //System.out.println("collides at " +Terrain.convertPositionToBlockGrid(block.getX(), block.getY()).x+"|"+ Terrain.convertPositionToBlockGrid(block.getX(), block.getY()).y+": "+ collides);

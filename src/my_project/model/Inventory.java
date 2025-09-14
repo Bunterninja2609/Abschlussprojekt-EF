@@ -47,9 +47,9 @@ public class Inventory extends GraphicalObject {
     public void addItem(Block block) {
         String name = "";
         boolean added = false;
-        if (block instanceof Stone) {
+        if (block instanceof BlockStone) {
             name = "Stone";
-        }else if (block instanceof Dirt || block instanceof Grass) {
+        }else if (block instanceof BlockDirt || block instanceof BlockGrass) {
             name = "Dirt";
         }
         for (Item item : items) {

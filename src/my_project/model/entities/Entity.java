@@ -4,14 +4,13 @@ import KAGO_framework.model.InteractiveGraphicalObject;
 import KAGO_framework.view.DrawTool;
 import com.sun.javafx.geom.Vec2d;
 import my_project.control.CollisionHandler;
-import my_project.control.EntityRenderer;
+import my_project.control.EntityManager;
 import my_project.control.ProgramController;
-import my_project.control.Renderer;
+import my_project.control.ProgramManager;
 import my_project.model.Cage;
 import my_project.model.Collider;
 import my_project.model.Inventory;
 import my_project.model.Spritesheet;
-import my_project.model.blocks.Block;
 
 public abstract class Entity extends InteractiveGraphicalObject {
 
@@ -27,7 +26,7 @@ public abstract class Entity extends InteractiveGraphicalObject {
     protected double fallDamageHeight = 0;
     protected double fallDamageFactor = 0;
 
-    public Entity(EntityRenderer er, int invSize) {
+    public Entity(int invSize) {
         cage = new Cage(this, -1, 1);
         inventory = new Inventory(invSize);
     }
@@ -44,7 +43,7 @@ public abstract class Entity extends InteractiveGraphicalObject {
     }
 
     public void drawHitbox(DrawTool drawTool) {
-        drawTool.drawFilledRectangle(Renderer.translateAndScaleX(x), Renderer.translateAndScaleY(y), Renderer.scale(width), Renderer.scale(height));
+        drawTool.drawFilledRectangle(ProgramManager.translateAndScaleX(x), ProgramManager.translateAndScaleY(y), ProgramManager.scale(width), ProgramManager.scale(height));
     }
     protected void move(double x, double y,double dt){
         moveY(y, dt);

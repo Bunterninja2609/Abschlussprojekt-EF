@@ -1,21 +1,18 @@
 package my_project.control;
 
 import my_project.Config;
-import KAGO_framework.control.ViewController;
-import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.model.InteractiveGraphicalObject;
 import KAGO_framework.view.DrawTool;
 import com.sun.javafx.geom.Vec2d;
 import my_project.model.Background;
 import my_project.model.Chunk;
 import my_project.model.blocks.Block;
-import my_project.control.UIRenderer;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
-public class Renderer extends InteractiveGraphicalObject {
+public class ProgramManager extends InteractiveGraphicalObject {
     private static double SCALE = 5;
     private static Vec2d OFFSET = new Vec2d(0, 0);
     private static Vec2d OFFSET2 = new Vec2d(0, 0);
@@ -27,16 +24,19 @@ public class Renderer extends InteractiveGraphicalObject {
 
     private static final int RENDERDISTANCE = 3;
 
-    private static BlockRenderer blockRenderer;
-    private static EntityRenderer entityRenderer;
-    private static UIRenderer uiRenderer;
+    private static final double TICKS_PER_SECOND = 0.25;
+    private static double tickTimer = 0;
+
+    private static BlockManager blockManager;
+    private static EntityManager entityManager;
+    private static UserInterfaceManager userInterfaceManager;
 
     private Background background;
 
-    public Renderer(BlockRenderer blockRenderer, EntityRenderer entityRenderer, UIRenderer uiRenderer) {
-        this.blockRenderer = blockRenderer;
-        this.entityRenderer = entityRenderer;
-        this.uiRenderer = uiRenderer;
+    public ProgramManager(BlockManager blockManager, EntityManager entityManager, UserInterfaceManager userInterfaceManager) {
+        this.blockManager = blockManager;
+        this.entityManager = entityManager;
+        this.userInterfaceManager = userInterfaceManager;
 
         background = new Background();
     }
@@ -47,36 +47,43 @@ public class Renderer extends InteractiveGraphicalObject {
                 break;
             case 1://Spiel
                 background.draw(drawTool);
-                entityRenderer.draw(drawTool);
-                blockRenderer.draw(drawTool);
+                entityManager.draw(drawTool);
+                blockManager.draw(drawTool);
                 break;
             case 2:
                 background.draw(drawTool);
-                entityRenderer.draw(drawTool);
-                blockRenderer.draw(drawTool);
+                entityManager.draw(drawTool);
+                blockManager.draw(drawTool);
                 break;
             default:
         }
-        uiRenderer.draw(drawTool);
+        userInterfaceManager.draw(drawTool);
         drawTool.setCurrentColor(Color.WHITE);
         drawTool.drawFilledCircle(mousePos.x, mousePos.y, 5);
         
-        blockRenderer.getTerrain().getBlockByPosition(relativeMousePos.x, relativeMousePos.y).highlight();
-        //drawTool.drawText(mousePos.x, mousePos.y,blockRenderer.getTerrain().getBlockByPosition(relativeMousePos.x, relativeMousePos.y).getClass().getSimpleName());
+        blockManager.getTerrain().getBlockByPosition(relativeMousePos.x, relativeMousePos.y).highlight();
+        drawTool.drawText(mousePos.x, mousePos.y, blockManager.getTerrain().getBlockByPosition(relativeMousePos.x, relativeMousePos.y).getClass().getSimpleName());
+        drawTool.drawText(mousePos.x, mousePos.y + 10, "X: " + blockManager.getTerrain().getBlockByPosition(relativeMousePos.x, relativeMousePos.y).getX() + " | Y: " + blockManager.getTerrain().getBlockByPosition(relativeMousePos.x, relativeMousePos.y).getY());
     }
+
     @Override
     public void update(double dt){
         // System.out.println(scene);
-        uiRenderer.update(dt);
+        userInterfaceManager.update(dt);
         relativeMousePos.x = (mousePos.x - OFFSET2.x)/SCALE - OFFSET.x;
         relativeMousePos.y =(mousePos.y - OFFSET2.y)/SCALE - OFFSET.y;
         switch(scene) {
             case 0://Menü
                 break;
             case 1://Spiel
+                tickTimer += dt;
+                while(tickTimer > TICKS_PER_SECOND) {
+                    updateOnTick();
+                    tickTimer -= TICKS_PER_SECOND;
+                }
                 background.update(dt);
-                entityRenderer.update(dt);
-                blockRenderer.update(dt);
+                entityManager.update(dt);
+                blockManager.update(dt);
                 if(Keyboard.isPressed(KeyEvent.VK_O)){
                     SCALE = 0.2;
                 }else{
@@ -84,8 +91,11 @@ public class Renderer extends InteractiveGraphicalObject {
                 }
                 break;
         }
-
     }
+    public void updateOnTick() {
+        blockManager.updateOnTick();
+    }
+
     @Override
     public void mouseMoved(MouseEvent e) {
         mousePos.x = e.getX();
@@ -138,10 +148,10 @@ public class Renderer extends InteractiveGraphicalObject {
     public static Vec2d getRelativeMousePos() {
         return relativeMousePos;
     }
-    public double getRelativeMousePosX() {
+    public static double getRelativeMousePosX() {
         return relativeMousePos.x;
     }
-    public double getRelativeMousePosY() {
+    public static double getRelativeMousePosY() {
         return relativeMousePos.y;
     }
 
@@ -149,7 +159,7 @@ public class Renderer extends InteractiveGraphicalObject {
         return mousePressed;
     }
     public static void setScene(int scene) {
-        Renderer.scene = scene;
+        ProgramManager.scene = scene;
     }
     public static Vec2d translate(Vec2d vec) {
         return new Vec2d((vec.x + OFFSET.x), (vec.y + OFFSET.y));
@@ -164,11 +174,11 @@ public class Renderer extends InteractiveGraphicalObject {
         return SCALE*scale;
     }
     public static double translateAndScaleX(double x) {
-        return (x + Renderer.getOFFSET().x)*Renderer.getSCALE() + OFFSET2.x;
+        return (x + ProgramManager.getOFFSET().x)* ProgramManager.getSCALE() + OFFSET2.x;
     }
 
     public static double translateAndScaleY(double y) {
-        return (y + Renderer.getOFFSET().y)*Renderer.getSCALE() + OFFSET2.y;
+        return (y + ProgramManager.getOFFSET().y)* ProgramManager.getSCALE() + OFFSET2.y;
     }
     public static void follow(Vec2d pos, boolean center) {
         OFFSET = pos;
@@ -184,18 +194,18 @@ public class Renderer extends InteractiveGraphicalObject {
         double rDIP = (Chunk.getSIZE().x * Block.getSIZE().x); //Chunk size in Pixels
         for (int i = -RENDERDISTANCE; i <= RENDERDISTANCE; i++) {
             for (int j = -RENDERDISTANCE; j <= RENDERDISTANCE; j++) {
-                blockRenderer.getTerrain().getChunkByPosition(x + i * rDIP, y + j * rDIP).setLoaded(true);
+                blockManager.getTerrain().getChunkByPosition(x + i * rDIP, y + j * rDIP).setLoaded(true);
             }
         }
     }
-    public static BlockRenderer getBlockRenderer() {
-        return blockRenderer;
+    public static BlockManager getBlockRenderer() {
+        return blockManager;
     }
-    public static EntityRenderer getEntityRenderer() {
-        return entityRenderer;
+    public static EntityManager getEntityRenderer() {
+        return entityManager;
     }
-    public static UIRenderer getUIRenderer() {
-        return uiRenderer;
+    public static UserInterfaceManager getUIRenderer() {
+        return userInterfaceManager;
     }
     public static boolean raycast(Vec2d start, Vec2d end, double maxDistance, double rayDistance, Block ignore) {
         double distance = Math.abs(end.distance(start));
@@ -208,7 +218,7 @@ public class Renderer extends InteractiveGraphicalObject {
         for (double i = 0; i < distance/rayDistance; i++) {
             double tempX = posX + Math.cos(direction) * i * rayDistance;
             double tempY = posY + Math.sin(direction) * i * rayDistance;
-            if (!Renderer.getBlockRenderer().getTerrain().getBlockByPosition(tempX, tempY).getTransparent() && Renderer.getBlockRenderer().getTerrain().getBlockByPosition(tempX, tempY) != ignore) {
+            if (!ProgramManager.getBlockRenderer().getTerrain().getBlockByPosition(tempX, tempY).getTransparent() && ProgramManager.getBlockRenderer().getTerrain().getBlockByPosition(tempX, tempY) != ignore) {
                 return false;
             }
         }

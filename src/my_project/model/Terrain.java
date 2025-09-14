@@ -3,9 +3,7 @@ package my_project.model;
 import KAGO_framework.view.DrawTool;
 import com.sun.javafx.geom.Vec2d;
 import my_project.control.ProgramController;
-import my_project.control.Renderer;
 import my_project.model.biomes.*;
-import my_project.model.blocks.Air;
 import my_project.model.blocks.Block;
 
 import java.lang.reflect.Constructor;
@@ -24,10 +22,12 @@ public class Terrain {
         rand = new Random(seed);
         noise = new PerlinNoise(seed, 0.025, 4, 0.3, 3);
         biomeNoise = new PerlinNoise(seed + 1, 0.005, 6, 0.3, 3);
+
         System.out.println("Terrain created");
         System.out.println("World Size: " + worldSize.x + " x " + worldSize.y + " Chunks");
         System.out.println("  > " + (worldSize.x * Chunk.SIZE.x) + " x " + (worldSize.y * Chunk.SIZE.y) + " Blocks");
         System.out.println("Seed: " + seed);
+
         chunks = new Chunk[(int)worldSize.x][(int)worldSize.y];
         loadedChunks = new ArrayList<>();
         for (int x = 0; x < worldSize.x; x++) {
@@ -38,38 +38,28 @@ public class Terrain {
     }
 
     public void draw(DrawTool drawTool) {
-        //System.out.println("Drawing Terrain");
-        /*
-        for (Chunk[] column : chunks) {
-            for (Chunk chunk : column) {
-                if (chunk.isLoaded()) {
-                    chunk.draw(drawTool);
-                }
-            }
-        }
-
-         */
         for (Chunk chunk : loadedChunks) {
-            //System.out.println("drawing chunk: ");
             chunk.drawBorder(drawTool);
         }
         for (Chunk chunk : loadedChunks) {
-            //System.out.println("drawing chunk: ");
             chunk.draw(drawTool);
         }
     }
+
     public void update(double dt) {
-        /*
-        for (Chunk[] column : chunks) {
-            for (Chunk chunk : column) {
-                if (chunk.isLoaded()) {
-                    chunk.update(dt);
-                }
-            }
-        }
-        */
         for (Chunk chunk : loadedChunks) {
             chunk.update(dt);
+        }
+        for (Chunk chunk : loadedChunks) {
+            chunk.changeUpdatedStatus(false);
+        }
+    }
+    public void updateOnTick() {
+        for (Chunk chunk : loadedChunks) {
+            chunk.updateOnTick();
+        }
+        for (Chunk chunk : loadedChunks) {
+            chunk.changeTickUpdatedStatus(false);
         }
     }
 
@@ -85,7 +75,6 @@ public class Terrain {
         return getChunkByChunkGrid(x, y);
     }
     public Chunk getChunkByChunkGrid(int x, int y){
-        //avoiding nullPointerExeption
         x = (int)ProgramController.clamp( 0, chunks.length - 1, x);
         y = (int)ProgramController.clamp( 0, chunks[0].length - 1, y);
         return chunks[x][y];
@@ -169,7 +158,6 @@ public class Terrain {
 
     }
 
-
     public static double getGroundheight(double x, PerlinNoise noise) {
         double flux = 0.1;
         if (ProgramController.isBetween(-1, 0-flux, biomeNoise.getValue(x))) {
@@ -197,24 +185,11 @@ public class Terrain {
             loadedChunks.remove(chunk);
         }
     }
+
     public void setBlock(int x, int y, Class<? extends Block> blockType) {
-        try {
-            Constructor<? extends Block> constructor = blockType.getDeclaredConstructor(Vec2d.class);
-            constructor.setAccessible(true);
-
-            BlockSpace blockSpace = getBlockSpaceByBlockGrid(x, y);
-            Block block = constructor.newInstance(blockSpace.getGridPosition());
-            //System.out.println(blockSpace.getGridPosition());
-            if(!block.isColliderInside()){
-                blockSpace.setBlock(block);
-            }else{
-                System.out.println("Block could not be placed at " + blockSpace.getGridPosition());
-            }
-
-
-        } catch (NoSuchMethodException | InstantiationException | IllegalAccessException |
-                 InvocationTargetException e) {
-            e.printStackTrace();
-        }
+        getBlockSpaceByBlockGrid(x, y).setNewBlock(blockType);
+    }
+    public void setBlock(int x, int y, Block block) {
+        getBlockSpaceByBlockGrid(x, y).setBlock(block);
     }
 }

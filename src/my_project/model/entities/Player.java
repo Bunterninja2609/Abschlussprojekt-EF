@@ -6,11 +6,11 @@ import my_project.control.*;
 import my_project.model.*;
 import my_project.model.blocks.*;
 import my_project.model.items.BrickItem;
+import my_project.model.items.SandItem;
+import my_project.model.items.WaterItem;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 
 public class Player extends Entity {
 
@@ -19,8 +19,8 @@ public class Player extends Entity {
     private int currentSlot;
     private double spawnProtection;
 
-    public Player(EntityRenderer eR, int invSize) {
-        super(eR, invSize);
+    public Player(int invSize) {
+        super(invSize);
         x = 400;
         y = 0;
         width = 6;
@@ -35,6 +35,8 @@ public class Player extends Entity {
         fallDamageFactor = 0.03;
         fallDamageHeight = 550;
         spawnProtection = 2;
+        this.inventory.addItem(new SandItem(1000));
+        this.inventory.addItem(new WaterItem(1000));
     }
 
     @Override
@@ -44,11 +46,11 @@ public class Player extends Entity {
         //cage.draw(drawTool);
         //texture.autoDraw(drawTool, x-2, y-4, 12);
         spritesheet.autoDraw(drawTool, x-3, y-4, 12);
-        Renderer.getUIRenderer().addInventoryToDraw(inventory);
+        ProgramManager.getUIRenderer().addInventoryToDraw(inventory);
         drawTool.setCurrentColor(new Color(0, 7, 23, 255));
-        drawTool.drawFilledRectangle(Renderer.translateAndScaleX(x-width), Renderer.translateAndScaleY(y- 10), Renderer.scale(width*3), Renderer.scale(3));
+        drawTool.drawFilledRectangle(ProgramManager.translateAndScaleX(x-width), ProgramManager.translateAndScaleY(y- 10), ProgramManager.scale(width*3), ProgramManager.scale(3));
         drawTool.setCurrentColor(new Color(67, 198, 48, 255));
-        drawTool.drawFilledRectangle(Renderer.translateAndScaleX(x-width), Renderer.translateAndScaleY(y- 10), Renderer.scale(width*3*(hitpoints/maxHitpoints)), Renderer.scale(3));
+        drawTool.drawFilledRectangle(ProgramManager.translateAndScaleX(x-width), ProgramManager.translateAndScaleY(y- 10), ProgramManager.scale(width*3*(hitpoints/maxHitpoints)), ProgramManager.scale(3));
 
 
     }
@@ -71,14 +73,14 @@ public class Player extends Entity {
             velocity.y = -jumpSpeed;
         }
         if (Mouse.isDown(1)) {
-            damageBlock(Renderer.getRelativeMousePos().x, Renderer.getRelativeMousePos().y, -20*dt);
+            damageBlock(ProgramManager.getRelativeMousePos().x, ProgramManager.getRelativeMousePos().y, -20*dt);
         }
         if (Mouse.isDown(3)) {
             System.out.println("use Item " + currentSlot);
 
             if (inventory.getItem(currentSlot) != null) {
                 System.out.println("Item Exists");
-                inventory.getItem(currentSlot).use(Renderer.getRelativeMousePos().x, Renderer.getRelativeMousePos().y, this);
+                inventory.getItem(currentSlot).use(ProgramManager.getRelativeMousePos().x, ProgramManager.getRelativeMousePos().y, this);
             }
             //placeBlock(Renderer.getRelativeMousePos().x, Renderer.getRelativeMousePos().y, Brick.class);
         }
@@ -102,14 +104,14 @@ public class Player extends Entity {
         }
         spritesheet.updateX(dt);
 
-        Renderer.follow(new Vec2d(-x, -y), true);
-        Renderer.loadChunks(x, y);
-        Renderer.getBlockRenderer().getTerrain().getBlockByPosition(x, y).highlight();
+        ProgramManager.follow(new Vec2d(-x, -y), true);
+        ProgramManager.loadChunks(x, y);
+        ProgramManager.getBlockRenderer().getTerrain().getBlockByPosition(x, y).highlight();
         if (y > 5000) {
             hitpoints = 0;
         }
         if (hitpoints <= 0) {
-            Renderer.setScene(3);
+            ProgramManager.setScene(3);
         }
         /*
         System.out.println("position: " + x +"\t" + y);
@@ -134,13 +136,13 @@ public class Player extends Entity {
 
     }
     private void damageBlock(double x, double y, double damage) {
-        Renderer.getBlockRenderer().getTerrain().getBlockByPosition(x, y).damage(damage);
+        ProgramManager.getBlockRenderer().getTerrain().getBlockByPosition(x, y).damage(damage);
     }
     private void placeBlock(double x, double y, Class<? extends Block> blockType) {
-        if (Renderer.getBlockRenderer().getTerrain().getBlockByPosition(x, y) instanceof Air) {
+        if (ProgramManager.getBlockRenderer().getTerrain().getBlockByPosition(x, y) instanceof BlockAir) {
             int blockPosX = (int)Terrain.convertPositionToBlockGrid(x, y).x;
             int blockPosY = (int)Terrain.convertPositionToBlockGrid(x, y).y;
-            Renderer.getBlockRenderer().getTerrain().setBlock(blockPosX, blockPosY, blockType);
+            ProgramManager.getBlockRenderer().getTerrain().setBlock(blockPosX, blockPosY, blockType);
         }
     }
 

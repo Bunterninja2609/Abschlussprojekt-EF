@@ -2,7 +2,7 @@ package my_project.model;
 
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
-import my_project.control.Renderer;
+import my_project.control.ProgramManager;
 
 public class Texture extends GraphicalObject {
     public Texture(String texture) {
@@ -12,7 +12,7 @@ public class Texture extends GraphicalObject {
         drawTool.drawTransformedImage(getMyImage(), x, y, 0, scale);
     }
     public void autoDraw(DrawTool drawTool, double x, double y, double width) {
-        drawTool.drawTransformedImage(getMyImage(), Renderer.translateAndScaleX(x), Renderer.translateAndScaleY(y), 0, Renderer.scale(width/getMyImage().getWidth()));
+        drawTool.drawTransformedImage(getMyImage(), ProgramManager.translateAndScaleX(x), ProgramManager.translateAndScaleY(y), 0, ProgramManager.scale(width/getMyImage().getWidth()));
     }
     public void drawToWidth(DrawTool drawTool, double x, double y, double width) {
         drawTool.drawTransformedImage(getMyImage(), x, y, 0, width/getMyImage().getWidth());
