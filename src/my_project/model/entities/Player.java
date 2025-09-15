@@ -7,6 +7,7 @@ import my_project.model.*;
 import my_project.model.blocks.*;
 import my_project.model.items.BrickItem;
 import my_project.model.items.SandItem;
+import my_project.model.items.TntItem;
 import my_project.model.items.WaterItem;
 
 import java.awt.*;
@@ -37,6 +38,7 @@ public class Player extends Entity {
         spawnProtection = 2;
         this.inventory.addItem(new SandItem(1000));
         this.inventory.addItem(new WaterItem(1000));
+        this.inventory.addItem(new TntItem(1000));
     }
 
     @Override
